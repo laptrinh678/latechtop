@@ -210,39 +210,42 @@ class TopController extends Controller
         $data['password'] = bcrypt($request->password);
         $data['showpassword'] = $request->password;
         $data['code_product'] = Str::random(8);
-        $userid = $UsersRepository->getUserId($request->code);
-        $parentUserid = $UsersRepository->getIdUserParent($userid);
-        if ($parentUserid != '') {
-            $data['parent_user_id'] = $parentUserid;
-            $soluongUserCon = $UsersRepository->countSubUser($parentUserid);
-            if ($soluongUserCon >= 1) {
-                $data['nhanh'] = 1;
-            }
-            $UsersRepository->updateSubUser($parentUserid);
-        }
+        // $userid = $UsersRepository->getUserId($request->code);
+        // $parentUserid = $UsersRepository->getIdUserParent($userid);
+        // if ($parentUserid != '') {
+        //     $data['parent_user_id'] = $parentUserid;
+        //     $soluongUserCon = $UsersRepository->countSubUser($parentUserid);
+        //     if ($soluongUserCon >= 1) {
+        //         $data['nhanh'] = 1;
+        //     }
+        //     $UsersRepository->updateSubUser($parentUserid);
+        // }
         $result = User::create($data);
-        $id = $result->id;
-        if ($id < 10) {
-            $id = '0' . $id;
+        // $id = $result->id;
+        // if ($id < 10) {
+        //     $id = '0' . $id;
+        // }
+        // $datanew['code'] = 'DN1144' . $id;
+        // $data['code'] = $datanew['code'];
+        // $UsersRepository->update($id, $datanew);
+        // $email = $request->email;
+        // \Mail::send('dienminhquang.guithanhvien', $data, function ($msg) use ($email) {
+        //     $msg->from(env('MAIL_FROM_ADDRESS'), 'Samdoo.vn');// mail gui
+        //     $msg->to($email);// mail nhan, ten mail
+        //     $msg->subject('Đăng ký thành viên samdoo.vn');
+        // });
+        // \Mail::send('dienminhquang.dangkythanhvien', $data, function ($msg) use ($email) {
+        //     $msg->from(env('MAIL_FROM_ADDRESS'), 'Samdoo.vn');// mail gui
+        //     $msg->to($email);// mail nhan, ten mail
+        //     $msg->cc('nguyenthuonght.1980@gmail.com', 'Samdoo.vn');
+        //     $msg->subject('Đăng ký thành viên samdoo.vn');
+        // });
+        if($result){
+            Session::flash('mathanhvien', $result->phone);
+            Session::flash('add_success', __('message.add_success'));
+            return back();
         }
-        $datanew['code'] = 'DN1144' . $id;
-        $data['code'] = $datanew['code'];
-        $UsersRepository->update($id, $datanew);
-        $email = $request->email;
-        \Mail::send('dienminhquang.guithanhvien', $data, function ($msg) use ($email) {
-            $msg->from(env('MAIL_FROM_ADDRESS'), 'Samdoo.vn');// mail gui
-            $msg->to($email);// mail nhan, ten mail
-            $msg->subject('Đăng ký thành viên samdoo.vn');
-        });
-        \Mail::send('dienminhquang.dangkythanhvien', $data, function ($msg) use ($email) {
-            $msg->from(env('MAIL_FROM_ADDRESS'), 'Samdoo.vn');// mail gui
-            $msg->to($email);// mail nhan, ten mail
-            $msg->cc('nguyenthuonght.1980@gmail.com', 'Samdoo.vn');
-            $msg->subject('Đăng ký thành viên samdoo.vn');
-        });
-        Session::flash('mathanhvien', $datanew['code']);
-        Session::flash('add_success', __('message.add_success'));
-        return back();
+     
     }
 
     public function loginUser(LoginUserRequest $request)

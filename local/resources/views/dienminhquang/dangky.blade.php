@@ -92,14 +92,6 @@
                                                 </p>
                                             </li>
 
-                                            <li>
-                                                <input placeholder="Mã người giới thiệu" value="{{old('code')}}"
-                                                       name="code" id="ContactForm_address"
-                                                       type="text">
-                                                <p>
-                                                    <span style="color: red;">{{$errors->first('code')}}</span>
-                                                </p>
-                                            </li>
 
                                             <li class="text-center">
                                                 <button type="submit" class="btn btn-success">Gửi</button>

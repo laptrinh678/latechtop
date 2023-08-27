@@ -23,7 +23,6 @@ class FrontendUserRequest extends FormRequest
                 'email'=>'required|unique:users,email|max:50',
                 'name'=>'required|max:50',
                 'phone'=>'required|numeric|digits_between:8,12|unique:users,phone',
-                'code'=>'required|exists:users,code|max:50',
                 'password'=>'required|min:3|max:15',
                 'password_confirm'=>'required|min:3|max:15|same:password'
                 ];
