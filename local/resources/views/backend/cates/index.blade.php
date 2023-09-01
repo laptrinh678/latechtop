@@ -63,7 +63,7 @@ Danh sách menu
                                  @include('errors.note')
                                 <thead>
                                     <tr class="filters">
-                                        <th>ID</th>
+                                        <th style="width:4px;">ID</th>
                                         <th>Tên danh mục</th>
                                         <th>Ví trí hiển thị</th>
                                         <th>Danh mục cha</th>

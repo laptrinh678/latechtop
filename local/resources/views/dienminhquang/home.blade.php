@@ -130,7 +130,7 @@
 
                                                                     <div class="price-box">
                                                             <span>
-                                                         Giá:Liên hệ
+                                                         Giá:@if($v2[0]->status_price==1) {{ number_format($v2[0]->price)}}@else liên hệ @endif
                                                            </span>
                                                                     </div>
                                                                 </div>
@@ -179,7 +179,7 @@
 
                                                                     <div class="price-box">
                                                             <span>
-                                                       Giá:Liên hệ
+                                                       Giá:@if($v2[1]->status_price==1) {{ number_format($v2[1]->price)}}@else liên hệ @endif
                                                            </span>
                                                                     </div>
                                                                 </div>

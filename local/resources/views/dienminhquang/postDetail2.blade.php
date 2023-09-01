@@ -53,6 +53,7 @@
                     </div>
                     <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                     <div class="fb-comments" data-href="https://latechtop.com/" data-width="" data-numposts="10"></div>
+                    <hr style="border: 0.1px solid #dddcdc">
                     <div style="padding: 50px; background:#e9e9e9;">
                         <h3 class="text-center">Để nhận tài liệu hay trên và các tài liệu khác nữa bạn vui lòng cung cấp email, số điện thoại hệ thống của chúng tôi sẽ gửi tài liệu về email cho bạn</h3>
                         <form method="post" action="{{route('customer')}}">
