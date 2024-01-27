@@ -109,7 +109,7 @@ class TopController extends Controller
                 }
             }
             $numberCatePost = count($cateIdPost);
-            $data = $this->postRepo->findWhereIn('cate_id', $cateIdPost)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
+            $data = $this->postRepo->with('cate')->findWhereIn('cate_id', $cateIdPost)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
             if ($numberCatePost == 0) {
                 $data = $this->postRepo->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
             }

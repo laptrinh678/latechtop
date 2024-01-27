@@ -782,7 +782,7 @@ header .email>a {
 .heightImg {
   height: 120px;
 }
-
+.news_page img {max-width: 100%;}
 .new-carousel .owl-item .item a {
   text-decoration: none;
 }

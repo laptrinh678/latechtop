@@ -25,7 +25,7 @@
                             <div class="latest_item">
                                 <a href="{{ url("bai-viet/$v3->id/$v3->slug.html") }}">
                                     <img class="img-thumbnail" height="200px"
-                                        src="{{ url('public/backend') }}/@if($v3->cate->img_default==1){{ $v3->cate->icon }} @else {{ $v3->icon }} @endif" alt="{{ $v3->name }}">
+                                        src="{{ url('public/backend') }}/@if($v3->cate->img_default == 1){{ $v3->cate->icon }}@else{{$v3->icon}} @endif" alt="{{ $v3->name }}">
                                 </a>
                                 <div>
                                     <br>
@@ -104,7 +104,7 @@
                                     <div class="p-2 bd-highlight w-25"><a
                                             href="{{ url("bai-viet/$postItem->id/$postItem->slug.html") }}"><img
                                                 class="w-100" height="100px"
-                                                src="{{ url('public/backend') }}/@if($postItem->cate->img_default==1){{ $postItem->cate->icon }} @else {{ $postItem->icon }} @endif"
+                                                src="{{ url('public/backend') }}/@if($postItem->cate->img_default==1){{ $postItem->cate->icon }}@else{{$postItem->icon}}@endif"
                                                 alt=""></a></div>
                                     <div class="p-2 bd-highlight w-75">
                                         <h3><a class="text-body" style="color:black !important;"

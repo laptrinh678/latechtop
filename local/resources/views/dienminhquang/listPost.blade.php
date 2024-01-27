@@ -48,7 +48,7 @@
     <div class="subpage">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-sm-12 left d-none d-md-block">
+                <div class="col-md-2 col-sm-12">
                     <div class="_box filter_cat">
                         @include('dienminhquang.catesList')
                     </div>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 @if (isset($post))
-                    <div class="col-md-8 col-sm-12 right">
+                    <div class="col-md-8 col-sm-12">
                         <div class="box_subpage">
                             <h1 style="border-bottom: 1px solid #ddd; margin-bottom: 20px;">{{ $post->name }}</h1>
                             <div class="news_page">
@@ -67,7 +67,7 @@
                     </div>
                 @endif
                 @if (isset($postList))
-                    <div class="col-md-8 col-sm-12 right">
+                    <div class="col-md-8 col-sm-12">
                         <div class="box_subpage">
                             <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;">{{ getCateName($cate_id) }}</p>
                             <div class="list_news">
@@ -75,16 +75,16 @@
                                     <div class="row no-gutters item">
                                         <div class="col-4 item_img d-none d-sm-block">
                                             <a href="{{ url("bai-viet/$v->id/$v->slug.html") }}"><img
-                                                    src="{{ url('public/backend') }}/{{ $v->icon }}"
+                                                    src="{{ url('public/backend') }}/@if($v->cate->img_default == 1){{ $v->cate->icon }}@else{{$v->icon}} @endif"
                                                     class="heightImg"
                                                     alt="{{ $v->name }}"></a>
                                         </div>
                                         <div class="col-12 col-md-8 item_brief">
                                             <div class="row">
-                                                <div class="col-4 d-sm-none" style="padding-right: 0; padding-top: 4px;"><a
+                                                {{-- <div class="col-4 d-sm-none" style="padding-right: 0; padding-top: 4px;"><a
                                                         href="{{ url("bai-viet/$v->id/$v->slug.html") }}">
                                                             <img src="{{ url('public/backend') }}/{{ $v->icon }}" alt="{{ $v->name }}"></a>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-8 col-sm-12">
                                                     <h3><a
                                                             href="{{ url("bai-viet/$v->id/$v->slug.html") }}">{{ $v->name }}</a>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 @endif
-                <div class="col-md-2 col-sm-12 left d-none d-md-block">
+                <div class="col-md-2 col-sm-12">
                         @include('dienminhquang.blog.blogFullPage')
                 </div>
             </div>
