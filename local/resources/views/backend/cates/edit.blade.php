@@ -107,14 +107,16 @@ Sửa danh mục
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Icon</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                     <div>
-                            <img id="myimage" src="" width="70px">
+                            <img id="myimage" src="{{ url("public/backend/$cat->icon") }}" width="70px">
                             <span class="btn" onclick="remove(this)">X</span>
                         </div>
                     <input type="file" onchange="changeHandler(event)" id="inputupfile" name="icon" value="{{$cat->icon}}">
 
                     </div>
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Đặt ảnh
+                        mặc định <input type="checkbox" @if($cat->img_default==1)checked @endif name="img_default" id=""></label>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Mô tả ngắn</label>

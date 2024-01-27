@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Danh mục</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <select name="cate_id" id="" class="form-control">
                            <option value="">Chọn danh mục</option>
                                @php
@@ -72,6 +72,15 @@
 
                             </select>
                               <span style="color: red;">{{$errors->first('cate_id')}}</span>
+                        </div>
+                        <div class="col-sm-3">
+                            <select name="id_province" id="" class="form-control">
+                                <option value="">Chọn tỉnh</option>
+                                @foreach($province as $province)
+                                <option value="{{ $province->province_id }}"  @if($data->id_province == $province->province_id || old('post_type') == $province->province_id) selected @endif >{{ $province->name }}</option>
+                                @endforeach
+                            </select>
+                            <span style="color: red;">{{$errors->first('cate_id')}}</span>
                         </div>
                 </div>
 
@@ -127,6 +136,16 @@
                         <script type="text/javascript">
                                 CKEDITOR.replace('des2');
                       </script>﻿
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Loại bài viết</label>
+                    <div class="col-sm-10">
+                        <select name="post_type" id="" class="form-control">
+                            <option value="">Loại bài viết</option>
+                            <option value="1" @if($data->post_type==1 || old('post_type') == 1) selected @endif>Bài viết nổi bật</option>
+                            <option value="2" @if($data->post_type==2 || old('post_type') == 2) selected @endif>Bài viết quan trọng</option>
+                        </select>
                     </div>
                 </div>
                     <div class="form-group">

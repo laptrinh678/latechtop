@@ -157,6 +157,8 @@ Danh sách slider
                                            <option value="3">Chân trang</option>
                                            <option value="4">Trang chi tiết</option>
                                            <option value="5">Đối tác</option>
+                                           <option value="6">Ảnh mặc định bài viết</option>
+                                           <option value="7">Ảnh mặc định sản phẩm</option>
                                        </select>
                                       </div>
                                       {{csrf_field()}}

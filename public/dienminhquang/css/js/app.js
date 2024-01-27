@@ -106,12 +106,12 @@ $(function(){
     $('.new-carousel').owlCarousel({
         loop: true,
         autoplay:false,
-        margin:20,
+        margin:5,
         responsiveClass:true,
         responsive:{
             0:{ items:1, nav:true, dots: true },
             600:{ items:2, nav:true, dots: true },
-            1000:{ items:3, nav:true, dots: true }
+            1000:{ items:4, nav:true, dots: true }
         }
     });
 

@@ -37,6 +37,7 @@ Route::get('danh-muc/{id}/{type_menu}/{slug}.html', 'TopController@catesTotal');
 //Route::get('danh-muc-hai/{id}/{type_menu}/{slug}.html', 'TopController@catesTotal2');
 Route::get('loai-san-pham/{type}.html', 'TopController@catesLoaiSanpham');
 Route::get('bai-viet/{id}/{slug}.html', 'TopController@postDetail');
+Route::get('getPostWhereProvince/{id}', 'TopController@getPostWhereProvince')->name('getPostWhereProvince');
 Route::get('dang-ky.html', 'TopController@dangky');
 Route::post('dang-ky.html', 'TopController@postdangky');
 

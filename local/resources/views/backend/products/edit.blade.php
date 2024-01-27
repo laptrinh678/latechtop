@@ -92,6 +92,14 @@
                     <label for="">Hiện giá</label>
                     <input class="form-check-input type_product" type="checkbox" value="{{$data->status_price}}" name="status_price" @if($data->status_price==1)checked @endif />
                 </div>
+                <div class="form-group">
+                    <label for="first_name" class="col-sm-2 control-label">Link dowload</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="link" placeholder="Nhập link dowload"
+                            value="{{ old('link') ??  $data->link}}" class="form-control" />
+                        <span style="color: red;">{{ $errors->first('link') }}</span>
+                    </div>
+                </div>
                  <div class="form-group">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-10">

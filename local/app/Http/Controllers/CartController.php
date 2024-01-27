@@ -26,11 +26,12 @@ class CartController extends Controller
     public function getaddcart($id, Request $request)
     {
 
-        $qty =1;
+        $qty = 1;
         if($request->quantity_cart){
             $qty = $request->quantity_cart;
         }
     	$product = Product::find($id);
+        //dd($product);
     	Cart::add(['id' => $id, 'name' => $product->name, 'qty' =>  $qty,'weight'=>'0',
          'price' => $product->price,
             'options' => [
@@ -47,6 +48,7 @@ class CartController extends Controller
     {
         $total = Cart::total();
     	$data = Cart::content();
+        //dd($data);
     	return view('dienminhquang.shopingCart', compact('data','total'));
     }
     public function cartdelete($rowid)
@@ -73,14 +75,14 @@ class CartController extends Controller
         $data['total'] = Cart::total();
         $data['content'] = Cart::content();
         $email = $request->email;
-//        \Mail::send('dienminhquang.shopingCartEmail', $data, function($msg) use ($email)
-//        {
-//            $msg->from(env('MAIL_FROM_ADDRESS'),env('MAIL_URL'));// mail gui
-//            $msg->to($email, $email);// mail nhan, ten mail
-//            $msg->cc('nguyenthuonght.1980@gmail.com','Samdoo.vn');
-//            $msg->subject('Xác nhận hóa đơn mua hàng phaohoa247');
-//
-//        });
+       \Mail::send('dienminhquang.shopingCartEmail', $data, function($msg) use ($email)
+       {
+           $msg->from(env('MAIL_FROM_ADDRESS'),env('MAIL_URL'));// mail gui
+           $msg->to($email, $email);// mail nhan, ten mail
+           //$msg->cc('nguyenthuonght.1980@gmail.com','Samdoo.vn');
+           $msg->subject('Xác nhận hóa đơn mua hàng phaohoa247');
+
+       });
         if(Auth::user() && Auth::user()->id){
             $dataOrder['user_id'] =  Auth::user()->id;
         }

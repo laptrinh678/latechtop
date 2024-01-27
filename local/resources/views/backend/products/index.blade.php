@@ -66,7 +66,7 @@
                             <th>Tên sản phẩm</th>
                             <th>Ảnh</th>
                             <th>Loại sản phẩm</th>
-                            <th>Số lượng</th>
+                            <th>Link Dowload/Lượt xem</th>
                             <th>Danh mục cha</th>
                             <th>Trạng thái</th>
                             <th>Hành động</th>
@@ -79,7 +79,7 @@
                                 <td>
                                     {{$v->name}}
                                     <p>
-                                        Giá: {{$v->price}}
+                                        Giá: {{number_format($v->price )}}
                                     </p>
 
                                 </td>
@@ -114,7 +114,11 @@
                                     </p>
                                 </td>
                                 <td>
-                                    {{$v->product_old+$v->product_new-$v->number}}
+                                    @if($v->link != null)
+                                    <a href="{{ $v->link }}" target="_blank" rel="noopener noreferrer">Link</a>
+                                    @endif
+                                    <br>
+                                    Lượt xem: {{ $v->view }}
                                 </td>
                                 <td>
                                     @if($v->cate_id != '')

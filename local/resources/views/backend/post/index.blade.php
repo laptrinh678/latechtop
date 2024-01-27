@@ -25,7 +25,6 @@ Danh sách bài viêt
 @endsection('style')
 @section('content')
      <aside class="right-side strech" id="sideright">
-
             <!-- Content Header (Page header) -->
             <section class="content-header list_user">
                 <div >
@@ -38,16 +37,6 @@ Danh sách bài viêt
                     <a href="{{url('admin/post/create')}}">
                            <i class="fa fa-fw fa-angle-double-right"></i> Danh sách
                     </a>
-
-                     <!--  <a onclick="return confirm('Bạn không đủ quyền thực hiện chức năng này ?');" >
-                           <i class="fa fa-fw fa-angle-double-right"></i>Add User
-                    </a>
-
-                      <a onclick="return confirm('Bạn không đủ quyền thực hiện chức năng này ?');" >
-                           <i class="fa fa-fw fa-angle-double-right"></i> Add User
-                    </a> -->
-
-
                 </div>
             </section>
             <!-- Main content -->
@@ -61,15 +50,6 @@ Danh sách bài viêt
                                        <i class="fa fa-fw fa-angle-double-right"></i> {{ __('message.add') }} {{ __('pages.post.name') }}
                                 </a>
                                   <a href="{{url('admin/cates')}}" class="btn btn-success">Danh sách menu</a>
-                                <!--   <a onclick="return confirm('Bạn không đủ quyền thực hiện chức năng này ?');" >
-                                       <i class="fa fa-fw fa-angle-double-right"></i>Add User
-                                </a>
-
-                                  <a onclick="return confirm('Bạn không đủ quyền thực hiện chức năng này ?');" >
-                                       <i class="fa fa-fw fa-angle-double-right"></i> Add User
-                                </a> -->
-
-
                             </h4>
                         </div>
                         <br />
@@ -84,7 +64,8 @@ Danh sách bài viêt
                                         <th>{{__('pages.post.th_name')}}</th>
                                         <th>Ảnh</th>
                                         <th>Danh mục</th>
-                                        <th>Trạng thái</th>
+                                        <th style="width:20px !important;">Trạng thái</th>
+                                        <th>Lượt xem</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -123,6 +104,9 @@ Danh sách bài viêt
                                             @else
                                              <button class="btn btn-danger changeStatus" data="" id ="{{$v->id}}">OFF</button>
                                              @endif
+                                        </td>
+                                        <td>
+                                            {{$v->view ?? ''}}
                                         </td>
 
                                         <td>

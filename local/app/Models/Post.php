@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+   // use SoftDeletes;
     protected $fillable = [
         'name',
         'slug',
@@ -21,6 +21,11 @@ class Post extends Model
         'deleted_at',
         'post_type',
         'link_dowload',
-        'view'
+        'view',
+        'price',
+        'id_province'
     ];
+    public function cate(){
+        return $this->hasOne(Cate::class, 'id', 'cate_id')->with('posts');
+    }
 }

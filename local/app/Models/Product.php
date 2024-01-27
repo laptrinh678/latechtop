@@ -31,7 +31,9 @@ class Product extends Model
         'product_factory',
         'unit',
         'sold',// so luong da ban
-        'status_price'// an hien gia
+        'status_price',// an hien gia,
+        'link',
+        'view'
 
     ];
 

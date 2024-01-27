@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use DB;
 use App\Http\Requests\AdminPostRequest;
+use App\Models\Province;
 class PostController extends Controller
 {
     public $PostReponsitory;
@@ -28,7 +29,8 @@ class PostController extends Controller
     public function create(CateReponsitory $CateReponsitory)
     {
         $categories = $CateReponsitory->getAll();
-        return view('backend.post.add', compact('categories'));
+        $province = Province::orderBy('province_id','desc')->get();
+        return view('backend.post.add', compact('categories','province'));
     }
 
     /**
@@ -90,7 +92,8 @@ class PostController extends Controller
         if($id){
             $data = $this->PostReponsitory->find($id);
             $parent = $CateReponsitory->getAll();
-            return view('backend.post.edit', compact('parent','data'));
+            $province = Province::orderBy('province_id','desc')->get();
+            return view('backend.post.edit', compact('parent','data','province'));
         }else{
              Session::flash('no_data', __('message.no_data'));
             return back();

@@ -14,12 +14,12 @@
     <aside class="right-side strech" id="sideright">
         <section class="content-header list_user">
             <div>
-                <a href="{{url('admin/index')}}">
+                <a href="{{ url('admin/index') }}">
                     <i class="livicon" data-name="home" data-size="14" data-color="#000"></i> Trang chủ
                     <i class="fa fa-fw fa-angle-double-right"></i>
                 </a>
-                <a href="{{url('admin/cates')}}">Danh mục</a>
-                <a href="{{url('admin/cates/add')}}">
+                <a href="{{ url('admin/cates') }}">Danh mục</a>
+                <a href="{{ url('admin/cates/add') }}">
                     <i class="fa fa-fw fa-angle-double-right"></i> Thêm mới danh mục
                 </a>
             </div>
@@ -31,24 +31,23 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                <i class="livicon" data-name="user-add" data-size="18" data-c="#fff" data-hc="#fff"
-                                   data-loop="true"></i>Thêm mới danh mục
+                                Thêm mới danh mục
                             </h3>
                             <span class="pull-right clickable">
-                                    <i class="glyphicon glyphicon-chevron-up"></i>
-                                </span>
+                                <i class="glyphicon glyphicon-chevron-up"></i>
+                            </span>
                         </div>
 
                         <div class="panel-body">
                             <form class="form-horizontal" role="form" method="post" action=""
-                                  enctype="multipart/form-data">
+                                enctype="multipart/form-data">
                                 <!--  -->
                                 <div class="form-group">
                                     <label for="first_name" class="col-sm-2 control-label">Tên danh mục</label>
                                     <div class="col-sm-6">
-                                        <input type="text" id="first_name" name="name" placeholder="Nhập tên danh mục"
-                                               class="form-control required"/>
-                                        <span style="color: red;">{{$errors->first('name')}}</span>
+                                        <input type="text" required id="first_name" name="name"
+                                            placeholder="Nhập tên danh mục" class="form-control required" />
+                                        <span style="color: red;">{{ $errors->first('name') }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -111,41 +110,46 @@
                                         danh mục</label>
                                     <div class="col-sm-2">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="0" name="type_menu"/>
+                                            <input class="form-check-input" type="radio" value="0"
+                                                name="type_menu" />
                                             <label class="form-check-label" for="flexCheckChecked">Bài viết</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="1" name="type_menu"/>
+                                            <input class="form-check-input" type="radio" value="1"
+                                                name="type_menu" />
                                             <label class="form-check-label" for="flexCheckChecked">Sản phẩm</label>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- <div class="form-group">
-                               <label for="first_name" class="col-sm-2 control-label">Vị trí hiển thị bài viết</label>
-                                   <div class="col-sm-6">
-                                       <select name="menu_detail" id=""class="form-control" required>
-                                           <option value="">Vị trí</option>
-                                           <option value="1">Thứ nhất</option>
-                                           <option value="2">Thứ hai</option>
-                                           <option value="3">Thứ ba</option>
-                                           <option value="4">Thứ tư</option>
-                                           <option value="5">Thứ năm</option>
-                                       </select>
-                                   </div>
-                               </div> -->
+                                   <label for="first_name" class="col-sm-2 control-label">Vị trí hiển thị bài viết</label>
+                                       <div class="col-sm-6">
+                                           <select name="menu_detail" id=""class="form-control" required>
+                                               <option value="">Vị trí</option>
+                                               <option value="1">Thứ nhất</option>
+                                               <option value="2">Thứ hai</option>
+                                               <option value="3">Thứ ba</option>
+                                               <option value="4">Thứ tư</option>
+                                               <option value="5">Thứ năm</option>
+                                           </select>
+                                       </div>
+                                   </div> -->
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right"
-                                           for="form-field-1-1">Icon</label>
-                                    <div class="col-sm-6">
+                                        for="form-field-1-1">Icon</label>
+                                    <div class="col-sm-4">
                                         <div>
                                             <img id="myimage" src="" width="70px">
                                             <span class="btn" onclick="remove(this)">X</span>
                                         </div>
-                                        <input type="file" onchange="changeHandler(event)" id="inputupfile" name="icon">
+                                        <input type="file" onchange="changeHandler(event)" id="inputupfile"
+                                            name="icon">
 
                                     </div>
+                                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Đặt ảnh
+                                        mặc định <input type="checkbox" name="img_default" id=""></label>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Mô tả
@@ -155,7 +159,7 @@
                                         <script type="text/javascript">
                                             CKEDITOR.replace('des');
                                         </script>
-                                        ﻿
+                                        
                                     </div>
                                 </div>
                                 <div class="space-4"></div>
@@ -167,7 +171,7 @@
 
                                     </div>
                                 </div>
-                                {{csrf_field()}}
+                                {{ csrf_field() }}
                             </form>
                         </div>
                     </div>
@@ -196,7 +200,7 @@
             var file = files[0];
             //console.log(file.name);
             var fileReader = new FileReader();
-            fileReader.onload = function () {
+            fileReader.onload = function() {
                 var url = fileReader.result;
                 var myImg = document.getElementById("myimage");
                 myImg.src = url;
@@ -211,4 +215,3 @@
         }
     </script>
 @endsection('script')
-

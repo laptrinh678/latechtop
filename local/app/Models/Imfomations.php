@@ -21,6 +21,7 @@ class Imfomations extends Model
         'facebook',
         'zalo',
         'text_seo',
-        'des1'
+        'des1',
+        'des2'
     ];
 }

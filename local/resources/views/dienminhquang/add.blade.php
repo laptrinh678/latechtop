@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Danh
                                         mục </label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <select name="cate_id" id="" class="form-control">
                                             <option value="">Chọn danh mục</option>
                                             <?php
@@ -99,15 +99,7 @@
                                             ?>
                                         </select>
                                         <span style="color: red;">{{$errors->first('cate_id')}}</span>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="id_province" id="" class="form-control">
-                                            <option value="">Chọn tỉnh</option>
-                                            @foreach($province as $province)
-                                            <option value="{{ $province->province_id }}">{{ $province->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <span style="color: red;">{{$errors->first('cate_id')}}</span>
+
                                     </div>
                                 </div>
                                 <div class="form-group">

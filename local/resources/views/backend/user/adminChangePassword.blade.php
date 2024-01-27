@@ -55,7 +55,7 @@ Thêm thành viên
                 <div class="space-4"></div>
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-9">
-                        <button class="btn btn-primary" type="submit">Thêm admin</button>
+                        <button class="btn btn-primary" type="submit">Đổi Passs word</button>
                          &nbsp; &nbsp; &nbsp;
                             <button class="btn btn-danger" type="reset">Reset</button>
 

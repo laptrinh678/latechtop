@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Product;
 class Cate extends Model
 {
     use SoftDeletes;
@@ -20,9 +21,16 @@ class Cate extends Model
         'deleted_at',
         'menu_type',
         'type_menu',
-        'page'
+        'page',
+        'img_default'
     ];
-    public function posts(){
+
+    public function posts()
+    {
         return $this->hasMany(Post::class, 'cate_id', 'id');
+    }
+
+    public function product(){
+        return $this->hasMany(Product::class, 'cate_id', 'id');
     }
 }

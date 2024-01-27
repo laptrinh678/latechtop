@@ -86,7 +86,7 @@
                                                         </svg><!-- <i class="fas fa-star"></i> -->
                                                     </div>
                                                     <p>
-                                                        <span>Giá:Liên hệ</span>
+                                                        <span>Giá: @if($v->status_price==1) {{ number_format($v->price)}}@else liên hệ @endif</span>
                                                     </p>
                                                 </div>
                                                 <a href="/loc-khong-khi-23935059--92699198--23782386-p881.html"
@@ -162,7 +162,7 @@
                                                         </svg><!-- <i class="fas fa-star"></i> -->
                                                     </div>
                                                     <p>
-                                                        <span>Giá:Liên hệ</span>
+                                                        <span>Giá: @if($v2->status_price==1) {{ number_format($v2->price)}}@else liên hệ @endif</span>
                                                     </p>
                                                 </div>
                                                 <a href="{{url("san-pham/$v2->cate_id/$v2->slug.html")}}"

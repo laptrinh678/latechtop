@@ -34,9 +34,11 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function getAll()
     {
-        return $this->model->orderBy('id', 'desc')->whereNull('deleted_at')->get();
+        return $this->model->orderBy('id', 'desc')->get();
     }
-
+    public function getWhereNull($column){
+        return $this->model->whereNull($column);
+    }
     public function getColum($colum = '*')
     {
         return $this->model->select($colum)->orderBy('id', 'desc')->get();

@@ -128,18 +128,24 @@
                             <div class="desc_product cbox_ppage content_style">
                                 {!! $sp->des2!!}
                             </div>
+                            <p class="text-center">
+                                <a  href="{{url("cart/add/$sp->id")}}"><button class="btn" style="background: linear-gradient(#ff2a4a,#dc0021);">
+                                    <strong class="text-white">MUA NGAY KẺO HẾT</strong>
+                                </button>
+                               </a>
+                            </p>
                         </div>
                         <!--end detail_product-->
                         <div class="related_product_page">
-                            <p>Sản phẩm liên quan</p>
+                            <p>Có thể bạn quan tâm</p>
                             <div>
                                 <div class="row list_product">
                                     @foreach($sp_lienquan as $vlienquan)
-                                        <div class="col-6 col-sm-3">
+                                        <div class="col-6 col-sm-2">
                                             <div class="item">
                                                 <a href="{{url("san-pham/$vlienquan->cate_id/$vlienquan->slug.html")}}"
                                                    title="{{$vlienquan->name}}">
-                                                    <img src="{{url('public/backend')}}/{{$vlienquan->icon}}"
+                                                    <img class="imgheight" src="{{url('public/backend')}}/{{$vlienquan->icon}}"
                                                          alt="{{$vlienquan->name}}" title="{{$vlienquan->name}}"></a>
                                                 <div>
                                                     <a href="{{url("san-pham/$vlienquan->cate_id/$vlienquan->slug.html")}}">
@@ -184,7 +190,12 @@
                                                     </div>
                                                     <p>
                                                         <span>
-                                                        Giá:Liên hệ
+                                                            Giá:
+                                                        @if ($vlienquan->status_price == 1)
+                                                            {{ number_format($vlienquan->price) }}
+                                                        @else
+                                                            liên hệ
+                                                        @endif
                                                         </span>
                                                     </p>
                                                 </div>
