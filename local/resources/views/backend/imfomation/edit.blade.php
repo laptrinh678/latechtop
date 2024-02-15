@@ -128,12 +128,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                <label for="first_name" class="col-sm-2 control-label">mail</label>
+                <label for="first_name" class="col-sm-2 control-label">Mail</label>
                     <div class="col-sm-6">
                         <input type="text" id="first_name" value="{{$data->mail}}" name="mail" placeholder="Nhập mail" class="form-control required" />
                         <span style="color: red;">{{$errors->first('password')}}</span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="first_name" class="col-sm-2 control-label">Title trang chủ</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="first_name" value="{{$data->title_home}}" name="title_home" placeholder="title home" class="form-control required" />
+                            <span style="color: red;">{{$errors->first('title_home')}}</span>
+                        </div>
+                    </div>
                  <div class="form-group">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-10">

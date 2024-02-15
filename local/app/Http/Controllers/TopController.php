@@ -78,10 +78,10 @@ class TopController extends Controller
             if ($cate_id == 1 && $slug == 1) {
                 return back();
             }
-            $sp = $this->productRepo->where('slug', $slug)->first();
+            $sp = $this->productRepo->with('cate')->where('slug', $slug)->first();
             $view['view'] = $sp->view + 1;
             $this->productRepo->update($sp->id, $view);
-            $sp_lienquan = $this->productRepo->where('cate_id', $cate_id)->orderBy('id', 'desc')->get();
+            $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->get();
             return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan'));
         }catch (Exception $e) {
             return '404';
@@ -136,16 +136,16 @@ class TopController extends Controller
                 }
             }
             //dd($listCateIdPro);
-            $productList = $this->productRepo->findWhereIn('cate_id', $listCateIdPro)->orderBy('id', 'desc')->paginate(8);
+            $productList = $this->productRepo->findWhereIn('cate_id', $listCateIdPro)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
             if (count($listCateIdPro) == 0) {
-                $productList = $this->productRepo->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(8);
+                $productList = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
             }
             if (count($productList) > 1) {
                 return view('dienminhquang.cateProduct', compact('productList', 'cateData'));
             }
             if (count($productList) == 1) {
                 $sp = $productList[0];
-                $sp_lienquan = $this->productRepo->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(10);
+                $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
                 return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan'));
             }
         }

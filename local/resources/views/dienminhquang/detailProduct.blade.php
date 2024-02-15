@@ -23,14 +23,14 @@
                 </svg>
                 Trang chủ
             </a>
-            <a href="#">{{$sp->name}}</a>
+            <a href="{{ url()->current() }}">{{$sp->name}}</a>
         </div>
     </div>
     <div class="subpage">
         <div class="container">
             <div class="row">
 
-                <div class="col-12 col-md-3 left d-none d-md-block">
+                <div class="col-md-2 col-sm-12">
                     <div class="_box filter_cat">
                         @include('dienminhquang.catesList')
                     </div>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-9 right">
+                <div class="col-md-8 col-sm-12">
                     <div class="box_subpage">
                         <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;">{{$sp->name}}</p>
                         <div class="row product_page">
@@ -47,10 +47,10 @@
                                 <div class="w-100">
                                     <a class="detail_image_data"
                                        data-toggle="modal"
-                                       data-target=".bd-example-modal-lg"
+                                       data-target=".bd-showImg-modal-lg"
                                        href="javascript:void(0)"
                                     >
-                                    <img class="imgData" width="100%" src="{{url('public/backend/')}}/{{$sp->icon}}" alt="">
+                                    <img class="imgData" width="100%" src="{{url('public/backend/')}}/@if($sp->cate->img_default == 1){{ $sp->cate->icon }}@else{{$sp->icon}} @endif" alt="">
                                     </a>
                                 </div>
                                 <ul class="w-100">
@@ -67,7 +67,7 @@
                                     <li>
                                         <a class="detail_image_data"
                                            data-toggle="modal"
-                                           data-target=".bd-example-modal-lg"
+                                           data-target=".bd-showImg-modal-lg"
                                            href="javascript:void(0)"
                                            >
                                             <img class="imgData" src="{{url('public/backend/')}}/{{$v}}" alt="{{$v}}"
@@ -80,7 +80,6 @@
                                 </ul>
                             </div>
                             <div class="col-12 col-sm-7">
-
                                 <!--begin brief_product-->
                                 <div class="brief_ppage">
                                     <h1>{{$sp->name}}</h1>
@@ -90,11 +89,12 @@
                                         <div class="clearfix"></div>
                                     </div>
 
-                                    <p><strong>Giá: @if($sp->status_price==1) {{ number_format($sp->price)}}@else liên hệ @endif</strong>
+                                    <p><strong>@if($sp->status_price==1) Giá: {{ number_format($sp->price)}}@else miễn phí @endif</strong>
                                     <p><span>Mô tả</span></p>
                                     <div class="desc_ppage">
                                         {!! $sp->des!!}
                                     </div>
+                                    @if($sp->price != 0)
                                         <form class="row no-gutters" action="{{url("cart/add/$sp->id")}}" method="GET">
                                             <input type="hidden" value="876" name="product_cart">
                                             <div class="col-3 input_cart">
@@ -102,21 +102,20 @@
                                             </div>
                                             <div class="col-4 button_cart">
                                                 <button type="submit" name="btn_order"><strong>MUA NGAY</strong>
-                                                    <p>Giao hàng tận nơi</p>
+
                                                 </button>
                                             </div>
                                             <div class="col-5">
                                                 <button type="submit" name="btn_order" class="hotline_cart">
                                                     <span>THÊM VÀO GIỎ HÀNG</span>
-                                                    <p>Giao hàng tận nơi</p>
                                                 </button>
                                             </div>
                                         </form>
+                                        @endif
                                 </div>
                                 <!--end brief_product-->
 
                             </div>
-
                         </div>
 
                         <!--begin detail_product-->
@@ -128,12 +127,21 @@
                             <div class="desc_product cbox_ppage content_style">
                                 {!! $sp->des2!!}
                             </div>
+                            @if($sp->price != 0)
                             <p class="text-center">
                                 <a  href="{{url("cart/add/$sp->id")}}"><button class="btn" style="background: linear-gradient(#ff2a4a,#dc0021);">
                                     <strong class="text-white">MUA NGAY KẺO HẾT</strong>
                                 </button>
                                </a>
                             </p>
+                            @endif
+                            @if(isset(Auth::user()->name))
+                            <p class="text-center"> <a href="{{$sp->link}}" target="_blank"><button class="btn btn-success">Dowload</button></a></p>
+                            @else
+                            <p class="text-center">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Dowload tài liệu</button>
+                            </p>
+                            @endif
                         </div>
                         <!--end detail_product-->
                         <div class="related_product_page">
@@ -145,56 +153,19 @@
                                             <div class="item">
                                                 <a href="{{url("san-pham/$vlienquan->cate_id/$vlienquan->slug.html")}}"
                                                    title="{{$vlienquan->name}}">
-                                                    <img class="imgheight" src="{{url('public/backend')}}/{{$vlienquan->icon}}"
+                                                    <img class="imgheight" src="{{url('public/backend')}}/@if($vlienquan->cate->img_default == 1){{ $vlienquan->cate->icon }}@else{{$vlienquan->icon}} @endif"
                                                          alt="{{$vlienquan->name}}" title="{{$vlienquan->name}}"></a>
                                                 <div>
                                                     <a href="{{url("san-pham/$vlienquan->cate_id/$vlienquan->slug.html")}}">
                                                         {{$vlienquan->name}}
                                                     </a>
-                                                    <div class="d-none">
-                                                        <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                             data-prefix="fas" data-icon="star" role="img"
-                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                                             data-fa-i2svg="">
-                                                            <path fill="currentColor"
-                                                                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                        </svg><!-- <i class="fas fa-star"></i> -->
-                                                        <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                             data-prefix="fas" data-icon="star" role="img"
-                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                                             data-fa-i2svg="">
-                                                            <path fill="currentColor"
-                                                                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                        </svg><!-- <i class="fas fa-star"></i> -->
-                                                        <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                             data-prefix="fas" data-icon="star" role="img"
-                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                                             data-fa-i2svg="">
-                                                            <path fill="currentColor"
-                                                                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                        </svg><!-- <i class="fas fa-star"></i> -->
-                                                        <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                             data-prefix="fas" data-icon="star" role="img"
-                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                                             data-fa-i2svg="">
-                                                            <path fill="currentColor"
-                                                                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                        </svg><!-- <i class="fas fa-star"></i> -->
-                                                        <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true"
-                                                             data-prefix="fas" data-icon="star" role="img"
-                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                                             data-fa-i2svg="">
-                                                            <path fill="currentColor"
-                                                                  d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                        </svg><!-- <i class="fas fa-star"></i> -->
-                                                    </div>
                                                     <p>
                                                         <span>
                                                             Giá:
                                                         @if ($vlienquan->status_price == 1)
                                                             {{ number_format($vlienquan->price) }}
                                                         @else
-                                                            liên hệ
+                                                             Miễn phí
                                                         @endif
                                                         </span>
                                                     </p>
@@ -225,10 +196,15 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="col-md-2 col-sm-12">
+                    @include('dienminhquang.blog.blogFullPage')
+                </div>
+
             </div>
         </div>
     </div>
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-showImg-modal-lg" tabindex="-1" role="dialog" aria-labelledby="showImg" aria-hidden="true">
         <div class="modal-dialog modal-lg">
 
             <div class="modal-content">
@@ -240,6 +216,57 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    ĐĂNG KÝ THÀNH VIÊN ĐỂ ĐƯỢC DOWLOAD TÀI LIỆU MIỄN PHÍ
+                    <a  class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></a>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="email">Số điện thoại</label>
+                        <input type="number" class="form-control" id="email">
+                      </div>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email">
+                      </div>
+                      <div class="form-group">
+                        <label for="pwd">Mật khẩu:</label>
+                        <input type="password" class="form-control" id="pwd">
+                      </div>
+                      <button type="submit" class="btn btn-default">Đăng ký</button>
+                  </div>
+            
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+        
+              <!-- Modal body -->
+              <div class="modal-body">
+                Modal body..
+              </div>
+        
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+      </div>
     <!-- end detail product -->
 @endsection('content')
 @section('script')

@@ -1,13 +1,13 @@
 @extends('dienminhquang.index')
 @section('title')
-    Thiết kế website-phần mềm-máy tính-trà đạo-sách
+   {{$imfomation->title_home}}
 @endsection('title')
 @section('meta')
     <meta name="keywords" itemprop="keywords" content="Công ty TNHH LATECH">
-    <meta name="description" content="Thiết kế website-phần mềm-máy tính-trà đạo-sách">
+    <meta name="description" content="{{ $imfomation->text_seo }}">
     <base href="{{ url('/') }}:443" target="_self">
     <link rel="icon" href="{{ url('public/backend') }}/{{ $imfomation->logo }}">
-    <meta property="og:title" content="Thiết kế website-phần mềm-máy tính-trà đạo-sách toàn quốc">
+    <meta property="og:title" content="{{ $imfomation->text_seo }}">
     <meta property="og:type" content="website">
 @endsection('meta')
 @section('content')
@@ -131,7 +131,7 @@
                                     <div class="d-flex flex-row bd-highlight mb-3 bg-white">
                                         <div class="p-2 bd-highlight w-25"><a
                                                 href="{{ url("san-pham/$product->cate_id/$product->slug.html") }}"><img
-                                                    class="w-100" src="{{ url('public/backend') }}/{{ $product->icon }}"
+                                                    class="w-100" src="{{ url('public/backend') }}/@if($product->cate->img_default==1){{ $product->cate->icon }}@else{{$product->icon}}@endif"
                                                     alt="{{ $product->name }}"></a></div>
                                         <div class="p-2 bd-highlight w-75">
                                             <h5><a class="more" style="color:black;" href="{{ url("san-pham/$product->cate_id/$product->slug.html") }}">{{ $product->name }}</a></h5>

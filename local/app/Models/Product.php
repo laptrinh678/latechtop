@@ -36,6 +36,8 @@ class Product extends Model
         'view'
 
     ];
-
+    public function cate(){
+        return $this->hasOne(Cate::class, 'id', 'cate_id')->with('product');
+    }
 
 }

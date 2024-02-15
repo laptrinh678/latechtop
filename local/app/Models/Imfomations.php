@@ -22,6 +22,7 @@ class Imfomations extends Model
         'zalo',
         'text_seo',
         'des1',
-        'des2'
+        'des2',
+        'title_home'
     ];
 }

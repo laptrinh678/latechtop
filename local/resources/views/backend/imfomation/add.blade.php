@@ -85,7 +85,7 @@ Thêm mới thông tin
                     </div>
                 </div>
                 <div class="form-group">
-                <label for="first_name" class="col-sm-2 control-label">hotline</label>
+                <label for="first_name" class="col-sm-2 control-label">Hotline</label>
                     <div class="col-sm-6">
                         <input type="text" id="first_name" name="hotline" placeholder="Nhập hotline" class="form-control required" />
                         <span style="color: red;">{{$errors->first('password')}}</span>
@@ -105,9 +105,17 @@ Thêm mới thông tin
                         <span style="color: red;">{{$errors->first('text_seo')}}</span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="first_name" class="col-sm-2 control-label">Title trang chủ</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="first_name" name="title_home" placeholder="title home" class="form-control required" />
+                            <span style="color: red;">{{$errors->first('title_home')}}</span>
+                        </div>
+                    </div>
+                
 
                       <div class="form-group">
-                <label for="first_name" class="col-sm-2 control-label">mail</label>
+                <label for="first_name" class="col-sm-2 control-label">Mail</label>
                     <div class="col-sm-6">
                         <input type="text" id="first_name" name="mail" placeholder="Nhập mail" class="form-control required" />
                         <span style="color: red;">{{$errors->first('mail')}}</span>

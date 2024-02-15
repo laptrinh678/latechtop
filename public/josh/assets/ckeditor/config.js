@@ -9,10 +9,10 @@ CKEDITOR.editorConfig = function( config ) {
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
-	 config.filebrowserBrowseUrl= 'https://latechtop.com/public/josh/assets/ckeditor/ckfinder/ckfinder.html';
-     config.filebrowserImageBrowseUrl= 'https://latechtop.com/public/josh/assets/ckeditor/ckfinder/ckfinder.html?type=Images';
-     config.filebrowserUploadUrl= 'https://latechtop.com/public/josh/assets/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-     config.filebrowserImageUploadUrl= 'https://latechtop.com/public/josh/assets/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+	 config.filebrowserBrowseUrl= 'https://tuyendungcongchuc247.com/public/josh/assets/ckeditor/ckfinder/ckfinder.html';
+     config.filebrowserImageBrowseUrl= 'https://tuyendungcongchuc247.com/public/josh/assets/ckeditor/ckfinder/ckfinder.html?type=Images';
+     config.filebrowserUploadUrl= 'https://tuyendungcongchuc247.com/public/josh/assets/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+     config.filebrowserImageUploadUrl= 'https://tuyendungcongchuc247.com/public/josh/assets/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
 
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
