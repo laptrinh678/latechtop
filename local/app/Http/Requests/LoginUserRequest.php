@@ -24,9 +24,9 @@ class LoginUserRequest extends FormRequest
         if($this->logincheck==1){
             $validate['phone'] = 'required';
         }
-        if($this->logincheck==0){
-            $validate['code'] = 'required';
-        }
+        // if($this->logincheck==0){
+        //     $validate['code'] = 'required';
+        // }
         return  $validate;
     }
     public function messages()

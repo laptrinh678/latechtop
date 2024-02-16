@@ -1,342 +1,324 @@
 @extends('backend.master.index')
 @section('title')
-Danh sách thành viên
+    Danh sách thành viên
 @endsection('title')
 @section('style')
-<link href="css/app.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="vendors/datatables/css/dataTables.bootstrap.css" />
-<link href="css/pages/tables.css" rel="stylesheet" type="text/css" />
+    <link href="css/app.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="vendors/datatables/css/dataTables.bootstrap.css" />
+    <link href="css/pages/tables.css" rel="stylesheet" type="text/css" />
 @endsection('style')
 @section('content')
-     <aside class="right-side strech" id="sideright">
+    <aside class="right-side strech" id="sideright">
 
-            <!-- Content Header (Page header) -->
-            <section class="content-header list_user">
-                <div >
-                     <a href="{{url('admin/')}}">
-                            <i class="livicon" data-name="home" data-size="14" data-color="#000"></i> Trang chủ
-                            <i class="fa fa-fw fa-angle-double-right"></i>
-                    </a>
-                     <a href="{{url('admin/users')}}">Users</a>
+        <!-- Content Header (Page header) -->
+        <section class="content-header list_user">
+            <div>
+                <a href="{{ url('admin/') }}">
+                    <i class="livicon" data-name="home" data-size="14" data-color="#000"></i> Trang chủ
+                    <i class="fa fa-fw fa-angle-double-right"></i>
+                </a>
+                <a href="{{ url('admin/users') }}">Users</a>
 
-                    <a href="{{url('admin/users/create')}}">
-                           <i class="fa fa-fw fa-angle-double-right"></i> Thêm mới
-                    </a>
+                <a href="{{ url('admin/users/create') }}">
+                    <i class="fa fa-fw fa-angle-double-right"></i> Thêm mới
+                </a>
+            </div>
+        </section>
+        <!-- Main content -->
+        <section class="content padding left_right15">
+            <div class="row">
+                <div class="panel panel-primary ">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
 
-                     <!--  <a onclick="return confirm('Bạn không đủ quyền thực hiện chức năng này ?');" >
-                           <i class="fa fa-fw fa-angle-double-right"></i>Add User
-                    </a>
-
-                      <a onclick="return confirm('Bạn không đủ quyền thực hiện chức năng này ?');" >
-                           <i class="fa fa-fw fa-angle-double-right"></i> Add User
-                    </a> -->
-
-
-                </div>
-            </section>
-            <!-- Main content -->
-            <section class="content padding left_right15">
-                <div class="row">
-                    <div class="panel panel-primary ">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-
-                                <span>
-                                       <i class="fa fa-fw fa-angle-double-right"></i> Danh sách thành viên
-                                </span>
-
-                                <!--   <a onclick="return confirm('Bạn không đủ quyền thực hiện chức năng này ?');" >
-                                       <i class="fa fa-fw fa-angle-double-right"></i>Add User
-                                </a>
-
-                                  <a onclick="return confirm('Bạn không đủ quyền thực hiện chức năng này ?');" >
-                                       <i class="fa fa-fw fa-angle-double-right"></i> Add User
-                                </a> -->
-
-
-                            </h4>
-                        </div>
-                        <br />
-                        <div class="panel-body">
-                             @include('errors.note')
-                            <table class="table table-bordered " id="table">
-                                <thead>
-                                    <tr class="filters">
-                                        <th style="width:10px">Id</th>
-                                        <th>Tên</th>
-                                        <th>Email</th>
-                                        <th>Điện thoại </th>
-                                        <th>Mã nhân viên</th>
-                                        <th>Tổng điểm</th>
-{{--                                        <th>Hành động</th>--}}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                	@foreach($users as $k=>$ls_user)
+                            <span>
+                                <i class="fa fa-fw fa-angle-double-right"></i> Danh sách thành viên
+                            </span>
+                        </h4>
+                    </div>
+                    <br />
+                    <div class="panel-body">
+                        @include('errors.note')
+                        <table class="table table-bordered " id="table">
+                            <thead>
+                                <tr class="filters">
+                                    <th style="width:10px">Id</th>
+                                    <th>Tên</th>
+                                    <th>Email -Điện thoại</th>
+                                    <th>Địa chỉ </th>
+                                    <th>Mã nhân viên</th>
+                                    <th>Ngày đăng ký</th>
+                                    {{--                                        <th>Hành động</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $k => $user)
                                     <tr>
-                                        <td>{{$ls_user->id}}</td>
+                                        <td>{{ $user->id }}</td>
                                         <td>
-                                            {{$ls_user->name}}
-                                            @if($ls_user->avata!='')
-                                            <p>
-                                                <img src="{{url('public/backend')}}/{{$ls_user->avata}}" alt="{{$ls_user->name}}" width="20">
-                                            </p>
+                                            {{ $user->name }}
+                                            @if ($user->avata != '')
+                                                <p>
+                                                    <img src="{{ url('public/backend') }}/{{ $user->avata }}"
+                                                        alt="{{ $user->name }}" width="20">
+                                                </p>
                                             @endif
                                         </td>
                                         <td>
-                                           Email: {{$ls_user->email}}
+                                            Email: {{ $user->email }}
                                             <br>
-                                            Điện thoại:{{$ls_user->phone}}
+                                            Điện thoại:{{ $user->phone }}
+                                            <input type="hidden" value="{{ $user->showpassword }}">
+
                                         </td>
                                         <td>
-                                                <?php
-                                                $bank = json_decode($ls_user->bank, true);
-                                                ?>
-                                            @if($bank)
-                                                <p>Ngân hàng:{{$bank['bankName']}}</p>
-                                                <p>Số tài khoản:{{$bank['stk']}}</p>
+                                            <p>
+                                                {{ $user->adress }}
+                                            </p>
+                                            <?php
+                                            $bank = json_decode($user->bank, true);
+                                            ?>
+                                            @if ($bank)
+                                                <p>Ngân hàng:{{ $bank['bankName'] }}</p>
+                                                <p>Số tài khoản:{{ $bank['stk'] }}</p>
                                             @endif
                                         </td>
-                                        <td>{{$ls_user->code}}</td>
+                                        <td>{{ $user->code }}</td>
                                         <td>
-                                            <p>Điểm cá nhân:  {{$ls_user->point}}</p>
-                                            <p>Điểm nhánh trái: {{$ls_user->diem_nhanhtrai}}</p>
-                                            <p>Điểm nhánh phải: {{$ls_user->diem_nhanhphai}}</p>
+                                            {{ $user->created_at }}
                                         </td>
-{{--                                        <td>--}}
-{{--                                            <a href="{{url('admin/users/destroy')}}/{{$ls_user->id}}"><button class="btn btn-danger">Delete</button></a>--}}
-{{--                                             <a href="{{url('admin/users/edit')}}/{{$ls_user->id}}"><button class="btn btn-primary">Edit</button></a>--}}
-{{--                                        </td>--}}
+                                        {{--                                        <td> --}}
+                                        {{--                                            <a href="{{url('admin/users/destroy')}}/{{$user->id}}"><button class="btn btn-danger">Delete</button></a> --}}
+                                        {{--                                             <a href="{{url('admin/users/edit')}}/{{$user->id}}"><button class="btn btn-primary">Edit</button></a> --}}
+                                        {{--                                        </td> --}}
                                     </tr>
-                                    @endforeach
+                                @endforeach
 
-                                </tbody>
-                            </table>
-                            <!-- Modal for showing delete confirmation -->
-                            <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title" id="user_delete_confirm_title">
-                                                Delete User
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            Bạn có chắc chắn muốn xóa thành viên này không
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                            <a href="deleted_users.html" class="btn btn-danger">Delete
-                                            </a>
-                                        </div>
+                            </tbody>
+                        </table>
+                        <!-- Modal for showing delete confirmation -->
+                        <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog"
+                            aria-labelledby="user_delete_confirm_title" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="user_delete_confirm_title">
+                                            Delete User
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc chắn muốn xóa thành viên này không
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <a href="deleted_users.html" class="btn btn-danger">Delete
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- row-->
-            </section>
+            </div>
+            <!-- row-->
+        </section>
 
-            <!-- modal add -->
-             <div class="modal fade" id="addmember" role="dialog">
-                <div class="modal-dialog">
+        <!-- modal add -->
+        <div class="modal fade" id="addmember" role="dialog">
+            <div class="modal-dialog">
 
-                  <!-- Modal content-->
-                  <div class="modal-content">
+                <!-- Modal content-->
+                <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Thêm thành viên</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Thêm thành viên</h4>
                     </div>
                     <div class="modal-body">
-                <form class="form-horizontal" method="post" id="formaddmember">
+                        <form class="form-horizontal" method="post" id="formaddmember">
 
 
-                <!--  -->
-                <div class="form-group">
-                <label for="first_name" class="col-sm-3">Tên thành viên</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="id_name" name="name" placeholder="Nhập tên thành viên" class="form-control" />
-                        <span style="color: red;"></span>
-                    </div>
-                </div>
+                            <!--  -->
+                            <div class="form-group">
+                                <label for="first_name" class="col-sm-3">Tên thành viên</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="id_name" name="name" placeholder="Nhập tên thành viên"
+                                        class="form-control" />
+                                    <span style="color: red;"></span>
+                                </div>
+                            </div>
 
 
-                <div class="form-group">
-                    <label class="col-sm-3" for="form-field-1-1">Email</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="email" placeholder="Nhập email thành viên" class="form-control" id="id_email">
+                            <div class="form-group">
+                                <label class="col-sm-3" for="form-field-1-1">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="email" placeholder="Nhập email thành viên"
+                                        class="form-control" id="id_email">
 
-                        </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3" for="form-field-1-1">Pass word</label>
-                    <div class="col-sm-9">
-                        <input type="password" name="password" class="form-control required" placeholder="Nhập pass thành viên" id="id_pass">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="form-field-1-1">Pass word</label>
+                                <div class="col-sm-9">
+                                    <input type="password" name="password" class="form-control required"
+                                        placeholder="Nhập pass thành viên" id="id_pass">
 
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3" for="form-field-1-1">Phone number</label>
-                    <div class="col-sm-9">
-                        <input type="number" name="phone_number" class="form-control required" placeholder="Nhập số điện thoại thành viên" id="phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="form-field-1-1">Phone number</label>
+                                <div class="col-sm-9">
+                                    <input type="number" name="phone_number" class="form-control required"
+                                        placeholder="Nhập số điện thoại thành viên" id="phone">
 
-                    </div>
-                </div>
+                                </div>
+                            </div>
 
-                <div class="form-group">
-                    <label class="col-sm-3" for="form-field-1-1">Process</label>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="form-field-1-1">Process</label>
 
-                    <div class="col-sm-9 process_user">
-                        <div class="form-control savedata">
+                                <div class="col-sm-9 process_user">
+                                    <div class="form-control savedata">
 
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="form-group">
-                <label class="col-sm-3" for="form-field-1-1"> SMS level</label>
-                    <div class="col-sm-9">
-                        <select name="sms_level" id="id_sms_level" class="form-control required">
-                            <option value="">Lựa chọn SMS level</option>
-                            <option value="1">Warning</option>
-                            <option value="2">Minor</option>
-                            <option value="3">Crical</option>
-                        </select>
-                        <span style="color: red;">{{$errors->first('sms_level')}}</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                <label class="col-sm-3" for="form-field-1-1"> Quyền truy cập</label>
-                    <div class="col-sm-9">
-                        <select name="level" id="level_id" class="form-control">
-                            <option value="">Lựa chọn quyền truy cập</option>
-                            <option value="2">Root</option>
-                            <option value="1">Admin</option>
-                            <option value="0">User</option>
-                        </select>
-                        <span style="color: red;">{{$errors->first('member_level')}}</span>
-                    </div>
-                </div>
-                <div class="space-4"></div>
-                <div class="clearfix form-actions">
-                    <div class="col-md-offset-3 col-md-9">
-                        <button class="btn btn-primary" type="submit">Thêm thành viên</button>
-                         &nbsp; &nbsp; &nbsp;
-                        <button class="btn btn-danger" type="reset">Reset</button>
+                                    </div>
 
 
-                    </div>
-                </div>
-                {{csrf_field()}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="form-field-1-1"> SMS level</label>
+                                <div class="col-sm-9">
+                                    <select name="sms_level" id="id_sms_level" class="form-control required">
+                                        <option value="">Lựa chọn SMS level</option>
+                                        <option value="1">Warning</option>
+                                        <option value="2">Minor</option>
+                                        <option value="3">Crical</option>
+                                    </select>
+                                    <span style="color: red;">{{ $errors->first('sms_level') }}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="form-field-1-1"> Quyền truy cập</label>
+                                <div class="col-sm-9">
+                                    <select name="level" id="level_id" class="form-control">
+                                        <option value="">Lựa chọn quyền truy cập</option>
+                                        <option value="2">Root</option>
+                                        <option value="1">Admin</option>
+                                        <option value="0">User</option>
+                                    </select>
+                                    <span style="color: red;">{{ $errors->first('member_level') }}</span>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button class="btn btn-primary" type="submit">Thêm thành viên</button>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <button class="btn btn-danger" type="reset">Reset</button>
 
-            </form>
+
+                                </div>
+                            </div>
+                            {{ csrf_field() }}
+
+                        </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
-                  </div>
-
                 </div>
-              </div>
-            <!-- end modal add -->
-            <input type="hidden" value="{{url('')}}" id="url">
-</aside>
+
+            </div>
+        </div>
+        <!-- end modal add -->
+        <input type="hidden" value="{{ url('') }}" id="url">
+    </aside>
 @endsection('content')
 @section('script')
- <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
     <!-- end of global js -->
     <!-- begining of page level js -->
     <script type="text/javascript" src="vendors/datatables/js/jquery.dataTables2.js"></script>
     <script type="text/javascript" src="vendors/datatables/js/dataTables.bootstrap.js"></script>
     <script>
-    $(document).ready(function()
-    {
-        $('#table').dataTable();
+        $(document).ready(function() {
+            $('#table').dataTable();
 
-    });
-    $('.savedata').click( function()
-            {
-                $('.ulParent').toggle();
-            });
-    $('.ulParent>li').click(function()
-                {
+        });
+        $('.savedata').click(function() {
+            $('.ulParent').toggle();
+        });
+        $('.ulParent>li').click(function() {
 
-                    var data = $(this).attr('dataid');
+            var data = $(this).attr('dataid');
 
-                    var name = $(this).text();
-                    $('.savedata').append('<span>'+name+ '<span class="id">'+data +','+'<span>'+'<a class="delete" href="javascript::voild(0)" ><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>'+'</span>');
-                    $('.ulParent>li').addClass('off');
-                    $('.ulParent').hide();
-                });
-    $('body').on('click','.delete', function()
-                {
-                    $(this).parent().parent().parent().remove();
-                });
-
-    /*$('body').on('click','#submember', function()
-    {
-        var url  = $('#url').val();
-        var item = {};
-        item.name = $('#id_name').val();
-        item.email = $('#id_email').val();
-        item.pass = $('#id_pass').val();
-        item.phone = $('#phone').val();
-        item.sms_level = $('#id_sms_level').val();
-        item.level = $('#level_id').val();
-        item.process = $('.savedata .id').text();
-        var itemJson = JSON.stringify(item);
-        console.log(itemJson);
-        $.get(url+'/admin/member/add/'+itemJson, function(data)
-        {
-            console.log(data);
+            var name = $(this).text();
+            $('.savedata').append('<span>' + name + '<span class="id">' + data + ',' + '<span>' +
+                '<a class="delete" href="javascript::voild(0)" ><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>' +
+                '</span>');
+            $('.ulParent>li').addClass('off');
+            $('.ulParent').hide();
+        });
+        $('body').on('click', '.delete', function() {
+            $(this).parent().parent().parent().remove();
         });
 
-    });*/
-    $('#formaddmember').on('submit', function(event)
-         {
+        /*$('body').on('click','#submember', function()
+        {
+            var url  = $('#url').val();
+            var item = {};
+            item.name = $('#id_name').val();
+            item.email = $('#id_email').val();
+            item.pass = $('#id_pass').val();
+            item.phone = $('#phone').val();
+            item.sms_level = $('#id_sms_level').val();
+            item.level = $('#level_id').val();
+            item.process = $('.savedata .id').text();
+            var itemJson = JSON.stringify(item);
+            console.log(itemJson);
+            $.get(url+'/admin/member/add/'+itemJson, function(data)
+            {
+                console.log(data);
+            });
+
+        });*/
+        $('#formaddmember').on('submit', function(event) {
             event.preventDefault();
             $.ajax({
-             url:"",
-             method:"POST",
-             data:new FormData(this),
-             //dataType:'JSON',
-             contentType: false,
-             cache: false,
-             processData: false,
-             success:function(data)
-             {
-                console.log(data);
-                 /* if(data=='0')
-                    {
-                        alert('Error_code và Process_code bị trùng Bạn vui lòng sửa lại')
-                    }else
-                    {
-                        //console.log(data);
-                         $('#listdatatable').html(data);
-                         $('.error_code_e').html('');
-                         $('.process_code').val('');
-                         $(".error_name").val('');
-                         $(".solve").val('');
-                          $('#editerror .statusmess').prop('checked', false);
-                         //$(".statusmess").val('');
+                url: "",
+                method: "POST",
+                data: new FormData(this),
+                //dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    console.log(data);
+                    /* if(data=='0')
+                       {
+                           alert('Error_code và Process_code bị trùng Bạn vui lòng sửa lại')
+                       }else
+                       {
+                           //console.log(data);
+                            $('#listdatatable').html(data);
+                            $('.error_code_e').html('');
+                            $('.process_code').val('');
+                            $(".error_name").val('');
+                            $(".solve").val('');
+                             $('#editerror .statusmess').prop('checked', false);
+                            //$(".statusmess").val('');
 
-                         $(".status").val('');
-                         $('.stretchLeft').hide();
-                         $('.modal-backdrop').hide();
-                        $('.alertNotification').show(3000);
-                        $('.alertNotification').text('Sửa thành công');
-                        $('.alertNotification').css({'background':'#F89A14'});
-                          setTimeout(function(){ $('.alertNotification').hide(5000);}, 5000);
-                    }*/
-             }
+                            $(".status").val('');
+                            $('.stretchLeft').hide();
+                            $('.modal-backdrop').hide();
+                           $('.alertNotification').show(3000);
+                           $('.alertNotification').text('Sửa thành công');
+                           $('.alertNotification').css({'background':'#F89A14'});
+                             setTimeout(function(){ $('.alertNotification').hide(5000);}, 5000);
+                       }*/
+                }
             })
-         });
-
-
+        });
     </script>
-
 @endsection('script')
-

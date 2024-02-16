@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/cssFull.css">
     <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/pager.css">
     <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/reposive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('style')
 </head>
 <body>
@@ -48,7 +49,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" id="loginsystem">
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Đăng nhập bằng</label>
                         <div class="form-check">
                             <input class="form-check-input checklogin" type="radio" value="1" checked="checked"
@@ -63,19 +64,19 @@
                                 Mã thành viên
                             </label>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group phonelogin">
                         <label for="recipient-name" class="col-form-label">Số điện thoại</label>
                         <input type="number" class="form-control" id="phonename" name="phone" value="{{old('phone')}}">
                         <p><span class="text-danger error1"></span>
                         </p>
                     </div>
-                    <div class="form-group codeLogin" style="display:none">
+                    {{-- <div class="form-group codeLogin" style="display:none">
                         <label for="recipient-name" class="col-form-label">Mã code</label>
                         <input type="text" class="form-control" id="codename" name="code" value="{{old('code')}}">
                         <p><span class="text-danger error4"></span>
                         </p>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Password:</label>
                         <input type="password" class="form-control" name="password" id="password"
@@ -141,7 +142,8 @@
         });
         $('#loginsystem').on('submit', function (event) {
             event.preventDefault();
-            let url = $('#url').val();
+            let url = $('#url').val()+'/login';
+            console.log(url);
             $.ajax({
                 url: url,
                 method: "POST",

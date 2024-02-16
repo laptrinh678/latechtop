@@ -285,14 +285,8 @@ class TopController extends Controller
     {
         $login = [
             'password' => $request->password,
+            'phone' => $request->phone,
         ];
-        if ($request->logincheck == 0) {
-            $login['code'] = $request->code;
-        }
-        if ($request->logincheck == 1) {
-            $login['phone'] = $request->phone;
-        }
-
         if (Auth::attempt($login)) {
             return response()->json(['status' => true]);
         } else {
