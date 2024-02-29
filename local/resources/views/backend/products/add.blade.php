@@ -78,7 +78,7 @@
                                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Danh mục
                                     </label>
                                     <div class="col-sm-6">
-                                        <select name="cate_id" id="" class="form-control">
+                                        <select name="cate_id" id="select21" class="form-control select2">
                                             <option value="{{ old('cate_id') }}">Chọn danh mục</option>
                                             <?php
                                             function showCategories($categories, $parentId = 0, $char = '')

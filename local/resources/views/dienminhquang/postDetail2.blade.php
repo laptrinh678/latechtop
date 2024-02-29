@@ -133,8 +133,8 @@
                                                     <div class="item">
                                                         <a href="{{ url("bai-viet/$postItem->id/$postItem->slug.html") }}"
                                                             title="{{ $postItem->name }}">
-                                                            <img src="{{ url('public/backend') }}/@if ($postItem->cate->img_default == 1) {{ $postItem->cate->icon }}@else{{ $postItem->icon }} @endif"
-                                                                original="{{ url('public/backend') }}/@if ($postItem->cate->img_default == 1) {{ $postItem->cate->icon }}@else{{ $postItem->icon }} @endif"
+                                                            <img src="{{ url('public/backend') }}/@if($postItem->cate->img_default == 1){{ $postItem->cate->icon }}@else{{ $postItem->icon }}@endif"
+                                                                original="{{ url('public/backend') }}/@if($postItem->cate->img_default == 1){{ $postItem->cate->icon }}@else{{ $postItem->icon }}@endif"
                                                                 alt="{{ $postItem->name }}">
                                                         </a>
                                                         <div>

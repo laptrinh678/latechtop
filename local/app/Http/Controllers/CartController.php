@@ -80,7 +80,7 @@ class CartController extends Controller
            $msg->from(env('MAIL_FROM_ADDRESS'),env('MAIL_URL'));// mail gui
            $msg->to($email, $email);// mail nhan, ten mail
            //$msg->cc('nguyenthuonght.1980@gmail.com','Samdoo.vn');
-           $msg->subject('Xác nhận hóa đơn mua hàng phaohoa247');
+           $msg->subject('Xác nhận hóa đơn mua hàng tuyendungcongchuc247.com');
 
        });
         if(Auth::user() && Auth::user()->id){

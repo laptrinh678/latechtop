@@ -23,6 +23,8 @@ class Imfomations extends Model
         'text_seo',
         'des1',
         'des2',
-        'title_home'
+        'des3',
+        'title_home',
+        'des4'
     ];
 }

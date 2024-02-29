@@ -17,7 +17,14 @@
     </div>
     <div class="subpage">
         <div class="container">
-
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                 {!! $imfomation->des4 !!}
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    {!! $imfomation->des3 !!}
+                </div>
+             </div>
             <!--begin shop_page-->
             <div class="shop_page">
                 <form id="order-form" action="" method="post">

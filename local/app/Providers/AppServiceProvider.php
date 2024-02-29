@@ -23,7 +23,9 @@ class AppServiceProvider extends ServiceProvider
         $data['menu_sp_footer'] = DB::table('cates')->where('parent_id',23)->whereNull('deleted_at')->OrderBy('id','desc')->limit(9)->get();
         $data['menu_new'] = DB::table('cates')->where('type_menu',0)->whereNull('deleted_at')->OrderBy('id','desc')->limit(9)->get();
         $data['menu_chantrang'] = DB::table('cates')->where('parent_id',0)->where('menu_type',2)->whereNull('deleted_at')->get();
-        $data['blogFullPage'] = DB::table('products')->where('cate_id',89)->orderBy('id', 'desc')->limit(20)->get();
+        $data['blogFullPage'] = DB::table('products')->leftJoin('cates', 'cates.id', '=', 'products.cate_id')
+        ->select('products.*', 'cates.icon as iconCate')
+        ->where('products.cate_id',89)->orderBy('products.id', 'desc')->limit(20)->get();
         view()->share($data);
     }
 

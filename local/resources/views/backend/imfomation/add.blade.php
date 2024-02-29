@@ -157,7 +157,15 @@ Thêm mới thông tin
                       </script>﻿
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Thông tin tài khoản</label>
+                    <div class="col-sm-10">
+                    <textarea class="ckeditor"  name="des4" id="a3" cols="90" rows="30" >{{$data->des4}}</textarea>
+                        <script type="text/javascript">
+                                CKEDITOR.replace('des4');
+                      </script>        
+                    </div>
+                </div> 
                 <div class="space-4"></div>
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-9">

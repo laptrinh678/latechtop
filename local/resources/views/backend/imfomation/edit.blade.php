@@ -181,7 +181,26 @@
                     <textarea class="ckeditor"  name="des2" id="a2" cols="90" rows="30" >{{$data->des2}}</textarea>
                         <script type="text/javascript">
                                 CKEDITOR.replace('des2');
-                      </script>﻿        
+                      </script>      
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Thông tin tài khoản</label>
+                    <div class="col-sm-10">
+                    <textarea class="ckeditor"  name="des4" id="a3" cols="90" rows="30" >{{$data->des4}}</textarea>
+                        <script type="text/javascript">
+                                CKEDITOR.replace('des4');
+                      </script>        
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Thông tin khác</label>
+                    <div class="col-sm-10">
+                    <textarea class="ckeditor"  name="des3" id="a4" cols="90" rows="30" >{{$data->des3}}</textarea>
+                        <script type="text/javascript">
+                                CKEDITOR.replace('des3');
+                      </script>        
                     </div>
                 </div> 
 

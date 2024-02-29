@@ -49,7 +49,7 @@
                                     <a class="detail_image_data" data-toggle="modal" data-target=".bd-showImg-modal-lg"
                                         href="javascript:void(0)">
                                         <img class="imgData" width="100%"
-                                            src="{{ url('public/backend/') }}/@if ($sp->cate->img_default == 1) {{ $sp->cate->icon }}@else{{ $sp->icon }} @endif"
+                                            src="{{ url('public/backend/') }}/@if($sp->cate->img_default == 1){{ $sp->cate->icon }}@else{{ $sp->icon }}@endif"
                                             alt="">
                                     </a>
                                 </div>
@@ -102,7 +102,7 @@
                                         <form class="row no-gutters" action="{{ url("cart/add/$sp->id") }}" method="GET">
                                             <input type="hidden" value="876" name="product_cart">
                                             <div class="col-3 input_cart">
-                                                <input type="number" name="quantity_cart" value="1" min="1"
+                                                <input style="height: 34px;" type="number" name="quantity_cart" value="1" min="1"
                                                     max="10">
                                             </div>
                                             <div class="col-4 button_cart">
@@ -111,7 +111,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-5">
-                                                <button type="submit" name="btn_order" class="hotline_cart">
+                                                <button type="submit" name="btn_order" class="hotline_cart" style="padding-top: 7px; padding-bottom:8px;">
                                                     <span>THÊM VÀO GIỎ HÀNG</span>
                                                 </button>
                                             </div>
@@ -163,9 +163,9 @@
                                             <div class="item">
                                                 <a href="{{ url("san-pham/$vlienquan->cate_id/$vlienquan->slug.html") }}"
                                                     title="{{ $vlienquan->name }}">
-                                                    <img class="imgheight"
-                                                        src="{{ url('public/backend') }}/@if ($vlienquan->cate->img_default == 1) {{ $vlienquan->cate->icon }}@else{{ $vlienquan->icon }} @endif"
-                                                        alt="{{ $vlienquan->name }}" title="{{ $vlienquan->name }}"></a>
+                                                    <img class="imgheight" src="{{ url('public/backend') }}/@if($vlienquan->cate->img_default == 1){{ $vlienquan->cate->icon }}@else{{ $vlienquan->icon }} @endif"
+                                                        alt="{{ $vlienquan->name }}" title="{{ $vlienquan->name }}">
+                                                    </a>
                                                 <div>
                                                     <a
                                                         href="{{ url("san-pham/$vlienquan->cate_id/$vlienquan->slug.html") }}">
