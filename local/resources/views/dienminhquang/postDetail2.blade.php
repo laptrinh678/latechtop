@@ -55,11 +55,8 @@
                         @if($postDetail->productPost)
 
                         <div>
-                            <h5>Có thể bạn quan tâm</h5>
-                            @foreach($postDetail->productPost as $product)
-                            <p><a href="{{ url("san-pham/$product->cate_id/$product->slug.html") }}" target="_blank">{{ $product->name }}</a></p>
-                            @endforeach
-                           
+                            <h3>Có thể bạn quan tâm</h3>
+                           @include('dienminhquang.blog.listProductFullPost')
                         </div>
                         @endif
                         <hr>

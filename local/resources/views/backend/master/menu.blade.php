@@ -141,8 +141,15 @@
               <span class="fa arrow"></span>
           </p>
           </a>
-
     </li>
+    <li class="limenu2">
+        <a href="{{url('admin/blogs')}}"> <p>
+             <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+             <span class="title">Danh sách Blogs</span>
+             <span class="fa arrow"></span>
+         </p>
+         </a>
+   </li>
    <!--  <li class="active">
       <a href="{{url('admin/guimail/mail')}}">
          <i class="livicon" data-name="mail-alt" data-size="20" data-c="#FAAC58" data-hc="#FAAC58" data-loop="true" id="livicon-135" style="width: 10px; height: 10px;"></i>

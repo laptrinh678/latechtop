@@ -26,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
         $data['blogFullPage'] = DB::table('products')->leftJoin('cates', 'cates.id', '=', 'products.cate_id')
         ->select('products.*', 'cates.icon as iconCate')
         ->where('products.cate_id',89)->orderBy('products.id', 'desc')->limit(20)->get();
+        $listIdProduct = DB::table('blogs')->where('id',3)->select('product_id')->first();
+        $listIdProduct = json_decode($listIdProduct->product_id);
+        $data['blogProductPostDetail'] = DB::table('products')->whereIn('id',$listIdProduct)->get();
         view()->share($data);
     }
 

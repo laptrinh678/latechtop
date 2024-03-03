@@ -72,6 +72,13 @@ Route::group(['middleware' => [CheckLogout::class], 'as' => 'admin.'], function 
     Route::get('order/changeStatus/{status}/{id}', 'OrderController@status');
     Route::get('doitien', 'OrderController@doitien');
 
+    Route::get('blogs', 'BlogsController@index');
+    Route::get('blogs/create', 'BlogsController@create');
+    Route::post('blogs/create', 'BlogsController@store');
+    Route::get('blogs/edit/{id}', 'BlogsController@edit');
+    Route::post('blogs/edit/{id}', 'BlogsController@update');
+    Route::get('blogs/destroy/{id}', 'BlogsController@destroy');
+
 
 });
 
