@@ -52,6 +52,16 @@
                         <div class="news_page">
                             {!! $postDetail->des2 !!}
                         </div>
+                        @if($postDetail->productPost)
+
+                        <div>
+                            <h5>Có thể bạn quan tâm</h5>
+                            @foreach($postDetail->productPost as $product)
+                            <p><a href="{{ url("san-pham/$product->cate_id/$product->slug.html") }}" target="_blank">{{ $product->name }}</a></p>
+                            @endforeach
+                           
+                        </div>
+                        @endif
                         <hr>
                         <br>
                         @if (isset(Auth::user()->name))
