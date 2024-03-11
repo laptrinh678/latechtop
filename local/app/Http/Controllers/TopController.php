@@ -28,6 +28,7 @@ use App\Http\Requests\ResetPasswordRequest;
 use App\Models\Cate;
 use App\Models\Customer;
 use App\Models\Province;
+use App\Models\HistoryLogin;
 
 class TopController extends Controller
 {
@@ -288,6 +289,10 @@ class TopController extends Controller
             'phone' => $request->phone,
         ];
         if (Auth::attempt($login)) {
+            if(Auth::user() && Auth::user()->id){
+                $historyLogin['user_id'] =  Auth::user()->id;
+                HistoryLogin::create($historyLogin);
+            }
             return response()->json(['status' => true]);
         } else {
             return response()->json(['status' => false, 'message' => 'Đăng nhập thất bại vui lòng kiểm tra lại số điện thoại,mã code, password']);

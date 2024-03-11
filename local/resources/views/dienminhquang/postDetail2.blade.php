@@ -55,7 +55,7 @@
                         @if($postDetail->productPost)
 
                         <div>
-                            <h3>Có thể bạn quan tâm</h3>
+                            <h3>Dowload Danh sách tài liệu ôn thi công chức, viên chức vòng 1 </h3>
                            @include('dienminhquang.blog.listProductFullPost')
                         </div>
                         @endif

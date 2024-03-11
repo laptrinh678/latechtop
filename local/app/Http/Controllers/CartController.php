@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Repository\ProductSoldRepository;
 use App\Repository\ProductReponsitory;
+use App\Models\HistoryShop;
 class CartController extends Controller
 {
     public $productSoldRepo;
@@ -31,7 +32,12 @@ class CartController extends Controller
             $qty = $request->quantity_cart;
         }
     	$product = Product::find($id);
-        //dd($product);
+        if(Auth::user() && Auth::user()->id){
+            $historyShop['user_id'] =  Auth::user()->id;
+            $historyShop['product_id'] =  $product->id;
+            HistoryShop::create($historyShop);
+
+        }
     	Cart::add(['id' => $id, 'name' => $product->name, 'qty' =>  $qty,'weight'=>'0',
          'price' => $product->price,
             'options' => [
