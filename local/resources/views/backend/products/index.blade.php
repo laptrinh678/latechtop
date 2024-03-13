@@ -56,8 +56,6 @@
                 </div>
                 <br/>
                 <div class="panel-body">
-
-
                     <table class="table table-bordered " id="table">
                         @include('errors.note')
                         <thead>
@@ -65,7 +63,6 @@
                             <th style="width:5px;">Id</th>
                             <th>Tên sản phẩm</th>
                             <th>Ảnh</th>
-                            <th>Loại sản phẩm</th>
                             <th>Link Dowload/Lượt xem</th>
                             <th>Danh mục cha</th>
                             <th>Trạng thái</th>
@@ -101,17 +98,6 @@
                                                  alt="">
                                         @endforeach
                                     @endif
-                                </td>
-                                <td>
-                                    <p>
-                                        @if($v->outstanding==1)
-                                            <span class="text-red">Sp nổi bật</span>
-                                        @endif
-                                        <br>
-                                        @if($v->promotions==1)
-                                            <span class="text-red">Sp Khuyến mại</span>
-                                        @endif
-                                    </p>
                                 </td>
                                 <td>
                                     @if($v->link != null)
@@ -156,28 +142,6 @@
                         </tbody>
                     </table>
                     <!-- Modal for showing delete confirmation -->
-                    <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog"
-                         aria-labelledby="user_delete_confirm_title" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
-                                    </button>
-                                    <h4 class="modal-title" id="user_delete_confirm_title">
-                                        Delete User
-                                    </h4>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn có chắc chắn muốn xóa thành viên này không
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <a href="deleted_products.html" class="btn btn-danger">Delete
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             </div>

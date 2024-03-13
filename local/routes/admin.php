@@ -79,6 +79,8 @@ Route::group(['middleware' => [CheckLogout::class], 'as' => 'admin.'], function 
     Route::post('blogs/edit/{id}', 'BlogsController@update');
     Route::get('blogs/destroy/{id}', 'BlogsController@destroy');
 
+    Route::get('history', 'HistoryController@index');
+
 
 });
 
