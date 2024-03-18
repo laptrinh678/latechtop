@@ -175,22 +175,8 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-2 p-0">
-                    <ul class="list-group p-1 border-0">
-                        <li class="list-group-item bg-success border-0"><strong class="text-white">Quản lý thông
-                                tin</strong></li>
-                        <a href="{{route('caynhiphan')}}" class="text-dark">
-                            <li class="list-group-item border-0">Sơ đồ tích luỹ điểm kinh doanh</li>
-                        </a>
-{{--                        <a href="{{route('caynhiphan')}}" class="text-dark">--}}
-{{--                            <li class="list-group-item border-0">Lịch sử nhận tiền</li>--}}
-{{--                        </a>--}}
-                        {{--                        <li class="list-group-item">Morbi leo risus</li>--}}
-                        {{--                        <li class="list-group-item">Porta ac consectetur ac</li>--}}
-                        {{--                        <li class="list-group-item">Vestibulum at eros</li>--}}
-                    </ul>
-                </div>
-                <div class="col-md-10 right p-1">
+               
+                <div class="col-md-12 col-sm-12 right p-1">
                     <div class="box_subpage">
                         <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;" class="text-left">Trang quản lý
                             User-Xin chào {{Auth::user()->name}} - {{ Auth::user()->phone }}</p>
@@ -203,7 +189,6 @@
                                         <thead>
                                         <tr>
                                             <th>Họ tên</th>
-                                            <th>Mã code</th>
                                             <th>Ảnh</th>
                                             <th>Điểm tích luỹ</th>
                                             <th>Tài khoản</th>
@@ -213,7 +198,6 @@
                                         <tbody>
                                         <tr>
                                             <td>{{Auth::user()->name}}</td>
-                                            <td>{{Auth::user()->code}}</td>
                                             <td>
 
                                                 <img width="30px"
@@ -221,23 +205,19 @@
                                                      alt="{{Auth::user()->avata}}">
                                             </td>
                                             <td>
-                                                Điểm cá nhân:@if(Auth::user()->point !='')
+                                                <p>
+                                                    Điểm cá nhân:@if(Auth::user()->point !='')
                                                     {{Auth::user()->point}}
                                                 @else
                                                     0
                                                 @endif
-                                                <br>
-                                                Điểm nhánh trái:{{Auth::user()->diem_nhanhtrai}}
-                                                <br>
-                                                Điểm nhánh phải:{{Auth::user()->diem_nhanhphai}}
-                                                @if(Auth::user()->point >=1000 && Auth::user()->diem_nhanhtrai>=3000 && Auth::user()->diem_nhanhphai>=3000)
-                                                    <p>
-                                                        <button class="btn btn-success" data-toggle="modal"
-                                                                data-target="#doidiemsangtien">Đổi điểm sang
-                                                            tiền
-                                                        </button>
-                                                    </p>
-                                                @endif
+                                                <a href="" target="_blank" >Cách tăng điểm cá nhân</a>
+                                                </p>
+                                              
+                                                <p>Bạn có thể sử dụng 100 điểm này
+                                                     <a href="">để mua tài liệu, sản phẩm</a>
+                                                     <a href="">Tặng bạn bè</a>
+                                                </p>
                                             </td>
                                             <td>
                                                 <?php
@@ -258,59 +238,10 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-md-12 right">
-                                    <h4 class="text-danger">Lịch sử đổi điểm sang tiền</h4>
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Ngày đổi điểm</th>
-                                            <th>Tháng</th>
-                                            <th>Doanh thu</th>
-                                            <th>Trạng thái</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($history as $v)
-                                            <tr>
-                                                <td>
-                                                    {{$v->created_at->format('h:m d/m/Y')}}
-                                                    <br>
-                                                    {{--                                        <button class="btn btn-success">Đã thanh toán</button>--}}
-                                                    {{--                                        <br>--}}
-
-                                                </td>
-
-                                                <td>
-                                                    {{$v->created_at->format('m/Y')}}
-                                                </td>
-                                                <td>
-                                                        <?php
-                                                        $diemcu = json_decode($v->diemcu, true);
-                                                        ?>
-                                                    <p>Doanh thu:@if($diemcu['doanhthu'])  {{$diemcu['doanhthu']}} @endif triệu VNĐ</p>
-                                                <td>
-                                                <td>
-                                                    @if($v->status ==0)
-
-                                                            <button class="btn btn-danger">Chưa thanh toán</button>
-
-                                                    @else
-                                                        <button class="btn btn-success">Đã thanh toán</button>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                         <!--end contact_page-->
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -320,7 +251,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Cập nhật hồ sơ cá nhân</h3>
+                    <h3 class="modal-title" id="exampleModalLabel">Cập nhật hồ sơ cá nhân để gửi đến nhà tuyển dụng</h3>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="update_user" action="" enctype="multipart/form-data">
@@ -354,6 +285,24 @@
 
                         </div>
                         <div class="form-group">
+                            <label for="message-text" class="col-form-label">Link CV (Link cv xin việc của bạn)</label>
+                            <div>
+                                <input type="text" name="link_cv" class="form-control">
+                            </div>
+                            <p><span class="text-danger link_cv"></span>
+                            </p>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Ngày tháng năm sinh</label>
+                            <div>
+                                <input type="date" name="birthday" class="form-control">
+                            </div>
+                            <p><span class="text-danger birthday"></span>
+                            </p>
+
+                        </div>
+                        {{-- <div class="form-group">
                             <label for="message-text" class="col-form-label">Tên ngân hàng</label>
                             <input type="text" name="bankName" class="form-control" id="stk">
                             <p><span class="text-danger bankName"></span>
@@ -364,7 +313,7 @@
                             <input type="number" class="form-control" name="stk" id="stk">
                             <p><span class="text-danger stk"></span>
                             </p>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <h5><span class="text-danger error3"></span>

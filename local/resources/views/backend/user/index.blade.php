@@ -30,9 +30,11 @@
                 <div class="panel panel-primary ">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-
                             <span>
                                 <i class="fa fa-fw fa-angle-double-right"></i> Danh sách thành viên
+                            </span>
+                            <span>
+                               <a style="color: white" href="{{ url('admin/history') }}"> <i class="fa fa-fw fa-angle-double-right"></i> Lịch sử giao dịch</a>
                             </span>
                         </h4>
                     </div>
@@ -43,10 +45,10 @@
                             <thead>
                                 <tr class="filters">
                                     <th style="width:10px">Id</th>
-                                    <th>Tên</th>
+                                    <th>Tên/Giới tính</th>
                                     <th>Email -Điện thoại</th>
                                     <th>Địa chỉ </th>
-                                    <th>Mã nhân viên</th>
+                                    <th>Điểm thành viên</th>
                                     <th>Ngày đăng ký</th>
                                     {{--                                        <th>Hành động</th> --}}
                                 </tr>
@@ -63,6 +65,10 @@
                                                         alt="{{ $user->name }}" width="20">
                                                 </p>
                                             @endif
+                                            <p>
+                                                @if($user->sex ==1) Nam @endif
+                                                @if($user->sex ==2) Nữ @endif
+                                            </p>
                                         </td>
                                         <td>
                                             Email: {{ $user->email }}
@@ -83,7 +89,7 @@
                                                 <p>Số tài khoản:{{ $bank['stk'] }}</p>
                                             @endif
                                         </td>
-                                        <td>{{ $user->code }}</td>
+                                        <td>{{ $user->point }}</td>
                                         <td>
                                             {{ $user->created_at }}
                                         </td>

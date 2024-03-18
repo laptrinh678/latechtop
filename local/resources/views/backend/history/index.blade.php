@@ -29,6 +29,9 @@
                             <a href="{{ url('admin/cates/') }}">
                                 <i class="fa fa-fw fa-angle-double-right"></i>Danh mục
                             </a>
+                            <a href="{{ url('admin/users') }}">
+                                <i class="fa fa-fw fa-angle-double-right"></i>Thành viên
+                            </a>
                         </h4>
                     </div>
                     <br />

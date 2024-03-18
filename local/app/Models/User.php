@@ -36,7 +36,8 @@ class User extends Authenticatable
         'sub_user',// so luong user con
         'diem_nhanhtrai',
         'diem_nhanhphai',
-        'status_doitien'
+        'status_doitien',
+        'sex'
     ];
 
     /**

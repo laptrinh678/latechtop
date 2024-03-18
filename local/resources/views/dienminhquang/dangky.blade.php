@@ -30,7 +30,8 @@
 
                 <div class="col-12  right">
                     <div class="box_subpage">
-                        <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;" class="text-center">Đăng ký</p>
+                        <h2 style="border-bottom: 1px solid #ddd; margin-bottom: 20px;" class="text-center">Đăng ký thành viên mới</h2>
+                        <p class="text-danger text-center">Bạn được cộng 100 điểm vào Điểm thành viên - bạn có thể sử dụng điểm để dowload tài liệu</p>
 
                         <!--begin contact_page-->
                         <div class="contact_page">
@@ -44,9 +45,18 @@
                                             <li>
                                                 <input placeholder="Họ tên" name="name" id="ContactForm_name"
                                                        type="text" value="{{old('name')}}">
-                                                {{-- <span class="text-red">*</span> --}}
                                                 <p>
                                                     <span style="color: red;">{{$errors->first('name')}}</span>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <label for="">Giới tính</label>
+                                                <input type="radio" id="huey" name="sex" value="1" />
+                                                <label for="Nam">Nam</label>
+                                                <input type="radio" id="huey" name="sex" value="2"  />
+                                                <label for="Nữ">Nữ</label>
+                                                <p>
+                                                    <span style="color: red;">{{$errors->first('sex')}}</span>
                                                 </p>
                                             </li>
                                             <li>

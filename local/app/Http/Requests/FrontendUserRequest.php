@@ -24,7 +24,8 @@ class FrontendUserRequest extends FormRequest
                 'name'=>'required|max:50',
                 'phone'=>'required|numeric|digits_between:8,12|unique:users,phone',
                 'password'=>'required|min:3|max:15',
-                'password_confirm'=>'required|min:3|max:15|same:password'
+                'password_confirm'=>'required|min:3|max:15|same:password',
+                'sex'=>'required'
                 ];
 
 
@@ -43,7 +44,7 @@ class FrontendUserRequest extends FormRequest
             'name.max'=>'Độ dài không quá 50 ký tự',
             'email.max'=>'Độ dài không quá 50 ký tự',
             'code.max'=>'Độ dài không quá 50 ký tự',
-            'password_confirm.same'=>'Password không giống nhau'
+            'password_confirm.same'=>'Password không giống nhau',
         ];
     }
 
