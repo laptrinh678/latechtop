@@ -1,4 +1,9 @@
-<p>SẢN PHẨM NỔI BẬT</p>
+
+<label class="w-100 cat-title titlenew" for="">
+    <h3>
+        <a class="text-white" href="#">SẢN PHẨM NỔI BẬT</a>
+    </h3>
+</label>
 <div>
 	@if($sp_noibat)
 	@foreach($sp_noibat as $vnb)

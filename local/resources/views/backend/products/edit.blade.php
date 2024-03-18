@@ -89,8 +89,15 @@
                         <label for="">Giá</label>
                         <input type="number" value="{{$data->price}}" required name="price" placeholder="Nhập giá sản phẩm" class="form-control" />
                     </div>
+                    <div class="col-sm-2">
                     <label for="">Hiện giá</label>
                     <input class="form-check-input type_product" type="checkbox" value="{{$data->status_price}}" name="status_price" @if($data->status_price==1)checked @endif />
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="">Điểm sản phẩm</label>
+                        <input type="number" value="{{ old('point') ??  $data->point }}" name="point"
+                            placeholder="Nhập điểm sản phẩm" class="form-control" />
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="first_name" class="col-sm-2 control-label">Link dowload</label>

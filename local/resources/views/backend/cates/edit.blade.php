@@ -87,6 +87,7 @@ Sửa danh mục
                                 <option value="6" @if($cat->page==6) selected @endif>Blog list bài viết</option>
                                 <option value="7" @if($cat->page==7) selected @endif>Blog list quà tặng</option>
                                 <option value="8" @if($cat->page==8) selected @endif>Blog miễn phí</option>
+                                <option value="9" @if($cat->page==9) selected @endif>Blog chi tiết sản phẩm</option>
                             </select>
                         </div>
                     </div>

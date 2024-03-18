@@ -102,6 +102,7 @@
                                             <option value="6">Blog list bài viết</option>
                                             <option value="7">Blog list quà tặng</option>
                                             <option value="8">Blog miễn phí</option>
+                                            <option value="9">Blog chi tiết sản phẩm</option>
                                         </select>
                                     </div>
                                 </div>

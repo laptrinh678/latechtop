@@ -118,27 +118,6 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Thông
                                         tin</label>
-                                    {{--                    <div class="col-sm-2"> --}}
-                                    {{--                        <label for="">Đơn vị</label> --}}
-                                    {{--                        <select name="unit" id="" class="form-control" required> --}}
-                                    {{--                            <option value="">Chọn đơn vị sản phẩm</option> --}}
-                                    {{--                            <option value="1" >Ống</option> --}}
-                                    {{--                            <option value="2" >Bộ</option> --}}
-                                    {{--                            <option value="3" >Cây</option> --}}
-                                    {{--                            <option value="4" >Dây</option> --}}
-                                    {{--                            <option value="5" >Giàn</option> --}}
-                                    {{--                        </select> --}}
-                                    {{--                    </div> --}}
-                                    {{--                    <div class="col-sm-2"> --}}
-                                    {{--                        <label for="">Số sản phẩm tồn</label> --}}
-                                    {{--                        <input type="number" name="product_old" value="{{old('product_old')}}" placeholder="Số sản phẩm tồn" --}}
-                                    {{--                               class="form-control"/> --}}
-                                    {{--                    </div> --}}
-                                    {{--                    <div class="col-sm-2"> --}}
-                                    {{--                        <label for="">Nhập trong tháng</label> --}}
-                                    {{--                        <input type="number" name="product_new" value="{{old('product_new')}}"  placeholder="Nhập trong tháng" --}}
-                                    {{--                               class="form-control"/> --}}
-                                    {{--                    </div> --}}
                                     <div class="col-sm-2">
                                         <label for="">Giá sản phẩm</label>
                                         <input type="number" value="{{ old('price') }}" name="price"
@@ -147,6 +126,11 @@
                                     <div class="col-sm-2">
                                         <label for="">Hiện giá</label>
                                         <input type="checkbox" value="1" checked name="status_price" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label for="">Điểm sản phẩm</label>
+                                        <input type="number" value="{{ old('point') }}" name="point"
+                                            placeholder="Nhập điểm sản phẩm" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">

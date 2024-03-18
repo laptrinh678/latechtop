@@ -13,6 +13,7 @@ class Product extends Model
     const PROMOTIONS = 1;
     protected $fillable = [
         'name',
+        'product_code',
         'slug',
         'des',
         'des2',

@@ -78,7 +78,7 @@
                                     <p>
                                         Giá: {{number_format($v->price )}}
                                     </p>
-
+                                    <p>Mã: {{$v->product_code}} </p>
                                 </td>
                                 <td>
                                     <p>Ảnh sản phẩm:
@@ -105,6 +105,7 @@
                                     @endif
                                     <br>
                                     Lượt xem: {{ $v->view }}
+                                    <p>Điểm: {{ $v->point }}</p>
                                 </td>
                                 <td>
                                     @if($v->cate_id != '')

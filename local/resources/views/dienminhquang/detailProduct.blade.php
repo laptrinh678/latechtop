@@ -28,14 +28,14 @@
         </div>
     </div>
     <div class="subpage">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
 
                 <div class="col-md-2 col-sm-12">
-                    <div class="_box filter_cat">
-                        @include('dienminhquang.catesList')
+                    <div class="filter_cat">
+                        @include('dienminhquang.blog.detailProductBlogLeft')
                     </div>
-                    <div class="_box left_product">
+                    <div class="left_product">
                         @include('dienminhquang.sanphamnoibat')
                     </div>
                 </div>

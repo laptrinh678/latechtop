@@ -83,7 +83,8 @@ class TopController extends Controller
             $view['view'] = $sp->view + 1;
             $this->productRepo->update($sp->id, $view);
             $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->get();
-            return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan'));
+            $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
+            return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
         }catch (Exception $e) {
             return '404';
         }
@@ -147,7 +148,8 @@ class TopController extends Controller
             if (count($productList) == 1) {
                 $sp = $productList[0];
                 $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
-                return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan'));
+                $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
+                return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
             }
         }
     }

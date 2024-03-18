@@ -71,6 +71,7 @@ class ProductController extends Controller
             $data['img'] = '';
         }
         $data['slug']=Str::slug($request->name);
+        $data['product_code']= 'SP_'.strtoupper(Str::random(10));
         $ProductReponsitory = $this->ProductReponsitory->create($data);
         if($ProductReponsitory){
             Session::flash('add_success', __('message.add_success'));
@@ -138,6 +139,7 @@ class ProductController extends Controller
             $data['img'] = json_encode($images);
         }
         $data['slug']=Str::slug($request->name);
+        $data['product_code']= 'SP_'.strtoupper(Str::random(10));
         $result = $this->ProductReponsitory->update($id, $data);
         if($result){
             Session::flash('update_success', __('message.update_success'));
