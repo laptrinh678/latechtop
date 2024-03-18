@@ -1,4 +1,4 @@
-THÔNG BÁO ĐỔI MẬT KHẨU THÀNH VIÊN TỪ SAMDOO
+THÔNG BÁO ĐỔI MẬT KHẨU THÀNH VIÊN TỪ TUYENDUNGCONGCHUC247.COM
 <br>
 ---------------------------------------------------------
 <br><br><br>
@@ -18,5 +18,5 @@ THÔNG BÁO ĐỔI MẬT KHẨU THÀNH VIÊN TỪ SAMDOO
 
 <br>
 <a href="{{url('/')}}">
-    <img src="https://samdoo.vn/public/backend/1677334824_1669423573_Untitled.png" alt="{{$imfomation->name}}">
+    <img src="{{url('public/backend')}}/{{$imfomation->logo}}" alt="{{$imfomation->name}}">
 </a>

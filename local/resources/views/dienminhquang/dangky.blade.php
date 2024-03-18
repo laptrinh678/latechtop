@@ -51,9 +51,9 @@
                                             </li>
                                             <li>
                                                 <label for="">Giới tính</label>
-                                                <input type="radio" id="huey" name="sex" value="1" />
+                                                <input type="radio" id="huey" name="sex" value="1" @if(old('sex')==1) checked @endif />
                                                 <label for="Nam">Nam</label>
-                                                <input type="radio" id="huey" name="sex" value="2"  />
+                                                <input type="radio" id="huey" name="sex" value="2" @if(old('sex')==2) checked @endif  />
                                                 <label for="Nữ">Nữ</label>
                                                 <p>
                                                     <span style="color: red;">{{$errors->first('sex')}}</span>
@@ -135,14 +135,13 @@
                     </div>
                     <div class="modal-body">
                         <p>Chúc mừng bạn đã đăng ký thành viên thành công bạn hãy nhấn ok để quay lại trang chủ</p>
-                        <p>Đăng nhập với mã thành viên {{Session::get('mathanhvien')}}</p>
+                        <p>Đăng nhập với số điện thoại</p>
+                        <p>Bạn được cộng 100 điểm vào điểm cá nhân - hãy sử dụng để mua tài liệu</p>
                     </div>
                     <div class="modal-footer">
                         <a href="{{url('')}}">
-                            <button type="button" class="btn btn-success">OK</button>
+                            <button type="button" class="btn btn-success">Về trang chủ và đăng nhập</button>
                         </a>
-
-
                     </div>
                 </div>
             </div>

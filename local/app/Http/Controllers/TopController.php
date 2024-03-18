@@ -421,9 +421,9 @@ class TopController extends Controller
             $email = $data['email'];
             $re = ResetPassword::create($data);
             \Mail::send('dienminhquang.sendMailForgotPassWord', $data, function ($msg) use ($email) {
-                $msg->from(env('MAIL_FROM_ADDRESS'), 'Samdoo.vn'); // mail gui
+                $msg->from(env('MAIL_FROM_ADDRESS'), 'tuyendungcongchuc247.com'); // mail gui
                 $msg->to($email); // mail nhan, ten mail
-                $msg->subject('Cập nhật lại mật khẩu samdoo.vn');
+                $msg->subject('Cập nhật lại mật khẩu tuyendungcongchuc247.com');
             });
 
             Session::flash('sendEmailVerifyPassword', __('Gửi email xác thực mật khẩu thành công, vui lòng kiểm tra email'));
