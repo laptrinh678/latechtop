@@ -143,7 +143,8 @@ class TopController extends Controller
                 $productList = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
             }
             if (count($productList) > 1) {
-                return view('dienminhquang.cateProduct', compact('productList', 'cateData'));
+                $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
+                return view('dienminhquang.cateProduct', compact('productList', 'cateData','blogDetailproduct'));
             }
             if (count($productList) == 1) {
                 $sp = $productList[0];
@@ -213,7 +214,8 @@ class TopController extends Controller
             $postDetail = $this->postRepo->with('cate')->find($id);
             $view['view'] = $postDetail->view + 1;
             $this->postRepo->update($id, $view);
-            return view('dienminhquang.postDetail2', compact('postDetail'));
+            $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
+            return view('dienminhquang.postDetail2', compact('postDetail','blogDetailproduct'));
         }catch (Exception $e) {
             return '404';
         }

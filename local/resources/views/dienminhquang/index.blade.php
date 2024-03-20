@@ -49,34 +49,12 @@
             </div>
             <div class="modal-body">
                 <form method="post" id="loginsystem">
-                    {{-- <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Đăng nhập bằng</label>
-                        <div class="form-check">
-                            <input class="form-check-input checklogin" type="radio" value="1" checked="checked"
-                                   name="logincheck" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Số điện thoại
-                            </label>
-                            &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
-                            <input class="form-check-input checklogin" type="radio" value="0" name="logincheck"
-                                   id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Mã thành viên
-                            </label>
-                        </div>
-                    </div> --}}
                     <div class="form-group phonelogin">
                         <label for="recipient-name" class="col-form-label">Số điện thoại</label>
                         <input type="number" class="form-control" id="phonename" name="phone" value="{{old('phone')}}">
                         <p><span class="text-danger error1"></span>
                         </p>
                     </div>
-                    {{-- <div class="form-group codeLogin" style="display:none">
-                        <label for="recipient-name" class="col-form-label">Mã code</label>
-                        <input type="text" class="form-control" id="codename" name="code" value="{{old('code')}}">
-                        <p><span class="text-danger error4"></span>
-                        </p>
-                    </div> --}}
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Password:</label>
                         <input type="password" class="form-control" name="password" id="password"
@@ -97,20 +75,17 @@
                             </div>
 
                         </h4>
-
-
                     </div>
                     {{csrf_field()}}
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="hidden" class="form-control" id="url" name="url" value="{{url('/login')}}">
+                <input type="hidden" class="form-control" id="url-login" name="url" value="{{url('/login')}}">
             </div>
         </div>
     </div>
 </div>
-
 
 <p class="mobile_support hidden-md hidden-lg">
     <svg class="svg-inline--fa fa-phone fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="phone" role="img"
@@ -142,7 +117,7 @@
         });
         $('#loginsystem').on('submit', function (event) {
             event.preventDefault();
-            let url = $('#url').val()+'/login';
+            let url = $('#url-login').val();
             console.log(url);
             $.ajax({
                 url: url,

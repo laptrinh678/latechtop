@@ -22,12 +22,11 @@
         </div>
     </div>
     <div class="subpage">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-
                 <div class="col-md-2 col-sm-12">
                     <div class="_box filter_cat">
-                        @include('dienminhquang.catesList')
+                        @include('dienminhquang.blog.detailProductBlogLeft')
                     </div>
                     <div class="_box left_product">
                         @include('dienminhquang.sanphamnoibat')
@@ -62,7 +61,7 @@
                         <hr>
                         <br>
                         @if (isset(Auth::user()->name))
-                            <p class="text-center"> <a href="{{ $sp->link }}" target="_blank"><button
+                            <p class="text-center"> <a href="{{ $postDetail->link }}" target="_blank"><button
                                         class="btn btn-success"> Gửi
                                         thông tin cho nhà tuyển dụng</button></a></p>
                         @else

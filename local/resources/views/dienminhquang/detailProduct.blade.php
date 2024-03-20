@@ -85,16 +85,23 @@
                                         <strong>Giá:</strong>
                                         <span><strong style="color: #d72b77; font-weight: 600;">Còn hàng</strong></span>
                                         <div class="clearfix"></div>
+                                        
                                     </div>
-
-                                    <p><strong>
-                                            @if ($sp->status_price == 1)
-                                                Giá: {{ number_format($sp->price) }}
-                                            @else
-                                                miễn phí
-                                            @endif
-                                        </strong>
-                                    <p><span>Mô tả</span></p>
+                                    <p>
+                                        <p>
+                                                @if ($sp->status_price == 1)
+                                                <strong> Giá:</strong> {{ number_format($sp->price) }}
+                                                @else
+                                                <strong> Giá:</strong> Miễn phí
+                                                @endif
+                                        </p>
+                                       
+                                        <p>
+                                            <strong>Mã sản phẩm :</strong>  <span> {{ $sp->product_code }}</span>
+                                        </p>
+                                        <p>
+                                            <strong>Điểm sản phẩm :</strong>  <span> {{ $sp->point }}</span>
+                                        </p>
                                     <div class="desc_ppage">
                                         {!! $sp->des !!}
                                     </div>

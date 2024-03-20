@@ -82,7 +82,7 @@
                                                         </svg><!-- <i class="fas fa-star"></i> -->
                                                     </div>
                                                     <p>
-                                                        <span>Liên hệ</span>
+                                                        <span> @if($v2->price != 0){{ number_format($v2->price) }} @else Miễn phí @endif</span>
                                                     </p>
                                                 </div>
                                                 <a href="{{url("san-pham/$v2->cate_id/$v2->slug.html")}}"
