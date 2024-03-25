@@ -198,16 +198,6 @@ class TopController extends Controller
         }
     }
 
-    public function searchProduct(Request $request)
-    {
-        try {
-
-            $productList = Product::where('name', 'like', '%' . $request->txtkeyword . '%')->orderBy('id', 'desc')->paginate(8);
-            return view('dienminhquang.searchProduct', compact('productList'));
-        } catch (Exception $e) {
-            return '404';
-        }
-    }
     public function postDetail($id, $slug)
     {
         try{

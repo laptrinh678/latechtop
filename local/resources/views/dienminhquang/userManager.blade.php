@@ -178,7 +178,7 @@
                
                 <div class="col-md-12 col-sm-12 right p-1">
                     <div class="box_subpage">
-                        <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;" class="text-left">Trang quản lý
+                        <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;" class="text-left">Trang cá nhân
                             User-Xin chào {{Auth::user()->name}} - {{ Auth::user()->phone }}</p>
                         <!--begin contact_page-->
                         <div class="contact_page">
@@ -191,7 +191,6 @@
                                             <th>Họ tên</th>
                                             <th>Ảnh</th>
                                             <th>Điểm tích luỹ</th>
-                                            <th>Tài khoản</th>
                                             <th>Hành động</th>
                                         </tr>
                                         </thead>
@@ -215,18 +214,9 @@
                                                 </p>
                                               
                                                 <p>Bạn có thể sử dụng 100 điểm này
-                                                     <a href="">để mua tài liệu, sản phẩm</a>
+                                                     <a href="{{ route('searchProductForMember') }}?point={{ Auth::user()->point }}">để mua tài liệu, sản phẩm</a>
                                                      <a href="">Tặng bạn bè</a>
                                                 </p>
-                                            </td>
-                                            <td>
-                                                <?php
-                                                $bank = json_decode(Auth::user()->bank, true);
-                                                ?>
-                                                @if($bank)
-                                                    <p>Ngân hàng:{{$bank['bankName']}}</p>
-                                                    <p>Số tài khoản:{{$bank['stk']}}</p>
-                                                @endif
                                             </td>
                                             <td>
                                                 <button class="btn btn-danger" data-toggle="modal"

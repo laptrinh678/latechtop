@@ -41,8 +41,8 @@ Route::get('getPostWhereProvince/{id}', 'TopController@getPostWhereProvince')->n
 Route::get('dang-ky.html', 'TopController@dangky');
 Route::post('dang-ky.html', 'TopController@postdangky');
 
-Route::get('searchProduct', 'TopController@searchProduct')->name('searchProduct');
-
+Route::get('searchProduct', 'HomeController@searchProduct')->name('searchProduct');
+Route::get('searchProductForMember', 'HomeController@searchProductForMember')->name('searchProductForMember');
 Route::group(['prefix' => 'cart'], function () {
     Route::get('add/{id}', 'CartController@getaddcart');
     Route::get('show', 'CartController@cartshow');
