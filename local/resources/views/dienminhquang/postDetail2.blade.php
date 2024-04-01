@@ -52,12 +52,12 @@
                             {!! $postDetail->des2 !!}
                         </div>
                         @if($postDetail->productPost)
-
+                         @include('dienminhquang.blog.productSame')
+                        @endif
                         <div>
                             <h3>Dowload Danh sách tài liệu ôn thi công chức, viên chức vòng 1 </h3>
                            @include('dienminhquang.blog.listProductFullPost')
                         </div>
-                        @endif
                         <hr>
                         <br>
                         @if (isset(Auth::user()->name))

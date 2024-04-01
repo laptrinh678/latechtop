@@ -2,7 +2,7 @@
     @foreach ($listpostWhereProvince as $postItem)
         <div class="d-flex flex-row bd-highlight mb-3 bg-white">
             <div class="p-2 bd-highlight w-25"><a href="{{ url("bai-viet/$postItem->id/$postItem->slug.html") }}"><img
-                        class="w-100" height="100px" src="{{ url('public/backend') }}/{{ $postItem->icon }}"
+                        class="w-100" height="100px" src="{{ url('public/backend') }}/@if($postItem->cate->img_default==1){{ $postItem->cate->icon }}@else{{$postItem->icon}}@endif"
                         alt=""></a></div>
             <div class="p-2 bd-highlight w-75">
                 <h3><a class="text-body" style="color:black !important;"
