@@ -12,6 +12,7 @@
 @endsection('meta')
 @section('content')
     @include('dienminhquang.slider_box')
+    @include('dienminhquang.search.formSearchPost')
     <!-- End partner_home -->
     <div class="news_home">
         <div class="container">

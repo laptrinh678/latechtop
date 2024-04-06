@@ -21,7 +21,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-3 left d-none d-md-block">
-
                     <div class="_box filter_cat">
                         @include('dienminhquang.catesList')
                     </div>
@@ -39,7 +38,7 @@
                                             <div class="item">
                                                 <a href="{{url("san-pham/$v2->cate_id/$v2->slug.html")}}"
                                                    title="{{$v2->name}}"><img
-                                                        src="{{url('public/backend')}}/{{$v2->icon}}"
+                                                        src="{{url('public/backend')}}/@if($v2->cate->img_default==1){{ $v2->cate->icon }}@else{{$v2->icon}}@endif"
                                                         alt="{{$v2->name}}" title="{{$v2->name}}"></a>
                                                 <div>
                                                     <a href="{{url("san-pham/$v2->cate_id/$v2->slug.html")}}"
