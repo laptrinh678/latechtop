@@ -90,7 +90,21 @@ class TopController extends Controller
         }
        
     }
-
+    public function detailsProduct($id, $slug = null){
+        try{
+            $sp = $this->productRepo->with('cate')->where('id', $id)->first();
+            if ($sp->cate_id == 1 && $slug == 1) {
+                return back();
+            }
+            $view['view'] = $sp->view + 1;
+            $this->productRepo->update($sp->id, $view);
+            $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $sp->cate_id)->orderBy('id', 'desc')->get();
+            $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
+            return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
+        }catch (Exception $e) {
+            return '404';
+        }
+    }
     public function catesProduct($cate_id, $slug)
     {
         $cateData = DB::table('cates')->where('id', $cate_id)->first();

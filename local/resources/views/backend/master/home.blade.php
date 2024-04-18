@@ -191,6 +191,22 @@ Trang chủ admin
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInLeftBig">
+                        <div class="lightbluebg no-radius">
+                            <div class="panel-body squarebox square_boxs">
+                                <div class="col-xs-12 pull-left nopadmar">
+                                    <div class="row">
+                                        <div class="square_box col-xs-7 text-right">
+
+                                            <div class="number"><a href="{{url('admin/history')}}" class="text-white display-4">Lịch sử giao dịch</a></div>
+                                        </div>
+                                        <i class="livicon  pull-right" data-name="eye-open" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 

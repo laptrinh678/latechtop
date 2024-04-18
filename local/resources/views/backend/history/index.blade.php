@@ -63,11 +63,21 @@
                                                 <p>Email : {{ $itemHistoryShop->users ? $itemHistoryShop->users->email : '' }} </p>
                                             </td>
                                             <td>
-                                                {{ $itemHistoryShop->products ? $itemHistoryShop->products->name : '' }}
-                                                Giá : <p>{{ $itemHistoryShop->products ? number_format($itemHistoryShop->products->price) : '' }}</p>
+                                                <?php 
+                                                    $cateId = $itemHistoryShop->products->cate_id ?? '';
+                                                    $proSlug = $itemHistoryShop->products->slug .'.html' ?? '';
+                                                    $proId = $itemHistoryShop->products->id ?? '';
+                                                     ?>
+                                                <a target="_blank" href="{{url("chi-tiet-san-pham/$proId/$proSlug")}}"
+                                                    title="">{{ $itemHistoryShop->products ? $itemHistoryShop->products->name : '' }}</a>
+                                                <p>
+                                                    <button type="button" slugProduct="{{ $proSlug }}" userName="{{ $itemHistoryShop->users->name ?? '' }}" nameProduct="{{ $itemHistoryShop->products->name ?? '' }}" idProduct="{{ $itemHistoryShop->products->id ?? '' }}" class="btn btn-info btn-lg showPopUpSendEmail" userEmail="{{ $itemHistoryShop->users ? $itemHistoryShop->users->email : '' }}" data-toggle="modal" data-target="#myModal">Gửi email kêu gọi mua hàng</button>
+                                                </p>
+
                                             </td>
                                             <td>
                                                 {{ $itemHistoryShop->created_at }}
+                                                {{ $itemHistoryShop->products->cate_id }}
                                             </td>
                                         </tr>
                                         @endforeach
@@ -111,9 +121,92 @@
         </section>
         <input type="hidden" value="{{ url('') }}" id="url">
     </aside>
+    <!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Email kêu gọi mua hàng</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" id="sendMailHistoryShop">
+            <div class="form-group">
+                <label for="email">Tên sản phẩm</label>
+                <input type="text" name="name" class="form-control" id="productName">
+              </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" name="email" class="form-control" id="email">
+              <input type="hidden" class="form-control" name="product_id" id="productId">
+              <input type="hidden" class="form-control" name="pro_slug" id="slugProduct">
+            </div>
+            <div class="form-group">
+                <label for="email">Tên khách hàng</label>
+                <input type="text" name="userName" class="form-control" id="userName">
+              </div>
+            <div class="form-group">
+              <label for="pwd">Nội dung bài viết:</label>
+              <textarea class="form-control" name="text" cols="30" rows="5" id="dataSendEmail"></textarea>
+            </div>
+            {{ csrf_field() }}
+            <button type="submit" class="btn btn-success">Gửi Email</button>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 @endsection('content')
 @section('script')
     <script src="js/app.js" type="text/javascript"></script>
     <script type="text/javascript" src="vendors/datatables/js/jquery.dataTables2.js"></script>
     <script type="text/javascript" src="vendors/datatables/js/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.showPopUpSendEmail').click(function(){
+            let idproduct = $(this).attr('idproduct');
+            let userEmail = $(this).attr('useremail');
+            let nameProduct = $(this).attr('nameproduct');
+            let nameUser = $(this).attr('username');
+            let slugProduct = $(this).attr('slugproduct');
+
+            $('#productId').val(idproduct);
+            $('#email').val(userEmail);
+            $('#productName').val(nameProduct);
+            $('#userName').val(nameUser);
+            $('#slugProduct').val(slugProduct);
+            $('#dataSendEmail').text('Khuyến mại 20% ' + nameProduct + ' nhân dịp...' + 'Click vào link bên dưới ngay vì thời gian khuyến mại có hạn, nhanh tay để hưởng ưu đãi');
+            //alert(idproduct + userEmail);
+        })
+        $("#sendMailHistoryShop").submit(function(e) {
+            event.preventDefault();
+            let urlData = $('#url').val() + '/admin/history/sendEmailShop';
+            $.ajax({
+                url: urlData,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    if(data==true)
+                       {
+                           alert('Gửi email thành công')
+                       }else
+                       {
+                            alert('lỗi gửi Email Bạn vui lòng thử lại')
+                       }
+                }
+            })
+        });
+    })
+</script>
 @endsection('script')

@@ -31,7 +31,8 @@ Route::post('usermanager/doiDiemSangTien', 'TopController@doiDiemSangTien')->nam
 
 
 Route::get('chuyennhanh/{status}/{id}', 'TopController@chuyenhanh');
-Route::get('san-pham/{cate_id}/{slug}.html', 'TopController@details');
+Route::get('san-pham/{id}/{slug}.html', 'TopController@details');
+Route::get('chi-tiet-san-pham/{id}/{slug}.html', 'TopController@detailsProduct');
 //Route::get('danh-muc/{id}/{slug}.html', 'TopController@catesProduct');
 Route::get('danh-muc/{id}/{type_menu}/{slug}.html', 'TopController@catesTotal');
 //Route::get('danh-muc-hai/{id}/{type_menu}/{slug}.html', 'TopController@catesTotal2');
