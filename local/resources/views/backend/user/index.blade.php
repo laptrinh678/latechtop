@@ -3,13 +3,11 @@
     Danh sách thành viên
 @endsection('title')
 @section('style')
-    <link href="css/app.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="vendors/datatables/css/dataTables.bootstrap.css" />
     <link href="css/pages/tables.css" rel="stylesheet" type="text/css" />
 @endsection('style')
 @section('content')
     <aside class="right-side strech" id="sideright">
-
         <!-- Content Header (Page header) -->
         <section class="content-header list_user">
             <div>
@@ -58,17 +56,17 @@
                                     <tr>
                                         <td>{{ $user->id }}</td>
                                         <td>
-                                            {{ $user->name }}
+                                            <p>
+                                                {{ $user->name }} - <span>  @if($user->sex ==1) Nam @endif
+                                                    @if($user->sex ==2) Nữ @endif</span>
+                                            </p>
                                             @if ($user->avata != '')
                                                 <p>
                                                     <img src="{{ url('public/backend') }}/{{ $user->avata }}"
                                                         alt="{{ $user->name }}" width="20">
                                                 </p>
                                             @endif
-                                            <p>
-                                                @if($user->sex ==1) Nam @endif
-                                                @if($user->sex ==2) Nữ @endif
-                                            </p>
+                                            <button style="margin: 0px;" type="button" userName="{{ $user->name }}" userId="{{ $user->id }}" class="btn btn-info btn-lg showPopUpSendEmail" userEmail="{{ $user->email }}" data-toggle="modal" data-target="#myModal">Gửi email kêu gọi mua hàng</button>
                                         </td>
                                         <td>
                                             Email: {{ $user->email }}
@@ -102,143 +100,46 @@
 
                             </tbody>
                         </table>
-                        <!-- Modal for showing delete confirmation -->
-                        <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog"
-                            aria-labelledby="user_delete_confirm_title" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-hidden="true">×</button>
-                                        <h4 class="modal-title" id="user_delete_confirm_title">
-                                            Delete User
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        Bạn có chắc chắn muốn xóa thành viên này không
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        <a href="deleted_users.html" class="btn btn-danger">Delete
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
             <!-- row-->
         </section>
-
-        <!-- modal add -->
-        <div class="modal fade" id="addmember" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Thêm thành viên</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" method="post" id="formaddmember">
-
-
-                            <!--  -->
-                            <div class="form-group">
-                                <label for="first_name" class="col-sm-3">Tên thành viên</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="id_name" name="name" placeholder="Nhập tên thành viên"
-                                        class="form-control" />
-                                    <span style="color: red;"></span>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="col-sm-3" for="form-field-1-1">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="email" placeholder="Nhập email thành viên"
-                                        class="form-control" id="id_email">
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3" for="form-field-1-1">Pass word</label>
-                                <div class="col-sm-9">
-                                    <input type="password" name="password" class="form-control required"
-                                        placeholder="Nhập pass thành viên" id="id_pass">
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3" for="form-field-1-1">Phone number</label>
-                                <div class="col-sm-9">
-                                    <input type="number" name="phone_number" class="form-control required"
-                                        placeholder="Nhập số điện thoại thành viên" id="phone">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3" for="form-field-1-1">Process</label>
-
-                                <div class="col-sm-9 process_user">
-                                    <div class="form-control savedata">
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3" for="form-field-1-1"> SMS level</label>
-                                <div class="col-sm-9">
-                                    <select name="sms_level" id="id_sms_level" class="form-control required">
-                                        <option value="">Lựa chọn SMS level</option>
-                                        <option value="1">Warning</option>
-                                        <option value="2">Minor</option>
-                                        <option value="3">Crical</option>
-                                    </select>
-                                    <span style="color: red;">{{ $errors->first('sms_level') }}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3" for="form-field-1-1"> Quyền truy cập</label>
-                                <div class="col-sm-9">
-                                    <select name="level" id="level_id" class="form-control">
-                                        <option value="">Lựa chọn quyền truy cập</option>
-                                        <option value="2">Root</option>
-                                        <option value="1">Admin</option>
-                                        <option value="0">User</option>
-                                    </select>
-                                    <span style="color: red;">{{ $errors->first('member_level') }}</span>
-                                </div>
-                            </div>
-                            <div class="space-4"></div>
-                            <div class="clearfix form-actions">
-                                <div class="col-md-offset-3 col-md-9">
-                                    <button class="btn btn-primary" type="submit">Thêm thành viên</button>
-                                    &nbsp; &nbsp; &nbsp;
-                                    <button class="btn btn-danger" type="reset">Reset</button>
-
-
-                                </div>
-                            </div>
-                            {{ csrf_field() }}
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- end modal add -->
         <input type="hidden" value="{{ url('') }}" id="url">
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Email kêu gọi mua hàng</h4>
+                </div>
+                <div class="modal-body">
+                  <form action="" method="post" id="sendMailUser">
+                      <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" name="email" class="form-control" id="email">
+                      </div>
+                      <div class="form-group">
+                          <label for="email">Tên khách hàng</label>
+                          <input type="text" name="userName" class="form-control" id="userName">
+                        </div>
+                      <div class="form-group">
+                        <label for="pwd">Nội dung bài viết:</label>
+                        <textarea class="form-control" name="text" cols="30" rows="5" id="dataSendEmail"></textarea>
+                      </div>
+                      {{ csrf_field() }}
+                      <button type="submit" class="btn btn-success">Gửi Email</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+          
+            </div>
+          </div>
     </aside>
 @endsection('content')
 @section('script')
@@ -250,7 +151,6 @@
     <script>
         $(document).ready(function() {
             $('#table').dataTable();
-
         });
         $('.savedata').click(function() {
             $('.ulParent').toggle();
@@ -269,60 +169,31 @@
         $('body').on('click', '.delete', function() {
             $(this).parent().parent().parent().remove();
         });
-
-        /*$('body').on('click','#submember', function()
-        {
-            var url  = $('#url').val();
-            var item = {};
-            item.name = $('#id_name').val();
-            item.email = $('#id_email').val();
-            item.pass = $('#id_pass').val();
-            item.phone = $('#phone').val();
-            item.sms_level = $('#id_sms_level').val();
-            item.level = $('#level_id').val();
-            item.process = $('.savedata .id').text();
-            var itemJson = JSON.stringify(item);
-            console.log(itemJson);
-            $.get(url+'/admin/member/add/'+itemJson, function(data)
-            {
-                console.log(data);
-            });
-
-        });*/
-        $('#formaddmember').on('submit', function(event) {
+        $('.showPopUpSendEmail').click(function(){
+            let userEmail = $(this).attr('useremail');
+            let nameUser = $(this).attr('username');
+            $('#email').val(userEmail);
+            $('#userName').val(nameUser);
+            $('#dataSendEmail').text('Khuyến mại 20% '+' nhân dịp...' + 'Click vào link bên dưới ngay vì thời gian khuyến mại có hạn, nhanh tay để hưởng ưu đãi');
+        })
+        $("#sendMailUser").submit(function(e) {
             event.preventDefault();
+            let urlData = $('#url').val() + '/admin/history/sendEmailUser';
             $.ajax({
-                url: "",
+                url: urlData,
                 method: "POST",
                 data: new FormData(this),
-                //dataType:'JSON',
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function(data) {
-                    console.log(data);
-                    /* if(data=='0')
+                success: function (data) {
+                    if(data==true)
                        {
-                           alert('Error_code và Process_code bị trùng Bạn vui lòng sửa lại')
+                           alert('Gửi email thành công')
                        }else
                        {
-                           //console.log(data);
-                            $('#listdatatable').html(data);
-                            $('.error_code_e').html('');
-                            $('.process_code').val('');
-                            $(".error_name").val('');
-                            $(".solve").val('');
-                             $('#editerror .statusmess').prop('checked', false);
-                            //$(".statusmess").val('');
-
-                            $(".status").val('');
-                            $('.stretchLeft').hide();
-                            $('.modal-backdrop').hide();
-                           $('.alertNotification').show(3000);
-                           $('.alertNotification').text('Sửa thành công');
-                           $('.alertNotification').css({'background':'#F89A14'});
-                             setTimeout(function(){ $('.alertNotification').hide(5000);}, 5000);
-                       }*/
+                            alert('lỗi gửi Email Bạn vui lòng thử lại')
+                       }
                 }
             })
         });

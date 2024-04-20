@@ -81,7 +81,7 @@ Route::group(['middleware' => [CheckLogout::class], 'as' => 'admin.'], function 
 
     Route::get('history', 'HistoryController@index');
     Route::post('history/sendEmailShop', 'HistoryController@sendEmailShop');
-
-
+    Route::post('history/sendEmailUser', 'HistoryController@sendEmailUser');
+    
 });
 

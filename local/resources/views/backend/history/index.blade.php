@@ -3,7 +3,7 @@
     Lịch sử giao dịch
 @endsection('title')
 @section('style')
-    <link href="css/pages/tables.css" rel="stylesheet" type="text/css" />
+    {{-- <link href="css/pages/tables.css" rel="stylesheet" type="text/css" /> --}}
 @endsection('style')
 @section('content')
     <aside class="right-side strech" id="sideright">
@@ -54,25 +54,29 @@
                                     </thead>
                                     <tbody>
                                         @foreach($historyShop as $itemHistoryShop)
+                                        <?php 
+                                            $cateId = $itemHistoryShop->products->cate_id ?? '';
+                                            $proSlug = $itemHistoryShop->products->slug .'.html' ?? '';
+                                            $proId = $itemHistoryShop->products->id ?? '';
+                                        ?>
+                                        
                                         <tr>
                                             <td>
                                                 {{ $itemHistoryShop->id }}
+                                               
                                             </td>
                                             <td>
                                                 {{ $itemHistoryShop->users ? $itemHistoryShop->users->name : '' }}
                                                 <p>Email : {{ $itemHistoryShop->users ? $itemHistoryShop->users->email : '' }} </p>
+                                                <p>
+                                                    <button style="margin: 0px;" type="button" slugProduct="{{ $proSlug }}" userName="{{ $itemHistoryShop->users->name ?? '' }}" nameProduct="{{ $itemHistoryShop->products->name ?? '' }}" idProduct="{{ $itemHistoryShop->products->id ?? '' }}" class="btn btn-info btn-lg showPopUpSendEmail" userEmail="{{ $itemHistoryShop->users ? $itemHistoryShop->users->email : '' }}" data-toggle="modal" data-target="#myModal">Gửi email kêu gọi mua hàng</button>
+                                                </p>
                                             </td>
                                             <td>
-                                                <?php 
-                                                    $cateId = $itemHistoryShop->products->cate_id ?? '';
-                                                    $proSlug = $itemHistoryShop->products->slug .'.html' ?? '';
-                                                    $proId = $itemHistoryShop->products->id ?? '';
-                                                     ?>
+                                                
                                                 <a target="_blank" href="{{url("chi-tiet-san-pham/$proId/$proSlug")}}"
                                                     title="">{{ $itemHistoryShop->products ? $itemHistoryShop->products->name : '' }}</a>
-                                                <p>
-                                                    <button type="button" slugProduct="{{ $proSlug }}" userName="{{ $itemHistoryShop->users->name ?? '' }}" nameProduct="{{ $itemHistoryShop->products->name ?? '' }}" idProduct="{{ $itemHistoryShop->products->id ?? '' }}" class="btn btn-info btn-lg showPopUpSendEmail" userEmail="{{ $itemHistoryShop->users ? $itemHistoryShop->users->email : '' }}" data-toggle="modal" data-target="#myModal">Gửi email kêu gọi mua hàng</button>
-                                                </p>
+                                               
 
                                             </td>
                                             <td>
@@ -83,6 +87,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div>
+                                    {{ $historyShop->links() }}
+                                </div>
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <table class="table table-bordered " id="table">
@@ -111,6 +118,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div>
+                                    {{ $historyLogin->links() }}
+                                </div>
                             </div>
                           </div>
                        
@@ -167,8 +177,8 @@
 @endsection('content')
 @section('script')
     <script src="js/app.js" type="text/javascript"></script>
-    <script type="text/javascript" src="vendors/datatables/js/jquery.dataTables2.js"></script>
-    <script type="text/javascript" src="vendors/datatables/js/dataTables.bootstrap.js"></script>
+    {{-- <script type="text/javascript" src="vendors/datatables/js/jquery.dataTables2.js"></script>
+    <script type="text/javascript" src="vendors/datatables/js/dataTables.bootstrap.js"></script> --}}
 <script>
     $(document).ready(function(){
         $('.showPopUpSendEmail').click(function(){
@@ -184,7 +194,6 @@
             $('#userName').val(nameUser);
             $('#slugProduct').val(slugProduct);
             $('#dataSendEmail').text('Khuyến mại 20% ' + nameProduct + ' nhân dịp...' + 'Click vào link bên dưới ngay vì thời gian khuyến mại có hạn, nhanh tay để hưởng ưu đãi');
-            //alert(idproduct + userEmail);
         })
         $("#sendMailHistoryShop").submit(function(e) {
             event.preventDefault();
@@ -199,6 +208,8 @@
                 success: function (data) {
                     if(data==true)
                        {
+                            $('#myModal').hide();
+                            $('.modal-backdrop').hide();
                            alert('Gửi email thành công')
                        }else
                        {
