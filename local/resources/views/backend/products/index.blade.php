@@ -74,7 +74,7 @@
                             <tr>
                                 <td>{{$v->id}}</td>
                                 <td>
-                                    {{$v->name}}
+                                    <a href="{{url("chi-tiet-san-pham/$v->id/$v->slug.html")}}" target="_blank" rel="noopener noreferrer">{{$v->name}}</a>
                                     <p>
                                         Giá: {{number_format($v->price )}}
                                     </p>

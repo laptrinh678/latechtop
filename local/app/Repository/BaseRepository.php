@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Repository\RepositoryInterface;
-
+use Carbon\Carbon;
 abstract class BaseRepository implements RepositoryInterface
 {
     //model muốn tương tác
@@ -69,7 +69,8 @@ abstract class BaseRepository implements RepositoryInterface
     {
         $result = $this->find($id);
         if ($result) {
-            $result->delete();
+            $data['deleted_at'] = Carbon::now();
+            $result->update($data);
             return true;
         }
         return false;
