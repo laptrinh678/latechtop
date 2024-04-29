@@ -1,4 +1,4 @@
-@extends('dienminhquang.index')
+@extends('frontend.index')
 @section('title')
     {{ $postDetail->name }}
 @endsection
@@ -17,7 +17,7 @@
     <!-- detail product -->
     <div class="navbar-vina">
         <div class="container">
-            @include('dienminhquang.blog.titlePage')
+            @include('frontend.blog.titlePage')
             <a href="#">{{ $postDetail->name }}</a>
         </div>
     </div>
@@ -26,10 +26,10 @@
             <div class="row">
                 <div class="col-md-2 col-sm-12">
                     <div class="_box filter_cat">
-                        @include('dienminhquang.blog.detailProductBlogLeft')
+                        @include('frontend.blog.detailProductBlogLeft')
                     </div>
                     <div class="_box left_product">
-                        @include('dienminhquang.sanphamnoibat')
+                        @include('frontend.sanphamnoibat')
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-12">
@@ -52,11 +52,11 @@
                             {!! $postDetail->des2 !!}
                         </div>
                         @if($postDetail->productPost)
-                         @include('dienminhquang.blog.productSame')
+                         @include('frontend.blog.productSame')
                         @endif
                         <div>
                             <h3>Dowload Danh sách tài liệu ôn thi công chức, viên chức vòng 1 </h3>
-                           @include('dienminhquang.blog.listProductFullPost')
+                           @include('frontend.blog.listProductFullPost')
                         </div>
                         <hr>
                         <br>
@@ -161,7 +161,7 @@
 
 
                 </div>
-                <div class="col-md-2 col-sm-12"> @include('dienminhquang.blog.blogFullPage')</div>
+                <div class="col-md-2 col-sm-12"> @include('frontend.blog.blogFullPage')</div>
 
             </div>
         </div>
@@ -183,7 +183,7 @@
             </div>
         </div>
     @endif
-    @include('dienminhquang.blog.modal-registry')
+    @include('frontend.blog.modal-registry')
 
 @endsection('content')
 @section('script')

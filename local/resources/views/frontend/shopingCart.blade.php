@@ -1,4 +1,4 @@
-@extends('dienminhquang.index')
+@extends('frontend.index')
 @section('title')
     cart
 @endsection

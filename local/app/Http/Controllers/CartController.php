@@ -55,7 +55,7 @@ class CartController extends Controller
         $total = Cart::total();
     	$data = Cart::content();
         //dd($data);
-    	return view('dienminhquang.shopingCart', compact('data','total'));
+    	return view('frontend.shopingCart', compact('data','total'));
     }
     public function cartdelete($rowid)
     {
@@ -81,7 +81,7 @@ class CartController extends Controller
         $data['total'] = Cart::total();
         $data['content'] = Cart::content();
         $email = $request->email;
-       \Mail::send('dienminhquang.shopingCartEmail', $data, function($msg) use ($email)
+       \Mail::send('frontend.shopingCartEmail', $data, function($msg) use ($email)
        {
            $msg->from(env('MAIL_FROM_ADDRESS'),env('MAIL_URL'));// mail gui
            $msg->to($email, $email);// mail nhan, ten mail

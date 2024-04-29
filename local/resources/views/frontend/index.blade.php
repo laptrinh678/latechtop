@@ -7,25 +7,25 @@
     <title>@yield('title')</title>
     @yield('meta')
     <meta name="google-site-verification" content="IE7SiyUIVuQbH_379UkXTiynra3rVHjTZ4TFPCqe09g" />
-    <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/top.css">
+    <link rel="stylesheet" href="{{url('public/frontend')}}/css/top.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700|Roboto+Condensed:400,400i,700&amp;subset=vietnamese" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/style.min.css">
-    <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/style.css">
-    <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/ext/owlcarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/ext/owlcarousel/assets/owl.theme.default.min.css">
-    <script src="{{url('public/dienminhquang')}}/css/ext/owlcarousel/owl.carousel.js"></script>
+    <link rel="stylesheet" href="{{url('public/frontend')}}/css/style.min.css">
+    <link rel="stylesheet" href="{{url('public/frontend')}}/css/style.css">
+    <link rel="stylesheet" href="{{url('public/frontend')}}/css/ext/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{url('public/frontend')}}/css/ext/owlcarousel/assets/owl.theme.default.min.css">
+    <script src="{{url('public/frontend')}}/css/ext/owlcarousel/owl.carousel.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
     <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
-    <script src="{{url('public/dienminhquang')}}/css/js/jquery.hammer.js"></script>
-    <script type="text/javascript" src="{{url('public/dienminhquang')}}/css/fancybox/jquery.fancybox-1.3.1.js"></script>
-{{--    <link rel="stylesheet" type="text/css" href="{{url('public/dienminhquang')}}/css/fancybox/jquery.fancybox-1.3.1.css" media="screen">--}}
-    <script src="{{url('public/dienminhquang')}}/css/js/app.js"></script>
-    <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/cssFull.css">
-    <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/pager.css">
-    <link rel="stylesheet" href="{{url('public/dienminhquang')}}/css/reposive.css">
+    <script src="{{url('public/frontend')}}/css/js/jquery.hammer.js"></script>
+    <script type="text/javascript" src="{{url('public/frontend')}}/css/fancybox/jquery.fancybox-1.3.1.js"></script>
+{{--    <link rel="stylesheet" type="text/css" href="{{url('public/frontend')}}/css/fancybox/jquery.fancybox-1.3.1.css" media="screen">--}}
+    <script src="{{url('public/frontend')}}/css/js/app.js"></script>
+    <link rel="stylesheet" href="{{url('public/frontend')}}/css/cssFull.css">
+    <link rel="stylesheet" href="{{url('public/frontend')}}/css/pager.css">
+    <link rel="stylesheet" href="{{url('public/frontend')}}/css/reposive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('style')
 </head>
@@ -33,12 +33,12 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=1231752717281827&autoLogAppEvents=1" nonce="10ov3Ebe"></script>
 
-@include('dienminhquang.header')
+@include('frontend.header')
 <!-- begin menu -->
-@include('dienminhquang.menu')
+@include('frontend.menu')
 <!-- end menu -->
 @yield('content')
-@include('dienminhquang.footer')
+@include('frontend.footer')
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -96,7 +96,7 @@
 <script>
     FontAwesomeConfig = {searchPseudoElements: true};
 </script>
-<script src="{{url('public/dienminhquang')}}/css/js/fontawesome-all.js"></script>
+<script src="{{url('public/frontend')}}/css/js/fontawesome-all.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.go-top').click(function (event) {

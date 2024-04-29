@@ -14,7 +14,7 @@ class HomeController extends Controller
 	{
 		try {
 			$productList = Product::where('name', 'like', '%' . $request->txtkeyword . '%')->with('cate')->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
-			return view('dienminhquang.search.searchProduct', compact('productList'));
+			return view('frontend.search.searchProduct', compact('productList'));
 		} catch (Exception $e) {
 			return '404';
 		}
@@ -24,7 +24,7 @@ class HomeController extends Controller
 	{
 		try {
 			$productList = Product::where('point', '<=', $request->point)->with('cate')->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
-			return view('dienminhquang.search.searchProduct', compact('productList'));
+			return view('frontend.search.searchProduct', compact('productList'));
 		} catch (Exception $e) {
 			return '404';
 		}
@@ -33,7 +33,7 @@ class HomeController extends Controller
 	public function searchPost(Request $request){
 		try {
 			$postList = Post::where('name', 'like', '%' . $request->postName . '%')->with('cate')->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
-			return view('dienminhquang.search.searchPost', compact('postList'));
+			return view('frontend.search.searchPost', compact('postList'));
 		} catch (Exception $e) {
 			return '404';
 		}

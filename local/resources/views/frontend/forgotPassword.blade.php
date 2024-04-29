@@ -1,4 +1,4 @@
-@extends('dienminhquang.index')
+@extends('frontend.index')
 @section('title')
     Đăng ký
 @endsection
@@ -19,7 +19,7 @@
                 </svg>
                 Trang chủ
             </a>
-            <a href="#">Cập nhật mât khẩu</a>
+            <a href="#">Quên mật khẩu</a>
         </div>
     </div>
     <div class="subpage">
@@ -30,7 +30,7 @@
                 <div class="col-12  right">
                     <div class="box_subpage">
                         <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;" class="text-center">Vui lòng nhập
-                            mật khẩu mới</p>
+                            Email để hệ thống gửi đường link đổi mật khẩu về email</p>
 
                         <!--begin contact_page-->
                         <div class="contact_page">
@@ -40,20 +40,11 @@
                                     <form id="contact-form" method="post">
                                         <ul>
                                             <li>
-                                                <input placeholder="Password" value="{{old('password')}}"
-                                                       name="password" id="ContactForm_address"
-                                                       type="text">
+                                                <input placeholder="Email" value="{{old('email')}}" name="email"
+                                                       id="ContactForm_email"
+                                                       type="email">
                                                 <p>
-                                                    <span style="color: red;">{{$errors->first('password')}}</span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <input placeholder="Nhập lại passwors"
-                                                       value="{{old('password_confirm')}}" name="password_confirm"
-                                                       type="text">
-                                                <p>
-                                                    <span
-                                                        style="color: red;">{{$errors->first('password_confirm')}}</span>
+                                                    <span style="color: red;">{{$errors->first('email')}}</span>
                                                 </p>
                                             </li>
                                             <li class="text-center">
@@ -74,36 +65,15 @@
             </div>
         </div>
     </div>
-    @if (Session::has('reset_password_success'))
+    @if (Session::has('sendEmailVerifyPassword'))
         <div class="modal" tabindex="-1" role="dialog" style="display:block">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title">Cập nhật Password mới thành công</h3>
-
+                        <h3 class="modal-title">Gửi email thành công</h3>
                     </div>
                     <div class="modal-body">
-                        <p>{{Session::get('reset_password_success')}}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="{{url('')}}">
-                            <button type="button" class="btn btn-success">OK</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
-    @if (Session::has('reset_password_fail'))
-        <div class="modal" tabindex="-1" role="dialog" style="display:block">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Cập nhật Password lỗi</h3>
-
-                    </div>
-                    <div class="modal-body">
-                        <p>{{Session::get('reset_password_fail')}}</p>
+                        <p>{{Session::get('sendEmailVerifyPassword')}}</p>
                     </div>
                     <div class="modal-footer">
                         <a href="{{url('')}}">

@@ -1,4 +1,4 @@
-@extends('dienminhquang.index')
+@extends('frontend.index')
 @section('title')
 @if(isset($post))
     {{$post->name}}
@@ -47,10 +47,10 @@
             <div class="row">
                 <div class="col-12 col-md-2 left d-none d-md-block">
                     <div class="_box filter_cat">
-                        @include('dienminhquang.catesList')
+                        @include('frontend.catesList')
                     </div>
                     <div class="_box left_product">
-                        @include('dienminhquang.sanphamnoibat')
+                        @include('frontend.sanphamnoibat')
                     </div>
                 </div>
                 @if(isset($post))

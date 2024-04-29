@@ -1,4 +1,4 @@
-@extends('dienminhquang.index')
+@extends('frontend.index')
 @section('title')
     Đăng ký
 @endsection
@@ -19,8 +19,7 @@
                 </svg>
                 Trang chủ
             </a>
-            <a href="#">ĐĂNG KÝ</a>
-            <a href="#">Đăng ký thành viên</a>
+            <a href="#">Cập nhật mât khẩu</a>
         </div>
     </div>
     <div class="subpage">
@@ -30,60 +29,16 @@
 
                 <div class="col-12  right">
                     <div class="box_subpage">
-                        <h2 style="border-bottom: 1px solid #ddd; margin-bottom: 20px;" class="text-center">Đăng ký thành viên mới</h2>
-                        <p class="text-danger text-center">Bạn được cộng 100 điểm vào Điểm thành viên - bạn có thể sử dụng điểm để dowload tài liệu</p>
+                        <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;" class="text-center">Vui lòng nhập
+                            mật khẩu mới</p>
 
                         <!--begin contact_page-->
                         <div class="contact_page">
-
-
                             <div class="row">
                                 <div class="col-2"></div>
                                 <div class="col-8 item">
                                     <form id="contact-form" method="post">
                                         <ul>
-                                            <li>
-                                                <input placeholder="Họ tên" name="name" id="ContactForm_name"
-                                                       type="text" value="{{old('name')}}">
-                                                <p>
-                                                    <span style="color: red;">{{$errors->first('name')}}</span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <label for="">Giới tính</label>
-                                                <input type="radio" id="huey" name="sex" value="1" @if(old('sex')==1) checked @endif />
-                                                <label for="Nam">Nam</label>
-                                                <input type="radio" id="huey" name="sex" value="2" @if(old('sex')==2) checked @endif  />
-                                                <label for="Nữ">Nữ</label>
-                                                <p>
-                                                    <span style="color: red;">{{$errors->first('sex')}}</span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <input placeholder="Email" value="{{old('email')}}" name="email"
-                                                       id="ContactForm_email"
-                                                       type="email">
-                                                <p>
-                                                    <span style="color: red;">{{$errors->first('email')}}</span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <input placeholder="Điện thoại" value="{{old('phone')}}" name="phone"
-                                                       id="ContactForm_mobile" type="text">
-                                                <p>
-                                                    <span style="color: red;">{{$errors->first('phone')}}</span>
-                                                </p>
-                                            </li>
-
-                                            <li>
-                                                <input placeholder="Địa chỉ" value="{{old('adress')}}" name="adress"
-                                                       id="ContactForm_address"
-                                                       type="text">
-                                                <p>
-                                                    <span style="color: red;">{{$errors->first('adress')}}</span>
-                                                </p>
-                                            </li>
-
                                             <li>
                                                 <input placeholder="Password" value="{{old('password')}}"
                                                        name="password" id="ContactForm_address"
@@ -101,8 +56,6 @@
                                                         style="color: red;">{{$errors->first('password_confirm')}}</span>
                                                 </p>
                                             </li>
-
-
                                             <li class="text-center">
                                                 <button type="submit" class="btn btn-success">Gửi</button>
                                                 <button type="reset">Làm lại</button>
@@ -113,34 +66,48 @@
                                     </form>
                                 </div>
                                 <div class="col-2"></div>
-
-
                             </div>
                         </div>
                         <!--end contact_page-->
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
-    @if (Session::has('add_success'))
+    @if (Session::has('reset_password_success'))
         <div class="modal" tabindex="-1" role="dialog" style="display:block">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title">ĐĂNG KÝ THÀNH CÔNG</h3>
+                        <h3 class="modal-title">Cập nhật Password mới thành công</h3>
 
                     </div>
                     <div class="modal-body">
-                        <p>Chúc mừng bạn đã đăng ký thành viên thành công bạn hãy nhấn ok để quay lại trang chủ</p>
-                        <p>Đăng nhập với số điện thoại</p>
-                        <p>Bạn được cộng 100 điểm vào điểm cá nhân - hãy sử dụng để mua tài liệu</p>
+                        <p>{{Session::get('reset_password_success')}}</p>
                     </div>
                     <div class="modal-footer">
                         <a href="{{url('')}}">
-                            <button type="button" class="btn btn-success">Về trang chủ và đăng nhập</button>
+                            <button type="button" class="btn btn-success">OK</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    @if (Session::has('reset_password_fail'))
+        <div class="modal" tabindex="-1" role="dialog" style="display:block">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Cập nhật Password lỗi</h3>
+
+                    </div>
+                    <div class="modal-body">
+                        <p>{{Session::get('reset_password_fail')}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{url('')}}">
+                            <button type="button" class="btn btn-success">OK</button>
                         </a>
                     </div>
                 </div>

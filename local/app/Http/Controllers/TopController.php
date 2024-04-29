@@ -59,7 +59,7 @@ class TopController extends Controller
         $blogHomePage = Cate::where('page', 4)->with('product')->orderBy('id', 'desc')->get();
         $province = Province::orderBy('province_id', 'desc')->get();
         return view(
-            'dienminhquang.home',
+            'frontend.home',
              compact(
                 'newpost',
                 'danhmuchienthiTaiHome',
@@ -84,7 +84,7 @@ class TopController extends Controller
             $this->productRepo->update($sp->id, $view);
             $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->get();
             $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
-            return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
+            return view('frontend.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
         }catch (Exception $e) {
             return '404';
         }
@@ -100,7 +100,7 @@ class TopController extends Controller
             $this->productRepo->update($sp->id, $view);
             $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $sp->cate_id)->orderBy('id', 'desc')->get();
             $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
-            return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
+            return view('frontend.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
         }catch (Exception $e) {
             return '404';
         }
@@ -109,7 +109,7 @@ class TopController extends Controller
     {
         $cateData = DB::table('cates')->where('id', $cate_id)->first();
         $listCatedata = DB::table('products')->where('cate_id', $cate_id)->orderBy('id', 'desc')->get();
-        return view('dienminhquang.cateProduct', compact('listCatedata', 'cateData'));
+        return view('frontend.cateProduct', compact('listCatedata', 'cateData'));
     }
 
     public function catesTotal($cate_id, $type_menu)
@@ -131,15 +131,15 @@ class TopController extends Controller
             }
             if (count($data) == 1) {
                 $post = $data[0];
-                return view('dienminhquang.listPost', compact('post', 'cateData'));
+                return view('frontend.listPost', compact('post', 'cateData'));
             }
             if (count($data) == 0) {
                 $post = null;
-                return view('dienminhquang.listPost', compact('post', 'cateData'));
+                return view('frontend.listPost', compact('post', 'cateData'));
             }
             if (count($data) > 1) {
                 $postList = $data;
-                return view('dienminhquang.listPost', compact('postList', 'cate_id', 'cateData'));
+                return view('frontend.listPost', compact('postList', 'cate_id', 'cateData'));
             }
         }
         if ($type_menu == 1) {
@@ -158,13 +158,13 @@ class TopController extends Controller
             }
             if (count($productList) > 1) {
                 $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
-                return view('dienminhquang.cateProduct', compact('productList', 'cateData','blogDetailproduct'));
+                return view('frontend.cateProduct', compact('productList', 'cateData','blogDetailproduct'));
             }
             if (count($productList) == 1) {
                 $sp = $productList[0];
                 $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
                 $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
-                return view('dienminhquang.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
+                return view('frontend.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
             }
         }
     }
@@ -186,10 +186,10 @@ class TopController extends Controller
                     $productList = DB::table('products')->whereIn('cate_id', $arr_cate_id)->whereNull('deleted_at')->orderBy('id', 'desc')->paginate(8);
                 }
                 $productList = DB::table('products')->where('cate_id', $cate_id)->whereNull('deleted_at')->orderBy('id', 'desc')->paginate(8);
-                return view('dienminhquang.cateProduct', compact('productList', 'cateData'));
+                return view('frontend.cateProduct', compact('productList', 'cateData'));
             } else {
                 //dd('aa');
-                return view('dienminhquang.catePost');
+                return view('frontend.catePost');
             }
         } catch (Exception $e) {
             return '404';
@@ -201,11 +201,11 @@ class TopController extends Controller
         try {
             if ($type === 'san-pham-moi') {
                 $productList = Product::where('outstanding', Product::OUT_STANDING)->orderBy('id', 'desc')->paginate(8);
-                return view('dienminhquang.cateProductType', compact('productList'));
+                return view('frontend.cateProductType', compact('productList'));
             }
             if ($type === 'san-pham-noi-bat') {
                 $productList = Product::where('outstanding', Product::OUT_STANDING)->orderBy('id', 'desc')->paginate(8);
-                return view('dienminhquang.cateProductType', compact('productList'));
+                return view('frontend.cateProductType', compact('productList'));
             }
         } catch (Exception $e) {
             return '404';
@@ -219,7 +219,7 @@ class TopController extends Controller
             $view['view'] = $postDetail->view + 1;
             $this->postRepo->update($id, $view);
             $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
-            return view('dienminhquang.postDetail2', compact('postDetail','blogDetailproduct'));
+            return view('frontend.postDetail2', compact('postDetail','blogDetailproduct'));
         }catch (Exception $e) {
             return '404';
         }
@@ -229,7 +229,7 @@ class TopController extends Controller
     public function getPostWhereProvince($idProvice){
         try{
             $listpostWhereProvince = $this->postRepo->where('id_province', $idProvice)->orderBy('id','desc')->with('cate')->get();
-            return view('dienminhquang.ajax.listpostWhereProvince', compact('listpostWhereProvince'));
+            return view('frontend.ajax.listpostWhereProvince', compact('listpostWhereProvince'));
         }catch (Exception $e) {
             return '404';
         }
@@ -237,13 +237,13 @@ class TopController extends Controller
 
     public function shopingCart()
     {
-        return view('dienminhquang.shopingCart');
+        return view('frontend.shopingCart');
     }
 
     public function dangky(UsersRepository $UsersRepository)
     {
         $user = $UsersRepository->getAll();
-        return view('dienminhquang.dangky', compact('user'));
+        return view('frontend.dangky', compact('user'));
     }
 
     public function postdangky(FrontendUserRequest $request, UsersRepository $UsersRepository)
@@ -272,12 +272,12 @@ class TopController extends Controller
         // $data['code'] = $datanew['code'];
         // $UsersRepository->update($id, $datanew);
         // $email = $request->email;
-        // \Mail::send('dienminhquang.guithanhvien', $data, function ($msg) use ($email) {
+        // \Mail::send('frontend.guithanhvien', $data, function ($msg) use ($email) {
         //     $msg->from(env('MAIL_FROM_ADDRESS'), 'Samdoo.vn');// mail gui
         //     $msg->to($email);// mail nhan, ten mail
         //     $msg->subject('Đăng ký thành viên samdoo.vn');
         // });
-        // \Mail::send('dienminhquang.dangkythanhvien', $data, function ($msg) use ($email) {
+        // \Mail::send('frontend.dangkythanhvien', $data, function ($msg) use ($email) {
         //     $msg->from(env('MAIL_FROM_ADDRESS'), 'Samdoo.vn');// mail gui
         //     $msg->to($email);// mail nhan, ten mail
         //     $msg->cc('nguyenthuonght.1980@gmail.com', 'Samdoo.vn');
@@ -319,13 +319,13 @@ class TopController extends Controller
     public function usermanager(UsersRepository $usersRepository)
     {
         $history = $this->historyRepo->where('user_id', Auth::user()->id);
-        return view('dienminhquang.userManager', compact('history'));
+        return view('frontend.userManager', compact('history'));
     }
 
     public function caynhiphan(UsersRepository $usersRepository)
     {
         $userCon = $usersRepository->getUserCon(Auth::user()->id);
-        return view('dienminhquang.caynhiphan', compact('userCon'));
+        return view('frontend.caynhiphan', compact('userCon'));
     }
 
     public function chuyenhanh($status, $id, UsersRepository $usersRepository)
@@ -414,7 +414,7 @@ class TopController extends Controller
     public function forgotPassword()
     {
         try {
-            return view('dienminhquang.forgotPassword');
+            return view('frontend.forgotPassword');
         } catch (\Exception $e) {
             return back();
         }
@@ -426,7 +426,7 @@ class TopController extends Controller
             $data['token'] = Str::random(50);
             $email = $data['email'];
             $re = ResetPassword::create($data);
-            \Mail::send('dienminhquang.sendMailForgotPassWord', $data, function ($msg) use ($email) {
+            \Mail::send('frontend.sendMailForgotPassWord', $data, function ($msg) use ($email) {
                 $msg->from(env('MAIL_FROM_ADDRESS'), 'tuyendungcongchuc247.com'); // mail gui
                 $msg->to($email); // mail nhan, ten mail
                 $msg->subject('Cập nhật lại mật khẩu tuyendungcongchuc247.com');
@@ -441,7 +441,7 @@ class TopController extends Controller
 
     public function verifyPassword()
     {
-        return view('dienminhquang.changePassword');
+        return view('frontend.changePassword');
     }
 
     public function changePassword(ResetPasswordRequest $request)

@@ -1,4 +1,4 @@
-@extends('dienminhquang.index')
+@extends('frontend.index')
 @section('title')
     Trang cá nhân
 @endsection
@@ -205,7 +205,7 @@
                                                     <ul class="active">
                                                         @foreach($userCon as $v)
                                                             <li>
-                                                                @include('dienminhquang.itemUser')
+                                                                @include('frontend.itemUser')
                                                                     <?php
                                                                     $dataCon1 = DB::table('users')->where('parent_user_id', $v->id)->get();
                                                                     ?>
@@ -213,7 +213,7 @@
                                                                     <ul>
                                                                         @foreach($dataCon1 as $v)
                                                                             <li>
-                                                                                @include('dienminhquang.itemUser')
+                                                                                @include('frontend.itemUser')
                                                                                     <?php
                                                                                     $dataCon2 = DB::table('users')->where('parent_user_id', $v->id)->get();
                                                                                     ?>
@@ -221,7 +221,7 @@
                                                                                     <ul>
                                                                                         @foreach($dataCon2 as $v)
                                                                                             <li>
-                                                                                                @include('dienminhquang.itemUser')
+                                                                                                @include('frontend.itemUser')
                                                                                                 <ul>
                                                                                                 <?php
                                                                                                 $dataCon3 = DB::table('users')
@@ -231,7 +231,7 @@
                                                                                                     @if(count($dataCon3)>0)
                                                                                                         @foreach($dataCon3 as $v)
                                                                                                             <li>
-                                                                                                                @include('dienminhquang.itemUser')
+                                                                                                                @include('frontend.itemUser')
                                                                                                                 <ul>
                                                                                                                     <?php
                                                                                                                         $dataCon4 = DB::table('users')
@@ -241,7 +241,7 @@
                                                                                                                     @if(count($dataCon4)>0)
                                                                                                                         @foreach($dataCon4 as $v)
                                                                                                                             <li>
-                                                                                                                                @include('dienminhquang.itemUser')
+                                                                                                                                @include('frontend.itemUser')
                                                                                                                             </li>
                                                                                                                         @endforeach
                                                                                                                         @endif

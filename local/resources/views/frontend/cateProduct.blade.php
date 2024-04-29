@@ -1,4 +1,4 @@
-@extends('dienminhquang.index')
+@extends('frontend.index')
 @section('title')
     Danh sách sản phẩm
 @endsection
@@ -22,11 +22,11 @@
             <div class="row">
                 <div class="col-12 col-md-3 left d-none d-md-block">
                     <div class="_box filter_cat">
-                        @include('dienminhquang.blog.detailProductBlogLeft')
+                        @include('frontend.blog.detailProductBlogLeft')
                     </div>
 
                     <div class="_box left_product">
-                        @include('dienminhquang.sanphamnoibat')
+                        @include('frontend.sanphamnoibat')
                     </div>
                 </div>
                 <div class="col-12 col-md-9 right">

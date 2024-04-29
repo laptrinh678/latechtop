@@ -1,4 +1,4 @@
-@extends('dienminhquang.index')
+@extends('frontend.index')
 @section('title')
     {{ $sp->name }}
 @endsection
@@ -33,10 +33,10 @@
 
                 <div class="col-md-2 col-sm-12">
                     <div class="filter_cat">
-                        @include('dienminhquang.blog.detailProductBlogLeft')
+                        @include('frontend.blog.detailProductBlogLeft')
                     </div>
                     <div class="left_product">
-                        @include('dienminhquang.sanphamnoibat')
+                        @include('frontend.sanphamnoibat')
                     </div>
                 </div>
 
@@ -218,7 +218,7 @@
                 </div>
 
                 <div class="col-md-2 col-sm-12">
-                    @include('dienminhquang.blog.blogFullPage')
+                    @include('frontend.blog.blogFullPage')
                 </div>
 
             </div>
@@ -237,7 +237,7 @@
             </div>
         </div>
     </div>
-    @include('dienminhquang.blog.modal-registry')
+    @include('frontend.blog.modal-registry')
     </div>
     <!-- end detail product -->
 @endsection('content')
