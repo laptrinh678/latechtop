@@ -137,7 +137,21 @@
                             </ul>
                             <div class="clearfix"></div>
                             <div class="desc_product cbox_ppage content_style">
+                                <div>
+                                    <p><strong>
+                                        <a style="color: #007bff" href="{{ url("san-pham/$sp->cate_id/$sp->slug.html") }}">{{ $sp->name }}</a></strong>
+                                        {!! $imfomation->headProduct  !!}
+                                    </p>
+                                </div>
+                                
                                 {!! $sp->des2 !!}
+                                <div>
+                                    <p><strong>
+                                        <a style="color: #007bff" href="{{ url("san-pham/$sp->cate_id/$sp->slug.html") }}">{{ $sp->name }}</a></strong>
+                                    </strong>
+                                        {!! $imfomation->endProduct  !!}
+                                    </p>
+                                </div>
                             </div>
                             @if ($sp->price != 0)
                                 <p class="text-center">

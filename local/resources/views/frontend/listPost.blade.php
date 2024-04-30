@@ -66,9 +66,11 @@
                         </div>
                     </div>
                 @endif
-                @if (isset($postList))
+             
                     <div class="col-md-8 col-sm-12">
+                       
                         <div class="box_subpage">
+                            @if (isset($postList))
                             <p style="border-bottom: 1px solid #ddd; margin-bottom: 20px;">{{ getCateName($cate_id) }}</p>
                             <div class="list_news">
                                 @foreach ($postList as $v)
@@ -105,9 +107,14 @@
                                 {{ $postList->links('paginate') }}
                                 <div class="clearfix"></div>
                             </div>
+                            @else
+                            <p>Không có dữ liệu vui lòng quay lại </p>
+                            @endif
+
                         </div>
+                       
                     </div>
-                @endif
+              
                 <div class="col-md-2 col-sm-12">
                         @include('frontend.blog.blogFullPage')
                 </div>

@@ -114,6 +114,7 @@ class TopController extends Controller
 
     public function catesTotal($cate_id, $type_menu)
     {
+      
         $cateData = $this->cateRepo->where('id', $cate_id)->first();
         if ($type_menu == 0) {
             $cate_id_post_total = $this->cateRepo->where('type_menu', 0)->where('parent_id', $cate_id)->select('id')->get();

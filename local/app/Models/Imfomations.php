@@ -25,6 +25,8 @@ class Imfomations extends Model
         'des2',
         'des3',
         'title_home',
-        'des4'
+        'des4',
+        'headProduct',
+        'endProduct'
     ];
 }

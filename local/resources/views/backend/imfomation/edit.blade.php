@@ -101,25 +101,22 @@
                 </div>
                 <div class="form-group">
                 <label for="first_name" class="col-sm-2 control-label">adress</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <input type="text" id="first_name"  value="{{$data->adress}}" name="adress" placeholder="Nhập adress" class="form-control required" />
                         <span style="color: red;">{{$errors->first('password')}}</span>
                     </div>
-                </div>
-                <div class="form-group">
-                <label for="first_name" class="col-sm-2 control-label">hotline</label>
-                    <div class="col-sm-6">
+                    <label for="first_name" class="col-sm-1 control-label">hotline</label>
+                    <div class="col-sm-2">
                         <input type="text" id="first_name"  value="{{$data->hotline}}"  name="hotline" placeholder="Nhập hotline" class="form-control required" />
                         <span style="color: red;">{{$errors->first('password')}}</span>
                     </div>
-                </div>
-                <div class="form-group">
-                <label for="first_name" class="col-sm-2 control-label">phone</label>
-                    <div class="col-sm-6">
+                    <label for="first_name" class="col-sm-1 control-label">phone</label>
+                    <div class="col-sm-2">
                         <input type="text" id="first_name" value="{{$data->phone}}" name="phone" placeholder="Nhập phone" class="form-control required" />
                         <span style="color: red;">{{$errors->first('password')}}</span>
                     </div>
                 </div>
+              
                  <div class="form-group">
                 <label for="first_name" class="col-sm-2 control-label">Từ khóa Seo</label>
                     <div class="col-sm-6">
@@ -203,6 +200,25 @@
                       </script>        
                     </div>
                 </div> 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Text đầu sản phẩm</label>
+                    <div class="col-sm-10">
+                    <textarea class="ckeditor"  name="headProduct" id="a4" cols="90" rows="10" >{{$data->headProduct}}</textarea>
+                        <script type="text/javascript">
+                                CKEDITOR.replace('headProduct');
+                      </script>        
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Text cuối sản phẩm</label>
+                    <div class="col-sm-10">
+                    <textarea class="ckeditor"  name="endProduct" id="a4" cols="90" rows="10" >{{$data->endProduct}}</textarea>
+                        <script type="text/javascript">
+                                CKEDITOR.replace('endProduct');
+                      </script>        
+                    </div>
+                </div> 
+
 
                 <div class="space-4"></div>
                 <div class="clearfix form-actions">
