@@ -20,6 +20,7 @@ use App\Repository\HistoryRepository;
 use App\Repository\CateReponsitory;
 use App\Repository\PostReponsitory;
 use App\Repository\ProductReponsitory;
+use App\Repository\QuestionGroupRepository;
 use Auth, File;
 use Exception;
 use Mail;
@@ -36,16 +37,20 @@ class TopController extends Controller
     public $cateRepo;
     public $postRepo;
     public $productRepo;
+    public $questionGroupRepo;
     public function __construct(
         HistoryRepository $HistoryRepo,
         CateReponsitory $CateReponsitory,
         PostReponsitory $postReponsitory,
-        ProductReponsitory $productReponsitory
+        ProductReponsitory $productReponsitory,
+        QuestionGroupRepository $questionGroupRepository
+
     ) {
         $this->historyRepo = $HistoryRepo;
         $this->cateRepo = $CateReponsitory;
         $this->postRepo = $postReponsitory;
         $this->productRepo = $productReponsitory;
+        $this->questionGroupRepo = $questionGroupRepository;
     }
 
     public function index(Request $request)
@@ -55,6 +60,7 @@ class TopController extends Controller
         $provincePost = $this->postRepo->where('cate_id', 57)->with('cate')->orderBy('view', 'desc')->limit(30)->get();
         $danhmuchienthiTaiHome = Cate::where('page', 1)->with('posts', 'product')->orderBy('id', 'desc')->get();
         $blogQuaTang = Cate::where('page', 7)->orderBy('id', 'desc')->get();
+        $questionGroup = $this->questionGroupRepo->with('cate')->orderBy('id', 'desc')->get();
         $newpostFirst = $this->postRepo->with('cate')->getWhereNull('deleted_at')->orderBy('id', 'desc')->get();
         $blogHomePage = Cate::where('page', 4)->with('product')->orderBy('id', 'desc')->get();
         $province = Province::orderBy('province_id', 'desc')->get();
@@ -68,7 +74,8 @@ class TopController extends Controller
                 'blogHomePage',
                 'newOutstanding',
                 'province',
-                'provincePost'
+                'provincePost',
+                'questionGroup'
             )
         );
     }

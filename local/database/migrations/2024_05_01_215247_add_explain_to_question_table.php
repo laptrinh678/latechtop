@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumStatusPriceToProductsTable extends Migration
+class AddExplainToQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumStatusPriceToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->integer('status_price')->default(0);
+        Schema::table('question', function (Blueprint $table) {
+            $table->text('explain')->nullable()->comment('giai thich cau tra loi');
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumStatusPriceToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('status_price');
+        Schema::table('question', function (Blueprint $table) {
+            $table->dropColumn('explain');
         });
     }
 }

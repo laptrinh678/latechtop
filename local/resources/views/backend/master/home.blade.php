@@ -54,7 +54,7 @@ Trang chủ admin
                                     <div class="row">
                                         <div class="square_box col-xs-7 text-right">
                                             <span>Danh mục</span>
-                                            <div class="number"><a href="{{url('admin/cates')}}" class="text-white display-4">Sang trang quản lý danh mục</a></div>
+                                            <div class="number"><a href="{{url('admin/cates')}}" class="text-white display-4">Quản lý danh mục</a></div>
                                         </div>
                                         <i class="livicon  pull-right" data-name="eye-open" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
                                     </div>
@@ -71,7 +71,7 @@ Trang chủ admin
                                         <div class="square_box col-xs-7 pull-left">
                                             <span>Bài viết</span>
                                             <div class="number" id="">
-                                                <a href="{{url('admin/post')}}" class="text-white display-4">Sang trang quản lý bài viết</a>
+                                                <a href="{{url('admin/post')}}" class="text-white display-4">Quản lý bài viết</a>
                                             </div>
                                         </div>
                                         <i class="livicon pull-right" data-name="piggybank" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
@@ -90,7 +90,7 @@ Trang chủ admin
                                         <div class="square_box col-xs-7 pull-left">
                                             <span>Slider</span>
                                             <div class="number">
-                                                 <a href="{{url('admin/slider')}}" class="text-white display-4">Sang trang quản lý slider</a>
+                                                 <a href="{{url('admin/slider')}}" class="text-white display-4">Quản lý slider</a>
                                             </div>
                                         </div>
                                         <i class="livicon pull-right" data-name="archive-add" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
@@ -130,7 +130,7 @@ Trang chủ admin
                                     <div class="row">
                                         <div class="square_box col-xs-7 text-right">
 
-                                            <div class="number"><a href="{{url('admin/products')}}" class="text-white display-4">Sang trang quản lý sản phẩm</a></div>
+                                            <div class="number"><a href="{{url('admin/products')}}" class="text-white display-4">Quản lý sản phẩm</a></div>
                                         </div>
                                         <i class="livicon  pull-right" data-name="eye-open" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
                                     </div>
@@ -146,7 +146,7 @@ Trang chủ admin
                                     <div class="row">
                                         <div class="square_box col-xs-7 text-right">
 
-                                            <div class="number"><a href="{{url('admin/order')}}" class="text-white display-4">Sang trang quản lý đơn hàng</a></div>
+                                            <div class="number"><a href="{{url('admin/order')}}" class="text-white display-4">Quản lý đơn hàng</a></div>
                                         </div>
                                         <i class="livicon  pull-right" data-name="eye-open" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
                                     </div>
@@ -207,6 +207,39 @@ Trang chủ admin
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInLeftBig">
+                        <div class="lightbluebg no-radius">
+                            <div class="panel-body squarebox square_boxs">
+                                <div class="col-xs-12 pull-left nopadmar">
+                                    <div class="row">
+                                        <div class="square_box col-xs-7 text-right">
+
+                                            <div class="number"><a href="{{url('admin/question')}}" class="text-white display-4">Trắc nghiệm</a></div>
+                                        </div>
+                                        <i class="livicon  pull-right" data-name="eye-open" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 margin_10 animated fadeInLeftBig">
+                        <div class="lightbluebg no-radius">
+                            <div class="panel-body squarebox square_boxs">
+                                <div class="col-xs-12 pull-left nopadmar">
+                                    <div class="row">
+                                        <div class="square_box col-xs-7 text-right">
+
+                                            <div class="number"><a href="{{url('admin/questionGroup')}}" class="text-white display-4">Bộ đề Trắc nghiệm</a></div>
+                                        </div>
+                                        <i class="livicon  pull-right" data-name="eye-open" data-l="true" data-c="#fff" data-hc="#fff" data-s="70"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
 
 
 

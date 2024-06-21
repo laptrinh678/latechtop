@@ -162,5 +162,19 @@
             <span class="title">Lịch sử</span>
         </a>
     </li>
+    <li class="limenu2">
+        <a href="{{ url('admin/questionGroup') }}">
+            <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+            </i>
+            <span class="title">Danh sách bộ câu hỏi</span>
+        </a>
+    </li>
+    <li class="limenu2">
+        <a href="{{ url('admin/question') }}">
+            <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+            </i>
+            <span class="title">Danh sách câu hỏi</span>
+        </a>
+    </li>
 
 </ul>

@@ -33,9 +33,7 @@ Route::post('usermanager/doiDiemSangTien', 'TopController@doiDiemSangTien')->nam
 Route::get('chuyennhanh/{status}/{id}', 'TopController@chuyenhanh');
 Route::get('san-pham/{id}/{slug}.html', 'TopController@details');
 Route::get('chi-tiet-san-pham/{id}/{slug}.html', 'TopController@detailsProduct');
-//Route::get('danh-muc/{id}/{slug}.html', 'TopController@catesProduct');
 Route::get('danh-muc/{id}/{type_menu}/{slug}.html', 'TopController@catesTotal');
-//Route::get('danh-muc-hai/{id}/{type_menu}/{slug}.html', 'TopController@catesTotal2');
 Route::get('loai-san-pham/{type}.html', 'TopController@catesLoaiSanpham');
 Route::get('bai-viet/{id}/{slug}.html', 'TopController@postDetail');
 Route::get('getPostWhereProvince/{id}', 'TopController@getPostWhereProvince')->name('getPostWhereProvince');
@@ -51,4 +49,10 @@ Route::group(['prefix' => 'cart'], function () {
     Route::post('show', 'CartController@postmail');
     Route::get('delete/{rowid}', 'CartController@cartdelete');
     Route::get('update', 'CartController@cartupdate');
+});
+Route::group(['prefix' => 'trac-nghiem'], function () {
+    Route::get('trac-nghiem', 'QuizController@index');
+    Route::get('/{id}/{name}.html', 'QuizController@topicSet');
+    Route::get('/replyChoose/{idReply}/{idQuestion}', 'QuizController@replyChoose');
+    Route::get('next-question/{questionGroupId}/{sortIndex}', 'QuizController@nextQuestion');
 });

@@ -82,6 +82,20 @@ Route::group(['middleware' => [CheckLogout::class], 'as' => 'admin.'], function 
     Route::get('history', 'HistoryController@index');
     Route::post('history/sendEmailShop', 'HistoryController@sendEmailShop');
     Route::post('history/sendEmailUser', 'HistoryController@sendEmailUser');
+
+    Route::get('question', 'QuestionController@index');
+    Route::get('question/create', 'QuestionController@create');
+    Route::post('question/create', 'QuestionController@store');
+    Route::get('question/edit/{id}', 'QuestionController@edit');
+    Route::post('question/edit/{id}', 'QuestionController@update');
+    Route::get('question/destroy/{id}', 'QuestionController@destroy');
+
+    Route::get('questionGroup', 'QuestionGroupController@index');
+    Route::get('questionGroup/create', 'QuestionGroupController@create');
+    Route::post('questionGroup/create', 'QuestionGroupController@store');
+    Route::get('questionGroup/edit/{id}', 'QuestionGroupController@edit');
+    Route::post('questionGroup/edit/{id}', 'QuestionGroupController@update');
+    Route::get('questionGroup/destroy/{id}', 'QuestionGroupController@destroy');
     
 });
 
