@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Repository\QuestionGroupRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\ReplyRepository;
-
+use App\Models\HistoryQuiz;
+use Auth;
 class QuizController extends Controller
 {
     protected $questionGroupRepo;
@@ -26,16 +27,17 @@ class QuizController extends Controller
 
     public function replyChoose($idReply,$idQuestion)
     {
-        //dd($request->all());
+
         $clientReply = $this->replyRepo->find($idReply);
-        //dd( $clientReply);
         $question = $this->questionRepo->with(['questionGroup', 'replys'])->find($idQuestion);
         return view('frontend.multiplechoice.itemReply', compact('question', 'clientReply'));
-        // dd($request->all());
     }
 
     public function topicSet($id, $slug)
     {
+        $historyQuiz['user_id'] =  Auth::user()->id ?? null;
+        $historyQuiz['question_group_id'] =  $id;
+        HistoryQuiz::create($historyQuiz);
         $questionGroup = $this->questionGroupRepo->with('cate')->orderBy('id', 'desc')->get();
 
         $question = $this->questionRepo->with(['questionGroup', 'replys'])->where('question_groups_id', $id)->orderBy('id', 'ASC')->first();

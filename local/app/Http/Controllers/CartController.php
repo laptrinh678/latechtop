@@ -26,18 +26,15 @@ class CartController extends Controller
     }
     public function getaddcart($id, Request $request)
     {
-
         $qty = 1;
         if($request->quantity_cart){
             $qty = $request->quantity_cart;
         }
     	$product = Product::find($id);
-        if(Auth::user() && Auth::user()->id){
-            $historyShop['user_id'] =  Auth::user()->id;
-            $historyShop['product_id'] =  $product->id;
-            HistoryShop::create($historyShop);
+        $historyShop['user_id'] =  Auth::user()->id ?? null;
+        $historyShop['product_id'] =  $product->id;
+        HistoryShop::create($historyShop);
 
-        }
     	Cart::add(['id' => $id, 'name' => $product->name, 'qty' =>  $qty,'weight'=>'0',
          'price' => $product->price,
             'options' => [
@@ -54,7 +51,6 @@ class CartController extends Controller
     {
         $total = Cart::total();
     	$data = Cart::content();
-        //dd($data);
     	return view('frontend.shopingCart', compact('data','total'));
     }
     public function cartdelete($rowid)

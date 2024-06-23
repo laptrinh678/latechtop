@@ -39,6 +39,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#home">Lịch sử click mua hàng</a></li>
                             <li><a data-toggle="tab" href="#menu1">Lịch sử login</a></li>
+                            <li><a data-toggle="tab" href="#menu2">Lịch sử trắc nghiệm</a></li>
                           </ul>
                           <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
@@ -122,6 +123,55 @@
                                     {{ $historyLogin->links() }}
                                 </div>
                             </div>
+                            <div id="menu2" class="tab-pane fade in active">
+                                <table class="table table-bordered " id="table">
+                                    @include('errors.note')
+                                    <thead>
+                                        <tr class="filters">
+                                            <th style="width:5px;">Id</th>
+                                            <th>User trắc nghiệm</th>
+                                            <th>Bộ câu hỏi</th>
+                                            <th>Thời gian</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($historyQuiz as $itemHistoryQuiz)
+                                       
+                                        <tr>
+                                            <td>
+                                                {{ $itemHistoryQuiz->id }}
+                                               
+                                            </td>
+                                            <td>
+                                                {{ $itemHistoryQuiz->users ? $itemHistoryQuiz->users->name : '' }}
+                                                <p>Email : {{ $itemHistoryQuiz->users ? $itemHistoryQuiz->users->email : '' }} </p>
+                                                <p>
+                                                    <button style="margin: 0px;" type="button" slugProduct="{{ $proSlug }}" userName="{{ $itemHistoryShop->users->name ?? '' }}" nameProduct="{{ $itemHistoryShop->products->name ?? '' }}" idProduct="{{ $itemHistoryShop->products->id ?? '' }}" class="btn btn-info btn-lg showPopUpSendEmail" userEmail="{{ $itemHistoryShop->users ? $itemHistoryShop->users->email : '' }}" data-toggle="modal" data-target="#myModal">Gửi email kêu gọi mua hàng</button>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                    $questionGroupId = $itemHistoryQuiz->questionGroup->id ?? null;
+                                                    $questionGroupSlug = $itemHistoryQuiz->questionGroup->slug.'.html' ?? null;
+                                                    
+                                                ?>
+                                                
+                                                <a target="_blank" href="{{ url("trac-nghiem/$questionGroupId/$questionGroupSlug") }}"
+                                                    title="">{{ $itemHistoryQuiz->questionGroup ? $itemHistoryQuiz->questionGroup->name : '' }}</a>
+                                               
+                                            </td>
+                                            <td>
+                                                {{ $itemHistoryQuiz->created_at }}
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <div>
+                                    {{ $historyShop->links() }}
+                                </div>
+                            </div>
+                            
                           </div>
                        
                     </div>

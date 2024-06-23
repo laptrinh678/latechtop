@@ -77,7 +77,7 @@
                                 @foreach ($data as $k => $v)
                                     <tr>
                                         <td>{{ $v->id }}</td>
-                                        <td>{{ $v->name }}</td>
+                                        <td> <a href="{{ url("bai-viet/$v->id/$v->slug.html") }}" target="_blank" rel="noopener noreferrer">{{ $v->name }}</a></td>
                                         <td>
                                             <p>Ảnh đại diện:
                                                 @if ($v->icon)

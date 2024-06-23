@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\HistoryShop;
 use App\Models\HistoryLogin;
+use App\Models\HistoryQuiz;
 use Mail;
 class HistoryController extends Controller
 {
@@ -14,7 +15,8 @@ class HistoryController extends Controller
     {
         $historyShop = HistoryShop::orderBy('id', 'desc')->with(['products', 'users'])->paginate(config('apps.fullpage.paginate'));
         $historyLogin = HistoryLogin::orderBy('id', 'desc')->with(['users'])->paginate(config('apps.fullpage.paginate'));
-        return view('backend.history.index', compact('historyShop', 'historyLogin'));
+        $historyQuiz =  HistoryQuiz::orderBy('id', 'desc')->with(['users','questionGroup'])->paginate(config('apps.fullpage.paginate'));
+        return view('backend.history.index', compact('historyShop', 'historyLogin','historyQuiz'));
     }
 
     public function sendEmailShop(Request $request)
