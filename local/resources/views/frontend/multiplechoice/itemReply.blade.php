@@ -4,9 +4,25 @@
     <ul class="list-group">
             <ul class="list-group" style="padding: 0px; padding-right: 40px; padding-top: 20px;">
                 <li class="list-group-item text-danger">Câu {{$question->sort_index}} : {{ $question->name }}</li>
-                @foreach($question->replys as $replyItem)
+                @foreach($question->replys as $key=>$replyItem)
                     <li class="list-group-item">
-                        <span class="@if($replyItem->reply_value==1) {{'text-danger'}} @endif">{{ $replyItem->name }}</span>
+                        <span class="@if($replyItem->reply_value==1) {{'text-danger'}} @endif">
+                        @switch($key)
+                            @case(0)
+                                A
+                                @break
+                            @case(1)
+                                B
+                                @break
+                            @case(2)
+                               C
+                                @break
+                                @case(3)
+                                D
+                            @break
+                        @endswitch : 
+                            {{ $replyItem->name }}  @if($replyItem->id == $idReply ) <span class="text-warning"> (Đáp án của bạn)</span> @endif
+                        </span>
                         <span class="text-danger"> @if($replyItem->reply_value==1) {{'(Đáp án đúng)'}} @endif</span>
                     </li>
                 @endforeach

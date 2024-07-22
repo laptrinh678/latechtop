@@ -84,6 +84,22 @@
                                         <span style="color: red;">{{ $errors->first('name') }}</span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="select22" class="control-label col-sm-2">
+                                        Chọn sản phẩm liên quan
+                                    </label>
+                                    <div class="col-sm-10">
+                                        @php
+                                        $arrProductId = $questionGroup->listProductId;
+                                        @endphp
+                                        <select id="select22" name="product_id[]" class="form-control select2" multiple>
+                                               @foreach($products as $product)
+                                                <option value="{{ $product->id }}" @php if(isset($arrProductId) && in_array($product->id,$arrProductId)) echo 'selected'; @endphp>{{ $product->name }}</option>
+                                               @endforeach
+                                        </select>
+                                    </div>
+                                   
+                                </div>
                                 <div class="space-4"></div>
                                 <div class="clearfix form-actions">
                                     <div class="col-md-offset-3 col-md-9">

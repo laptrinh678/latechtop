@@ -10,18 +10,21 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Exception;
 use App\Repository\QuestionGroupRepository;
-
+use App\Repository\ProductReponsitory;
 class QuestionGroupController extends Controller
 {
     protected $cateRepo;
     protected $questionGroupRepo;
+    protected $productRepo;
     function __construct(
     CateReponsitory $cateReponsitory,
-    QuestionGroupRepository $questionGroupRepository
+    QuestionGroupRepository $questionGroupRepository,
+    ProductReponsitory $productReponsitory
     )
     {
         $this->cateRepo = $cateReponsitory;
         $this->questionGroupRepo = $questionGroupRepository;
+        $this->productRepo = $productReponsitory;
     }
 
     public function index()
@@ -33,7 +36,8 @@ class QuestionGroupController extends Controller
     public function create(Request $request)
     {
         $categories =  $this->cateRepo->getAll();
-        return view('backend.questionGroup.add', compact('categories'));
+        $products = $this->productRepo->getAll();
+        return view('backend.questionGroup.add', compact('categories','products'));
     }
 
     public function store(Request $request)
@@ -44,6 +48,9 @@ class QuestionGroupController extends Controller
             $questionGroup['cate_id'] = $request->cate_id;
             $questionGroup['slug']= Str::slug($request->name);
             $questionGroup = $this->questionGroupRepo->create($questionGroup);
+            if($questionGroup){
+                $questionGroup->questionGroupProduct()->attach($request->product_id);
+            }
             Session::flash('add_success', __('message.add_success'));
             return redirect('admin/questionGroup');
         } catch (Exception $e) {
@@ -60,9 +67,11 @@ class QuestionGroupController extends Controller
     public function edit($id, CateReponsitory $CateReponsitory)
     {
         if ($id) {
-            $questionGroup = $this->questionGroupRepo->with(['cate'])->find($id);
+            $questionGroup = $this->questionGroupRepo->with(['cate','questionGroupProduct'])->find($id);
+            $questionGroup->listProductId = $questionGroup->questionGroupProduct->pluck('id')->toArray();
+            $products = $this->productRepo->getAll();
             $categories =  $this->cateRepo->getAll();
-            return view('backend.questionGroup.edit', compact('questionGroup','categories'));
+            return view('backend.questionGroup.edit', compact('questionGroup','categories','products'));
         } else {
             Session::flash('no_data', __('message.no_data'));
             return back();
@@ -78,6 +87,7 @@ class QuestionGroupController extends Controller
             $dataQuestion['cate_id'] = $request->cate_id;
             $questionGroup['slug']= Str::slug($request->name);
             $questionGroup->update($dataQuestion);
+            $questionGroup->questionGroupProduct()->sync($request->product_id);
             Session::flash('edit_success', __('message.edit_success'));
             return redirect('admin/questionGroup');
         } else {

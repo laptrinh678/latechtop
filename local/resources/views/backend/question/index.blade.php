@@ -62,51 +62,53 @@
                             <thead>
                                 <tr class="filters">
                                     <th style="width:5px;">Id</th>
-                                    <th>Tên câu hỏi</th>
-                                    <th>Đáp án</th>
+                                    <th style="width: 20%">Tên câu hỏi</th>
+                                    <th style="width: 40%">Đáp án</th>
                                     <th>Bộ câu hỏi/Danh mục</th>
-                                    <th>Hành động</th>
+                                    <th style="width: 5%">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($questions as $k => $v)
                                     <tr>
                                         <td>{{ $v->id }}</td>
-                                        <td>
+                                        <td style="width: 20%">
                                             Câu {{$v->sort_index }} : {{ $v->name }}
                                         </td>
-                                        <td>
+                                        <td style="width: 40%">
                                             @if($v->replys)
                                             @foreach($v->replys as $key=>$reply)
                                             <p>
                                                 @switch($key)
                                                 @case(0)
-                                                    <span>A</span>
+                                                    <span>A:</span>
                                                     @break
 
                                                 @case(1)
-                                                    <span>B</span>
+                                                    <span>B:</span>
                                                     @break
                                                 @case(2)
-                                                <span>C</span>
+                                                <span>C:</span>
                                                 @break
                                                 @case(3)
-                                                <span>D</span>
+                                                <span>D:</span>
                                                 @break
                                                 @case(4)
-                                                <span>E</span>
+                                                <span>E:</span>
                                                 @break
                                             @endswitch
-                                                {{ $reply->name }} : @if($reply->reply_value==1) Đúng  @else sai @endif </p>
+                                                {{ $reply->name }} : @if($reply->reply_value==1) <span class="text-danger">Đúng</span>   @else sai @endif </p>
                                             @endforeach
                                             @endif
                                         </td>
                                         <td>
                                             {{ $v->questionGroup->name ?? '' }}
                                         </td>
-                                        <td>
+                                        <td style="width: 8%">
                                             <a href="{{ url('admin/question/destroy') }}/{{ $v->id }}"><button
                                                     class="btn btn-danger">Delete</button></a>
+                                                    <br>
+                                                    <br>
                                             <a href="{{ url('admin/question/edit') }}/{{ $v->id }}"><button
                                                     class="btn btn-primary">Edit</button></a>
                                         </td>

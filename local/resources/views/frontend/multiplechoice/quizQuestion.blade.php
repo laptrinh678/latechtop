@@ -40,18 +40,33 @@
                         @endforeach
                       </ul>
                 </div>
-                <div class="col-md-8 col-sm-12 itemTotalReply">
-                    @if($question)
+                <div class="col-md-8 col-sm-12">
+                    <div class="itemTotalReply">
+                        @if($question)
                     <div class="item-reply">
                         <h3 class="from-control text-white" style="background: #228a0a; padding: 10px;">{{$question->questionGroup ? $question->questionGroup->name : '' }}</h3>
                         <ul class="list-group">
                             <div>
                             <ul class="list-group" style="padding: 0px; padding-right: 40px; padding-top: 20px;">
                                 <li class="list-group-item text-danger">Câu {{$question->sort_index}} : {{ $question->name }}</li>
-                                @foreach($question->replys as $replyItem)
+                                @foreach($question->replys as $key=>$replyItem)
                                 <li class="list-group-item">
                                     <input type="radio" class="replyRadio" name="reply"  dataId="{{ $replyItem->id }}" value="">
-                                    {{ $replyItem->name }}
+                                    @switch($key)
+                                    @case(0)
+                                        A
+                                        @break
+                                    @case(1)
+                                        B
+                                        @break
+                                    @case(2)
+                                       C
+                                        @break
+                                        @case(3)
+                                        D
+                                    @break
+                                @endswitch : 
+                                {{ $replyItem->name }}
                                 </li>
                                 @endforeach
                                 <input type="hidden" name="idReply" id="replyValueChoose" value="">
@@ -69,7 +84,9 @@
                     <div>
                         <p class="text-center">Chưa có câu hỏi bạn vui lòng chọn bộ đề khác</p>
                     </div>
-                        @endif
+                    @endif
+                    </div>
+                    @include('frontend.itemProduct.itemProduct')
                 </div>
                 <div class="col-md-2 col-sm-12">
                     <label class="form-control bg-warning" for="">

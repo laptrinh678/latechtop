@@ -30,7 +30,7 @@ class QuizController extends Controller
 
         $clientReply = $this->replyRepo->find($idReply);
         $question = $this->questionRepo->with(['questionGroup', 'replys'])->find($idQuestion);
-        return view('frontend.multiplechoice.itemReply', compact('question', 'clientReply'));
+        return view('frontend.multiplechoice.itemReply', compact('question', 'clientReply','idReply'));
     }
 
     public function topicSet($id, $slug)
@@ -39,8 +39,7 @@ class QuizController extends Controller
         $historyQuiz['question_group_id'] =  $id;
         HistoryQuiz::create($historyQuiz);
         $questionGroup = $this->questionGroupRepo->with('cate')->orderBy('id', 'desc')->get();
-
-        $question = $this->questionRepo->with(['questionGroup', 'replys'])->where('question_groups_id', $id)->orderBy('id', 'ASC')->first();
+        $question = $this->questionRepo->with(['questionGroup', 'questionGroup.questionGroupProduct','replys'])->where('question_groups_id', $id)->orderBy('id', 'ASC')->first();
         return view('frontend.multiplechoice.quizQuestion', compact('question', 'questionGroup'));
     }
 

@@ -36,7 +36,7 @@
                 <a href="{{url('admin/products/index')}}">Order</a>
 
                 <a href="{{url('admin/products/create')}}">
-                    <i class="fa fa-fw fa-angle-double-right"></i> Danh sách order
+                    <i class="fa fa-fw fa-angle-double-right"></i> Danh sách đơn hàng
                 </a>
             </div>
         </section>
@@ -81,6 +81,7 @@
                                                     <p>Email:  {{$customerImfo['email']}}</p>
                                                     <p>Địa chỉ:  {{$customerImfo['adress']}}</p>
                                                 @endif
+                                                <p><button class="btn btn-success">Gửi email tài liệu</button></p>
                                             </td>
                                             <td style="width:700px">
                                                     <?php
@@ -95,6 +96,7 @@
                                                     @endforeach
                                                     <p>Tổng tiền: {{$v->total}}</p>
                                                 @endif
+                                              
                                             </td>
                                             <td>
                                                 {{ $v->created_at->format('d-m-Y h:m')}}
@@ -209,20 +211,28 @@
                                                         <p>Email:  {{$customerImfo['email']}}</p>
                                                         <p>Địa chỉ:  {{$customerImfo['adress']}}</p>
                                                     @endif
+                                                   
                                                 </td>
                                                 <td style="width:700px">
                                                         <?php
                                                         $dataDonhang = json_decode($v->data, true);
+                                                        $dataSendMail = null;
                                                         ?>
                                                     @if( $dataDonhang)
                                                         @foreach($dataDonhang as $v1)
                                                             <p>
                                                                 - {{$v1['name']}} - Giá :{{number_format($v1['price'])}}  - Số lượng
                                                                 : {{$v1['qty']}}
+                                                                <?php 
+                                                                $dataSendMail['product_id'] = $v1['id']; 
+                                                                $dataSendMail['name'] = $v1['name']; 
+                                                                ?>
                                                             </p>
                                                         @endforeach
                                                         <p>Tổng tiền: {{$v->total}}</p>
                                                     @endif
+                                                    <?php $dataItem = json_encode($dataSendMail); ?>
+                                                    <p><button class="btn btn-success showPopUpSendEmail" dataCustomer="{{$v->infor}}" productData="@if($dataItem) {{ $dataItem }}@endif" data-toggle="modal" data-target="#myModal">Gửi email tài liệu</button></p>
                                                 </td>
                                                 <td>
                                                     {{ $v->created_at->format('d-m-Y h:m')}}
@@ -253,6 +263,46 @@
         </section>
         <input type="hidden" value="{{url('')}}" id="url">
     </aside>
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Email gửi hàng</h4>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post" id="sendMailHistoryShop">
+              <div class="form-group">
+                  <label for="email">Tên sản phẩm</label>
+                  <input type="text" name="name" class="form-control" id="productName">
+                </div>
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" name="email" class="form-control" id="email">
+                <input type="hidden" class="form-control" name="product_id" id="productId">
+                <input type="hidden" class="form-control" name="pro_slug" id="slugProduct">
+              </div>
+              <div class="form-group">
+                  <label for="email">Tên khách hàng</label>
+                  <input type="text" name="userName" class="form-control" id="userName">
+                </div>
+              <div class="form-group">
+                <label for="pwd">Nội dung bài viết:</label>
+                <textarea class="form-control" name="text" cols="30" rows="5" id="dataSendEmail"></textarea>
+              </div>
+              {{ csrf_field() }}
+              <button type="submit" class="btn btn-success">Gửi Email</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
 @endsection('content')
 @section('script')
     <script src="js/app.js" type="text/javascript"></script>
@@ -260,7 +310,6 @@
     <!-- begining of page level js -->
     <script>
         $(document).ready(function () {
-            $('#table').dataTable();
             $('body').on('click', '.changeStatus', function () {
                 let status = $(this).attr('status');
                 let url = $('#url').val();
@@ -270,6 +319,44 @@
                     thiss.parent().html(data);
                 })
             })
+            $('body').on('click','.showPopUpSendEmail', function(){
+                let productData = JSON.parse($(this).attr('productdata'));
+                let userData = JSON.parse($(this).attr('datacustomer'));
+                let idproduct = productData.product_id
+                let userEmail = userData.email
+                let nameProduct = productData.name
+                let nameUser = userData.customer
+                $('#productId').val(idproduct);
+                $('#email').val(userEmail);
+                $('#productName').val(nameProduct);
+                $('#userName').val(nameUser);
+                $('#slugProduct').val(slugProduct);
+                $('#dataSendEmail').text('Tuyendungcongchuc247.com gửi ' + nameUser + ' tài liệu ' + nameProduct + ' bạn click vào link dowload bên dưới để tải tài liệu về nhé');
+            })
+            $("#sendMailHistoryShop").submit(function(e) {
+            event.preventDefault();
+            let urlData = $('#url').val() + '/admin/history/sendEmailDowload';
+            $.ajax({
+                url: urlData,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    if(data==true)
+                       {
+                            $('#myModal').hide();
+                            $('.modal-backdrop').hide();
+                           alert('Gửi email thành công')
+                       }else
+                       {
+                            alert('lỗi gửi Email Bạn vui lòng thử lại')
+                       }
+                }
+            })
+        });
+          
         });
     </script>
 @endsection('script')

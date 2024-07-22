@@ -44,6 +44,10 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->select($colum)->orderBy('id', 'desc')->get();
     }
 
+    public function select($column = ['*']){
+        return $this->model->select($column);
+    }
+
     public function find($id)
     {
         $result = $this->model->find($id);

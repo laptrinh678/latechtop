@@ -61,9 +61,9 @@
                         <thead>
                         <tr class="filters">
                             <th style="width:5px;">Id</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Ảnh</th>
+                            <th style="width: 30%">Tên sản phẩm</th>
                             <th>Link Dowload/Lượt xem</th>
+                            <th>Ảnh</th>
                             <th>Danh mục cha</th>
                             <th>Trạng thái</th>
                             <th>Hành động</th>
@@ -73,12 +73,20 @@
                         @foreach($data as $k=>$v)
                             <tr>
                                 <td>{{$v->id}}</td>
-                                <td>
+                                <td style="width: 30%">
                                     <a href="{{url("chi-tiet-san-pham/$v->id/$v->slug.html")}}" target="_blank" rel="noopener noreferrer">{{$v->name}}</a>
                                     <p>
-                                        Giá: {{number_format($v->price )}}
+                                        Giá: {{number_format($v->price )}} Mã : {{$v->product_code}}
                                     </p>
-                                    <p>Mã: {{$v->product_code}} </p>
+                                    <p><button idproduct="{{ $v->id }}" nameProduct="{{ $v->name }}" class="btn btn-success showPopUpSendEmail" data-toggle="modal" data-target="#sendEmailCustomer">Gửi email</button></p>
+                                </td>
+                                <td>
+                                    @if($v->link != null)
+                                    <a href="{{ $v->link }}" target="_blank" rel="noopener noreferrer">Link</a>
+                                    @endif
+                                    <br>
+                                    Lượt xem: {{ $v->view }}
+                                    <p>Điểm: {{ $v->point }}</p>
                                 </td>
                                 <td>
                                     <p>Ảnh sản phẩm:
@@ -99,14 +107,7 @@
                                         @endforeach
                                     @endif
                                 </td>
-                                <td>
-                                    @if($v->link != null)
-                                    <a href="{{ $v->link }}" target="_blank" rel="noopener noreferrer">Link</a>
-                                    @endif
-                                    <br>
-                                    Lượt xem: {{ $v->view }}
-                                    <p>Điểm: {{ $v->point }}</p>
-                                </td>
+                                
                                 <td>
                                     @if($v->cate_id != '')
                                             <?php
@@ -150,6 +151,41 @@
         </section>
         <input type="hidden" value="{{url('')}}" id="url">
     </aside>
+    <div id="sendEmailCustomer" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Gửi link dowload tài liệu</h4>
+            </div>
+            <div class="modal-body">
+              <form action="" method="post" id="sendMailProduct">
+                  <div class="form-group">
+                      <label for="email">Tên sản phẩm</label>
+                      <input type="text" name="name" class="form-control" id="productName" readonly>
+                    </div>
+                  <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" name="email" class="form-control" id="email" required>
+                    <input type="hidden" class="form-control" name="product_id" id="productId">
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd">Nội dung bài viết:</label>
+                    <textarea class="form-control" name="text" cols="30" rows="5" id="dataSendEmail"></textarea>
+                  </div>
+                  {{ csrf_field() }}
+                  <button type="submit" class="btn btn-success">Gửi Email</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
 @endsection('content')
 @section('script')
     <script src="js/app.js" type="text/javascript"></script>
@@ -175,6 +211,36 @@
                     thiss.parent().html(data);
                 })
             })
+            $('.showPopUpSendEmail').click(function(){
+            let idproduct = $(this).attr('idproduct');
+            let nameProduct = $(this).attr('nameProduct');
+            $('#productName').val(nameProduct);
+            $('#productId').val(idproduct);
+            $('#dataSendEmail').text('gửi bạn link dowload tài liệu: ' + nameProduct + ' .Bạn Click vào link bên dưới để dowload nhé');
+        })
+        $("#sendMailProduct").submit(function(e) {
+            event.preventDefault();
+            let urlData = $('#url').val() + '/admin/sendEmailProduct';
+            $.ajax({
+                url: urlData,
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    if(data==true)
+                       {
+                            $('#myModal').hide();
+                            $('.modal-backdrop').hide();
+                           alert('Gửi email thành công')
+                       }else
+                       {
+                            alert('lỗi gửi Email Bạn vui lòng thử lại')
+                       }
+                }
+            })
+        });
         });
     </script>
 @endsection('script')

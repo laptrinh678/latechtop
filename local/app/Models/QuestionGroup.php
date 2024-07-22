@@ -21,4 +21,7 @@ class QuestionGroup extends Model
     public function question(){
         return $this->hasMany(Question::class, 'question_groups_id', 'id')->with('replys');
     }
+    public function questionGroupProduct(){
+        return $this->belongsToMany(Product::class, 'question_group_products', 'question_group_id', 'product_id');
+    }
 }

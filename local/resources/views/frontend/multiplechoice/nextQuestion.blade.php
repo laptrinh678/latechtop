@@ -5,9 +5,23 @@
             <div>
                 <ul class="list-group" style="padding: 0px; padding-right: 40px; padding-top: 20px;">
                     <li class="list-group-item text-danger">Câu {{$question->sort_index}} : {{ $question->name }}</li>
-                    @foreach($question->replys as $replyItem)
+                    @foreach($question->replys as $key=>$replyItem)
                         <li class="list-group-item">
                             <input type="radio" class="replyRadio" name="reply"  dataId="{{ $replyItem->id }}" value="">
+                            @switch($key)
+                            @case(0)
+                                A
+                                @break
+                            @case(1)
+                                B
+                                @break
+                            @case(2)
+                               C
+                                @break
+                                @case(3)
+                                D
+                            @break
+                        @endswitch : 
                             {{ $replyItem->name }}
                         </li>
                     @endforeach
