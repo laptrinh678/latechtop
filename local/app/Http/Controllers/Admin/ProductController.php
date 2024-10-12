@@ -33,8 +33,9 @@ class ProductController extends Controller
 
     public function create(CateReponsitory $CateReponsitory)
     {
+        $products = $this->ProductReponsitory->getAll();
         $categories = $CateReponsitory->where('type_menu',1)->get();
-        return view('backend.products.add', compact('categories'));
+        return view('backend.products.add', compact('categories','products'));
     }
 
 
@@ -72,8 +73,9 @@ class ProductController extends Controller
         }
         $data['slug']=Str::slug($request->name);
         $data['product_code']= 'SP_'.strtoupper(Str::random(10));
-        $ProductReponsitory = $this->ProductReponsitory->create($data);
-        if($ProductReponsitory){
+        $product = $this->ProductReponsitory->create($data);
+        $product->productRelate()->attach($request->product_id);
+        if($product){
             Session::flash('add_success', __('message.add_success'));
             return redirect('admin/products/');
         }else{
@@ -92,9 +94,15 @@ class ProductController extends Controller
     public function edit($id,CateReponsitory $CateReponsitory)
     {
         if($id){
-            $data = $this->ProductReponsitory->find($id);
+            $products = $this->ProductReponsitory->getAll();
+            $data = $this->ProductReponsitory->with('cate','productRelate')->find($id);
+            $arrProductRelate = [];
+            if($data->productRelate){
+                $arrProductRelate = $data->productRelate->pluck('id')->toArray();
+            }
             $parent = $CateReponsitory->where('type_menu',1)->get();
-            return view('backend.products.edit', compact('parent','data'));
+         
+            return view('backend.products.edit', compact('parent','data', 'products', 'arrProductRelate'));
         }else{
              Session::flash('no_data', __('message.no_data'));
             return back();
@@ -141,6 +149,7 @@ class ProductController extends Controller
         $data['slug']=Str::slug($request->name);
         $data['product_code']= 'SP_'.strtoupper(Str::random(10));
         $result = $this->ProductReponsitory->update($id, $data);
+        $result->productRelate()->sync($request->product_id);
         if($result){
             Session::flash('update_success', __('message.update_success'));
             return redirect('admin/products');

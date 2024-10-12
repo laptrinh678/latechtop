@@ -22,23 +22,27 @@ class Product extends Model
         'cate_id',
         'cat_id_parent',
         'deleted_at',
-        'outstanding',// sp noi bat
-        'promotions',//sp khuyen mai
+        'outstanding', // sp noi bat
+        'promotions', //sp khuyen mai
         'price',
-        'point',//điểm tích khi mua sp
+        'point', //điểm tích khi mua sp
         'number',
         'product_old',
         'product_new',
         'product_factory',
         'unit',
-        'sold',// so luong da ban
-        'status_price',// an hien gia,
+        'sold', // so luong da ban
+        'status_price', // an hien gia,
         'link',
         'view'
 
     ];
-    public function cate(){
+    public function cate()
+    {
         return $this->hasOne(Cate::class, 'id', 'cate_id')->with('product');
     }
-
+    public function productRelate()
+    {
+        return $this->belongsToMany(Product::class, 'product_relate', 'product_id', 'product_relate_id');
+    }
 }

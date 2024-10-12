@@ -218,8 +218,33 @@
                       </script>        
                     </div>
                 </div> 
-
-
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Nạp tiền thành viên</label>
+                    <div class="col-sm-10">
+                    <textarea class="ckeditor"  name="money_member" id="money_member" cols="90" rows="10" >{{$data->money_member}}</textarea>
+                        <script type="text/javascript">
+                                CKEDITOR.replace('money_member');
+                      </script>        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Danh sách kiến thức chung</label>
+                    <div class="col-sm-10">
+                    <textarea class="ckeditor"  name="documents_round_one" id="documents_round_one" cols="90" rows="10" >{{$data->documents_round_one}}</textarea>
+                        <script type="text/javascript">
+                                CKEDITOR.replace('documents_round_one');
+                      </script>        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Danh sách tài liệu vòng 1</label>
+                    <div class="col-sm-10">
+                    <textarea class="ckeditor"  name="documents_round_one_list" id="documents_round_one_list" cols="90" rows="10" >{{$data->documents_round_one_list}}</textarea>
+                        <script type="text/javascript">
+                                CKEDITOR.replace('documents_round_one_list');
+                      </script>        
+                    </div>
+                </div> 
                 <div class="space-4"></div>
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-9">

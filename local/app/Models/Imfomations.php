@@ -27,6 +27,9 @@ class Imfomations extends Model
         'title_home',
         'des4',
         'headProduct',
-        'endProduct'
+        'endProduct',
+        'money_member',
+        'documents_round_one',
+        'documents_round_one_list'
     ];
 }

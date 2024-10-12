@@ -654,3 +654,6 @@ body.fb_hidden {
     background-color: #fff;
     border: 1px solid rgba(0,0,0,.125);
 }
+.pd-top-20 {
+    padding-top: 20px;
+}

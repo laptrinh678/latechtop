@@ -31,12 +31,13 @@ class CateController extends Controller
     }
     public function store(AdminCatesRequest $request)
     {
-
-        //dd($request->all());
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        if ($request->img_default == 'on') {
+        if ($request->img_default === 'on') {
             $data['img_default'] = 1;
+        }
+        if ($request->documents_round_one_status === 'on') {
+            $data['documents_round_one_status'] = 1;
         }
         if ($request->hasFile('icon')) {
             $file_Img = $request->file('icon');
@@ -74,8 +75,12 @@ class CateController extends Controller
     {
         $data = $request->all();
         $data['img_default'] = 0;
-        if ($request->img_default == 'on') {
+        $data['documents_round_one_status'] = 0;
+        if ($request->img_default === 'on') {
             $data['img_default'] = 1;
+        }
+        if ($request->documents_round_one_status === 'on') {
+            $data['documents_round_one_status'] = 1;
         }
         $data['slug'] = Str::slug($request->name);
         unset($data['_token']);

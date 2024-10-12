@@ -71,7 +71,7 @@
                                         <td>{{ $v->id }}</td>
                                         <td>{{ $v->name }}</td>
                                         <td>
-                                            
+                                            {{ $v->question->count() }}
                                         </td>
                                         <td>
                                             {{ $v->cate->name }}

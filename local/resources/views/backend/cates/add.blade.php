@@ -123,6 +123,8 @@
                                             <label class="form-check-label" for="flexCheckChecked">Sản phẩm</label>
                                         </div>
                                     </div>
+                                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">
+                                        Thêm list kiến thức chung <input type="checkbox" name="documents_round_one_status" id=""></label>
                                 </div>
                                 <!-- <div class="form-group">
                                    <label for="first_name" class="col-sm-2 control-label">Vị trí hiển thị bài viết</label>

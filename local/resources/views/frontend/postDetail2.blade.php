@@ -49,14 +49,18 @@
                            
 
                         <div class="news_page">
+                            @if($postDetail->cate && $postDetail->cate->documents_round_one_status == 1)
+                            {!! $imfomation->documents_round_one !!}
+                            @endif
                             {!! $postDetail->des2 !!}
                         </div>
                         @if($postDetail->productPost)
                          @include('frontend.blog.productSame')
                         @endif
                         <div>
-                            <h3>Dowload Danh sách tài liệu ôn thi công chức, viên chức vòng 1 </h3>
-                           @include('frontend.blog.listProductFullPost')
+                            @if($postDetail->cate && $postDetail->cate->documents_round_one_status == 1)
+                            {!! $imfomation->documents_round_one_list !!}
+                            @endif
                         </div>
                         <hr>
                         <br>

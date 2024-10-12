@@ -98,9 +98,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($v->cate_id != 0)
-                                                {{ getCateName($v->cate_id) }}
-                                            @endif
+                                            {{ $v->cate? $v->cate?->name .'-'. $v->cate->id : '' }}
                                         </td>
 
                                         <td>

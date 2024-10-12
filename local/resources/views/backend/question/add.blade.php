@@ -116,7 +116,10 @@
                                 <div class="form-group">
                                     <label for="first_name" class="col-sm-2 control-label">Giải thích đáp án đúng</label>
                                     <div class="col-sm-10">
-                                            <textarea class="form-control" name="explain" id="" cols="30" rows="3"></textarea>
+                                            <textarea class="ckeditor" name="explain" id="a2" cols="30" rows="5"></textarea>
+                                            <script type="text/javascript">
+                                                CKEDITOR.replace('explain');
+                                            </script>
                                         <span style="color: red;">{{ $errors->first('explain') }}</span>
                                     </div>
                                 </div>

@@ -105,6 +105,8 @@ Sửa danh mục
                           <label class="form-check-label" for="flexCheckChecked" >Sản phẩm</label>
                         </div>
                     </div>
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">
+                        Thêm list kiến thức chung<input type="checkbox" @if($cat->documents_round_one_status == 1) checked @endif name="documents_round_one_status"></label>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Icon</label>
@@ -118,6 +120,7 @@ Sửa danh mục
                     </div>
                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Đặt ảnh
                         mặc định <input type="checkbox" @if($cat->img_default==1)checked @endif name="img_default" id=""></label>
+                    
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Mô tả ngắn</label>

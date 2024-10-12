@@ -38,7 +38,7 @@
                 Trang chủ
             </a>
             <a href="#">@if(isset($cateData))
-                    {{$cateData->name}}
+                    {{$cateData->name}} 
                 @endif</a>
         </div>
     </div>

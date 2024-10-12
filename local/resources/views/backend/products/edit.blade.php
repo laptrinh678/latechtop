@@ -150,6 +150,19 @@
                       </script>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="select22" class="control-label col-sm-2">
+                        Chọn sản phẩm liên quan
+                    </label>
+                    <div class="col-sm-10">
+                        <select id="select22" name="product_id[]" class="form-control select2" multiple>
+                               @foreach($products as $product)
+                                <option value="{{ $product->id }}"  @php if(isset($arrProductRelate) && in_array($product->id, $arrProductRelate)) echo 'selected'; @endphp>{{ $product->name }}</option>
+                               @endforeach
+                        </select>
+                    </div>
+                   
+                </div>
 
                  <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1">Loại sản phẩm</label>

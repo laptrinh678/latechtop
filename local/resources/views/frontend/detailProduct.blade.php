@@ -143,12 +143,20 @@
                                         {!! $imfomation->headProduct  !!}
                                     </p>
                                 </div>
-                                
-                                {!! $sp->des2 !!}
-                                <div>
-                                    <p><strong>
-                                        <a style="color: #007bff" href="{{ url("san-pham/$sp->cate_id/$sp->slug.html") }}">{{ $sp->name }}</a></strong>
-                                    </strong>
+                                <div class="content-product">
+                                    {!! $sp->des2 !!}
+                                </div>
+                                @if(count($sp->productRelate)>0)
+                                <div class="pd-top-20">
+                                    <h3 class="text-danger">Danh sách các sản phẩm cùng loại mua chung để ôn tập</h3>
+                                    @foreach($sp->productRelate as $key => $product)
+                                    <p> <strong><a href="{{ url("san-pham/$product->cate_id/$product->slug.html") }}" target="_blank" rel="noopener noreferrer">{{ $product->name }}</a></strong></p>
+                                    @endforeach
+                                </div>
+                                @endif
+                                <div class="pd-top-20">
+                                    <p>
+                                        <strong>Lời kết: </strong>Vậy là <a style="color: #007bff" href="{{ url("san-pham/$sp->cate_id/$sp->slug.html") }}">{{ $sp->name }}</a></strong></strong>
                                         {!! $imfomation->endProduct  !!}
                                     </p>
                                 </div>

@@ -127,7 +127,6 @@
                 let url = $('#url').val();
                 let replyValueChoose = $('#replyValueChoose').val();
                 let idQuestionChoose = $('#idQuestionChoose').val();
-                console.log(replyValueChoose + 'd' + idQuestionChoose);
                 $.get(url + '/trac-nghiem/replyChoose/' + replyValueChoose + '/' + idQuestionChoose, function (data) {
                     $('.itemTotalReply').html(data);
                 })

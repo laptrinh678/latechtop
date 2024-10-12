@@ -1,3 +1,4 @@
+
 <div class="item-reply">
     <h3 class="from-control text-white" style="background: #228a0a; padding: 10px;">{{$question->questionGroup ? $question->questionGroup->name : '' }}</h3>
     <h4 class="text-danger text-center">@if($clientReply->reply_value == 1) {{'Câu trả lời của bạn chính xác'}} @else {{'Câu trả lời của bạn chưa chính xác'}} @endif</h4>
@@ -34,32 +35,50 @@
                         {!! $question->explain !!}
                     </div>
                     <p class="text-right">
-                        <button class="btn btn-success nextQuestion" dataQuestionGroup ="{{$question->question_groups_id}}" dataSortIndex="{{$question->sort_index}}" >Câu hỏi tiếp theo</button>
+                        <button class="btn btn-success nextQuestion" data-toggle="" data-target="" dataQuestionGroup ="{{$question->question_groups_id}}" dataSortIndex="{{$question->sort_index}}" >Câu hỏi tiếp theo</button>
                     </p>
 
                 </li>
             </ul>
         <input type="hidden" id="url" value="{{url('')}}">
+        <input type="hidden" id="userIdLogin" value="{{ Auth::user()->id ?? null }}">
     </ul>
+    @include('frontend.item.addMoney')
 </div>
 <script>
     $(document).ready(function (){
         $('body').on('click', '.nextQuestion', function() {
             let questionGroup = $(this).attr('dataQuestionGroup');
             let sortIndex = $(this).attr('dataSortIndex');
-            let url = $('#url').val();
-            $.get(url + '/trac-nghiem/next-question/' + questionGroup + '/' + sortIndex, function (data) {
-                $('.itemTotalReply').html(data);
-            })
+            let userIdLogin = $('#userIdLogin').val();
+            if(sortIndex > 1 && !userIdLogin){
+                $(this).attr('data-toggle','modal');
+                $(this).attr('data-target','#exampleModal');
+                $('.modalLogin .modal-title').text('Vui lòng đăng nhập để làm tiếp trắc nghiệm')
+                return
+            }
+            if(sortIndex > 1 && userIdLogin){
+                $(this).attr('data-toggle','modal');
+                $(this).attr('data-target','#addMoneyModal');
+                return
+            }
+                let url = $('#url').val();
+                $.get(url + '/trac-nghiem/next-question/' + questionGroup + '/' + sortIndex, function (data) {
+                    $('.itemTotalReply').html(data);
+                })
             });
-        // $('.nextQuestion').click(function (){
-        //     let questionGroup = $(this).attr('dataQuestionGroup');
-        //     let sortIndex = $(this).attr('dataSortIndex');
-        //     let url = $('#url').val();
-        //     $.get(url + '/trac-nghiem/next-question/' + questionGroup + '/' + sortIndex, function (data) {
-        //         $('.itemTotalReply').html(data);
-        //     })
-        // })
     })
 
 </script>
+<style>
+    .modalLogin {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    outline: 0;
+}
+</style>

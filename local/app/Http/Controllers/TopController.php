@@ -55,51 +55,59 @@ class TopController extends Controller
 
     public function index(Request $request)
     {
-        $newpost = $this->cateRepo->with(['posts'])->where('page', 4)->first();
-        $newOutstanding = $this->postRepo->where('cate_id', 57)->with('cate')->orderBy('id', 'desc')->limit(10)->get();
-        $provincePost = $this->postRepo->where('cate_id', 57)->with('cate')->orderBy('view', 'desc')->limit(30)->get();
-        $danhmuchienthiTaiHome = Cate::where('page', 1)->with('posts', 'product')->orderBy('id', 'desc')->get();
-        $blogQuaTang = Cate::where('page', 7)->orderBy('id', 'desc')->get();
-        $questionGroup = $this->questionGroupRepo->with('cate')->orderBy('id', 'desc')->get();
-        $newpostFirst = $this->postRepo->with('cate')->getWhereNull('deleted_at')->orderBy('id', 'desc')->get();
-        $blogHomePage = Cate::where('page', 4)->with('product')->orderBy('id', 'desc')->get();
-        $province = Province::orderBy('province_id', 'desc')->get();
-        return view(
-            'frontend.home',
-             compact(
-                'newpost',
-                'danhmuchienthiTaiHome',
-                'blogQuaTang',
-                'newpostFirst',
-                'blogHomePage',
-                'newOutstanding',
-                'province',
-                'provincePost',
-                'questionGroup'
-            )
-        );
+        try {
+            $newpost = $this->cateRepo->with(['posts'])->where('page', 4)->first();
+            $newOutstanding = $this->postRepo->where('cate_id', 57)->with('cate')->orderBy('id', 'desc')->limit(10)->get();
+            $provincePost = $this->postRepo->where('cate_id', 57)->with('cate')->orderBy('view', 'desc')->limit(30)->get();
+            $cates = Cate::with('posts', 'product','questionGroup','childrenMenu')->orderBy('id', 'desc')->get();
+            $blogQuaTang = Cate::where('page', 7)->orderBy('id', 'desc')->get();
+            $questionGroup = $this->questionGroupRepo->with('cate')->orderBy('id', 'desc')->get();
+            $newpostFirst = $this->postRepo->with('cate')->getWhereNull('deleted_at')->orderBy('id', 'desc')->get();
+            $blogHomePage = Cate::where('page', 4)->with('product')->orderBy('id', 'desc')->get();
+            $province = Province::orderBy('province_id', 'desc')->get();
+            $listDocumentCate = $this->postRepo->where('cate_id', 119)->get();
+            return view(
+                'frontend.home',
+                compact(
+                    'newpost',
+                    'cates',
+                    'blogQuaTang',
+                    'newpostFirst',
+                    'blogHomePage',
+                    'newOutstanding',
+                    'province',
+                    'provincePost',
+                    'questionGroup',
+                    'listDocumentCate'
+                )
+            );
+        } 
+        catch(Exception $e) {
+            return view('errors.error');
+        }
+        
     }
 
     public function details($cate_id, $slug)
     {
-        try{
+        try {
             if ($cate_id == 1 && $slug == 1) {
                 return back();
             }
-            $sp = $this->productRepo->with('cate')->where('slug', $slug)->first();
+            $sp = $this->productRepo->with('cate','productRelate')->where('slug', $slug)->first();
             $view['view'] = $sp->view + 1;
             $this->productRepo->update($sp->id, $view);
             $sp_lienquan = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->get();
             $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
             return view('frontend.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
         }catch (Exception $e) {
-            return '404';
+            return view('errors.error');
         }
        
     }
     public function detailsProduct($id, $slug = null){
         try{
-            $sp = $this->productRepo->with('cate')->where('id', $id)->first();
+            $sp = $this->productRepo->with('cate','productRelate')->where('id', $id)->first();
             if ($sp->cate_id == 1 && $slug == 1) {
                 return back();
             }
@@ -109,7 +117,7 @@ class TopController extends Controller
             $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
             return view('frontend.detailProduct', compact('sp', 'sp_lienquan','blogDetailproduct'));
         }catch (Exception $e) {
-            return '404';
+            return view('errors.error');
         }
     }
     public function catesProduct($cate_id, $slug)
@@ -159,7 +167,6 @@ class TopController extends Controller
                     $listCateIdPro[] = $v->id;
                 }
             }
-            //dd($listCateIdPro);
             $productList = $this->productRepo->findWhereIn('cate_id', $listCateIdPro)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
             if (count($listCateIdPro) == 0) {
                 $productList = $this->productRepo->with('cate')->where('cate_id', $cate_id)->orderBy('id', 'desc')->paginate(config('apps.fullpage.paginate'));
@@ -200,7 +207,7 @@ class TopController extends Controller
                 return view('frontend.catePost');
             }
         } catch (Exception $e) {
-            return '404';
+            return view('errors.error');
         }
     }
 
@@ -216,7 +223,7 @@ class TopController extends Controller
                 return view('frontend.cateProductType', compact('productList'));
             }
         } catch (Exception $e) {
-            return '404';
+            return view('errors.error');
         }
     }
 
@@ -224,12 +231,13 @@ class TopController extends Controller
     {
         try{
             $postDetail = $this->postRepo->with('cate')->find($id);
+            //dd($postDetail);
             $view['view'] = $postDetail->view + 1;
             $this->postRepo->update($id, $view);
             $blogDetailproduct = $this->cateRepo->where('page', 9)->with('product')->get();
             return view('frontend.postDetail2', compact('postDetail','blogDetailproduct'));
         }catch (Exception $e) {
-            return '404';
+            return view('errors.error');
         }
        
     }
@@ -239,7 +247,7 @@ class TopController extends Controller
             $listpostWhereProvince = $this->postRepo->where('id_province', $idProvice)->orderBy('id','desc')->with('cate')->get();
             return view('frontend.ajax.listpostWhereProvince', compact('listpostWhereProvince'));
         }catch (Exception $e) {
-            return '404';
+            return view('errors.error');
         }
     }
 

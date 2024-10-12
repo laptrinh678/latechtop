@@ -26,7 +26,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $data= $this->PostReponsitory->with('productPost')->getAll();
+        $data= $this->PostReponsitory->with(['productPost','cate'])->getAll();
         return view('backend.post.index', compact('data'));
     }
 

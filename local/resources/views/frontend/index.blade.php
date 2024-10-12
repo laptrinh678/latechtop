@@ -30,63 +30,15 @@
     @yield('style')
 </head>
 <body>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=1231752717281827&autoLogAppEvents=1" nonce="10ov3Ebe"></script>
-
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=1231752717281827&autoLogAppEvents=1" nonce="10ov3Ebe"></script>
 @include('frontend.header')
-<!-- begin menu -->
 @include('frontend.menu')
-<!-- end menu -->
+<div class="container">
 @yield('content')
-@include('frontend.footer')
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Đăng nhập hệ thống</h3>
-            </div>
-            <div class="modal-body">
-                <form method="post" id="loginsystem">
-                    <div class="form-group phonelogin">
-                        <label for="recipient-name" class="col-form-label">Số điện thoại</label>
-                        <input type="number" class="form-control" id="phonename" name="phone" value="{{old('phone')}}">
-                        <p><span class="text-danger error1"></span>
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Password:</label>
-                        <input type="password" class="form-control" name="password" id="password"
-                               value="{{old('password')}}">
-                        <p><span class="text-danger error2"></span>
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <h5><span class="text-danger error3"></span>
-                        </h5>
-                        <h4>
-                            <div class="w-50" style="float:left">
-                                <button class="btn btn-success" type="submit">Đăng nhập</button>
-                            </div>
-
-                            <div class="w-25 text-right" style="float:right">
-                                <a href="{{url('forgot-password')}}">Quên mật khẩu</a>
-                            </div>
-
-                        </h4>
-                    </div>
-                    {{csrf_field()}}
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="hidden" class="form-control" id="url-login" name="url" value="{{url('/login')}}">
-            </div>
-        </div>
-    </div>
 </div>
-
+@include('frontend.footer')
+@include('frontend.item.login')
 <p class="mobile_support hidden-md hidden-lg">
     <svg class="svg-inline--fa fa-phone fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="phone" role="img"
          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">

@@ -8,6 +8,8 @@
     <link href="vendors/select2/css/select2-bootstrap.css" rel="stylesheet" type="text/css">
     <link href="vendors/selectize/css/selectize.css" rel="stylesheet" type="text/css">
     <link href="vendors/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="assets/ckeditor/ckfinder/ckfinder.js"></script>
     <style>
         .imgdetail {
             border: 1px solid #c0c0c0;
@@ -118,7 +120,10 @@
                                 <div class="form-group">
                                     <label for="first_name" class="col-sm-2 control-label">Giải thích đáp án đúng</label>
                                     <div class="col-sm-10">
-                                            <textarea class="form-control" name="explain" id="" cols="30" rows="3">{{$question->explain}}</textarea>
+                                            <textarea class="ckeditor" name="explain" id="explainEdit" cols="30" rows="5">{{$question->explain}}</textarea>
+                                            <script type="text/javascript">
+                                                CKEDITOR.replace('explain');
+                                            </script>
                                         <span style="color: red;">{{ $errors->first('explain') }}</span>
                                     </div>
                                 </div>

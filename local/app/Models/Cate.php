@@ -22,7 +22,8 @@ class Cate extends Model
         'menu_type',
         'type_menu',
         'page',
-        'img_default'
+        'img_default',
+        'documents_round_one_status'
     ];
 
     public function posts()
@@ -33,4 +34,10 @@ class Cate extends Model
     public function product(){
         return $this->hasMany(Product::class, 'cate_id', 'id');
     }
+    public function questionGroup() {
+        return $this->hasMany(QuestionGroup::class, 'cate_id', 'id');
+    }
+     public function childrenMenu() {
+        return $this->hasMany(Cate::class, 'parent_id', 'id')->with('questionGroup');
+     }
 }
